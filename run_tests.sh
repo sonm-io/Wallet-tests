@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 export CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce
+CI=''
 
 while test $# -gt 0
 do
@@ -7,6 +8,10 @@ do
         -p|--path)
             shift
             export WALLET_PATH=$1
+            shift
+            ;;
+        --ci)
+            CI=' --disableLaunchReport'
             shift
             ;;
         @*)
@@ -44,7 +49,7 @@ echo Migrating contracts to testrpc
 
 echo Running tests...
 npm install
-node ./node_modules/selenium-cucumber-js/index.js${tags}
+node ./node_modules/selenium-cucumber-js/index.js${tags}${CI}
 
 echo Trying to stop testrpc docker container
 docker stop testrpc
