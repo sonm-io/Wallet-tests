@@ -2,6 +2,7 @@
 export CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce
 WALLET_PATH=''
 CI=''
+testrpc_name=testrpc
 
 while test $# -gt 0
 do
@@ -32,7 +33,17 @@ else
 fi
 
 echo Starting testrpc docker container
-docker run -d -p 8545:8545 --name=testrpc trufflesuite/ganache-cli:latest  \
+
+if [[ $(docker ps -q --filter "name=${testrpc_name}") ]]; then
+    echo Stop and remove existing testrpc container
+    docker stop ${testrpc_name} && docker rm ${testrpc_name}
+fi
+if [[ $(docker ps -q -a --filter "name=${testrpc_name}") ]]; then
+    echo Remove existing testrpc container
+    docker rm ${testrpc_name}
+fi
+
+docker run -d -p 8545:8545 --name=${testrpc_name} trufflesuite/ganache-cli:latest  \
   -l 10000000 \
   --account="0xcfd4b9b614e30f929296034d5dd7b701783aae0d273fcb9f23130c3d6ead9620,76500000000000000000000" \
   --account="0x1da1383caf0b6e14487550d41334a591430c8220ace1133600099b81b71503c7,76500000000000000000000" \
@@ -54,7 +65,7 @@ npm install
 node ./node_modules/selenium-cucumber-js/index.js${tags}${CI}
 
 echo Trying to stop testrpc docker container
-docker stop testrpc
+docker stop ${testrpc_name}
 
 echo Removing testrpc docker container
-docker rm testrpc
+docker rm ${testrpc_name}
