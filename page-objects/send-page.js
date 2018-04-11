@@ -14,68 +14,52 @@ module.exports = {
         selectedCurrency: by.className('sonm-currency-item__name'),
         sendTab: by.xpath('//li[.="Send"]'),
         select: by.className('sonm-account-big-select'),
-        selectedAccount: by.className('sonm-account-item__name-text'),
+        selectedAccount: by.className('sonm-account-item__name-text')
     },
 
     //wait for loading account page according to displayed header
 
-    waitForAccountDetailPageLoading: function() {
+    waitForAccountDetailPageLoading: function () {
         return shared.wdHelper.findVisibleElement(this.elements.header);
     },
 
     //select address from dropdown
 
-    selectAddressFromByName: function(accName) {
-        return page.common.selectFromStandardDropdown(
-            this.elements.select,
-            by.xpath('//li[@title="' + accName + '"]'),
-            this.elements.selectedAccount,
-            accName,
-        );
+    selectAddressFromByName: function (accName) {
+        return page.common.selectFromStandardDropdown(this.elements.select, by.xpath('//li[@title="' + accName + '"]'),
+            this.elements.selectedAccount, accName);
     },
 
     //fill field send address to
 
-    fillAddressTo: async function(address) {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.sendTo,
-        )).sendKeys(address);
+    fillAddressTo: async function (address) {
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendTo)).sendKeys(address);
     },
 
     //fill amount field
 
-    setAmountField: async function(amount) {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.amount,
-        )).sendKeys(amount);
+    setAmountField: async function (amount) {
+        return (await shared.wdHelper.findVisibleElement(this.elements.amount)).sendKeys(amount);
     },
 
     // click next button
 
-    clickNext: async function() {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.NextBtn,
-        )).click();
+    clickNext: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.NextBtn)).click();
     },
 
     //verify selected currency
 
-    checkSelectedCurrency: async function(currency) {
-        const currencyElementText = await (await shared.wdHelper.findVisibleElement(
-            this.elements.selectedCurrency,
-        )).getText();
+    checkSelectedCurrency: async function (currency) {
+        const currencyElementText = await (await shared.wdHelper.findVisibleElement(this.elements.selectedCurrency)).getText();
         return await expect(currencyElementText).to.equal(currency);
     },
 
     //select currency from dropdown
 
-    selectCurrency: async function(currency) {
-        (await shared.wdHelper.findVisibleElement(
-            this.elements.currencySelect,
-        )).click();
-        (await shared.wdHelper.findVisibleElement(
-            by.xpath('//li[@title="' + currency + '"]'),
-        )).click();
+    selectCurrency: async function (currency) {
+        (await shared.wdHelper.findVisibleElement(this.elements.currencySelect)).click();
+        (await shared.wdHelper.findVisibleElement(by.xpath('//li[@title="' + currency + '"]'))).click();
         return this.checkSelectedCurrency(currency);
     },
 };
