@@ -14,11 +14,17 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitImportAccountDialogue: async function() {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.importAccountPopupHeader,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal('Add account'));
+        return await driver.wait(
+            until.elementTextIs(
+                driver.wait(
+                    until.elementLocated(
+                        this.elements.importAccountPopupHeader,
+                    ),
+                ),
+                'Add account',
+            ),
+            80000,
+        );
     },
 
     //verify that the spinner is not visible in import account form
@@ -32,7 +38,7 @@ module.exports = {
     //upload account file
 
     uploadAccountFile: function(filename = 'for_upload.json') {
-        let targetFile = process.cwd() + '/features/shared_objects/' + filename;
+        let targetFile = process.cwd() + '/shared_objects/' + filename;
         return driver
             .wait(until.elementLocated(this.elements.fileField))
             .sendKeys(targetFile);

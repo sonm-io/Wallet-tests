@@ -26,8 +26,6 @@ module.exports = {
     //select address from dropdown
 
     selectAddressFromByName: function(accName) {
-        //return page.common.selectAccountFromDropdown(accName);
-
         return page.common.selectFromStandardDropdown(
             this.elements.select,
             by.xpath('//li[@title="' + accName + '"]'),
@@ -39,43 +37,45 @@ module.exports = {
     //fill field send address to
 
     fillAddressTo: async function(address) {
-        return (await shared.wdHelper
-            .findVisibleElement(this.elements.sendTo))
-            .sendKeys(address);
+        return (await shared.wdHelper.findVisibleElement(
+            this.elements.sendTo,
+        )).sendKeys(address);
     },
 
     //fill amount field
 
     setAmountField: async function(amount) {
-        return (await shared.wdHelper
-            .findVisibleElement(this.elements.amount))
-            .sendKeys(amount);
+        return (await shared.wdHelper.findVisibleElement(
+            this.elements.amount,
+        )).sendKeys(amount);
     },
 
     // click next button
 
     clickNext: async function() {
-        return (await shared.wdHelper
-            .findVisibleElement(this.elements.NextBtn))
-            .click();
+        return (await shared.wdHelper.findVisibleElement(
+            this.elements.NextBtn,
+        )).click();
     },
 
     //verify selected currency
 
     checkSelectedCurrency: async function(currency) {
-        return (await shared.wdHelper
-            .findVisibleElement(this.elements.selectedCurrency))
-            .getText()
-            .then(text => expect(text).to.equal(currency));
+        const currencyElementText = await (await shared.wdHelper.findVisibleElement(
+            this.elements.selectedCurrency,
+        )).getText();
+        return await expect(currencyElementText).to.equal(currency);
     },
 
     //select currency from dropdown
 
     selectCurrency: async function(currency) {
-        (await shared.wdHelper
-            .findVisibleElement(this.elements.currencySelect))
-            .click();
-        (await shared.wdHelper.findVisibleElement(by.xpath('//li[@title="' + currency + '"]'))).click();
+        (await shared.wdHelper.findVisibleElement(
+            this.elements.currencySelect,
+        )).click();
+        (await shared.wdHelper.findVisibleElement(
+            by.xpath('//li[@title="' + currency + '"]'),
+        )).click();
         return this.checkSelectedCurrency(currency);
     },
 };

@@ -46,10 +46,7 @@ module.exports = {
 
     checkElementIsDisabled: async function(el, cssValue, expectedCssValue) {
         const webElement = await driver.wait(until.elementLocated(el));
-        // console.log(el);
-        // console.log(webElement);
         const actualCssValue = await webElement.getCssValue(cssValue);
-        //console.log(actualCssValue);
         return expect(actualCssValue).to.equal(expectedCssValue);
     },
 
@@ -103,11 +100,6 @@ module.exports = {
     //verify that validation error message is displayed
 
     verifyValidationErrorMessage: async function(element, messageText) {
-        // return (await shared.wdHelper.findVisibleElement(element))
-        //     .getText()
-        //     .then(validMessageText =>
-        //         expect(validMessageText).to.equal(messageText),
-        //     );
         let messageElement = await shared.wdHelper.findVisibleElement(element);
         return await driver.wait(
             until.elementTextIs(messageElement, messageText),

@@ -21,16 +21,24 @@ module.exports = {
         ),
     },
 
+    //wait for page loading according to displayed new wallet header
+
     waitNewWalletDialogue: async function() {
-        (await shared.wdHelper.findVisibleElement(
-            this.elements.newWalletPopuoHeader,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal('New wallet'));
+        await driver.wait(
+            until.elementTextIs(
+                driver.wait(
+                    until.elementLocated(this.elements.newWalletPopuoHeader),
+                ),
+                'New wallet',
+            ),
+            80000,
+        );
         return await shared.wdHelper.findVisibleElement(
             this.elements.createNewWallet,
         );
     },
+
+    //close create wallet dialogue
 
     closeCreateNewWalletDialogue: async function() {
         return (await shared.wdHelper.findVisibleElement(

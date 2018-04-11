@@ -13,19 +13,22 @@ module.exports = {
     //wait for page loading according to displayed import wallet header
 
     waitImportWalletDialogue: async function() {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.importWalletPopupHeader,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal('Import wallet'));
-        // return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.importWalletPopupHeader)), 'Import wallet'), 80000);
+        return await driver.wait(
+            until.elementTextIs(
+                driver.wait(
+                    until.elementLocated(this.elements.importWalletPopupHeader),
+                ),
+                'Import wallet',
+            ),
+            80000,
+        );
     },
 
     //select wallet file for further import
 
     selectWalletFileForImport: function(walletName) {
         let targetFile =
-            process.cwd() + '/features/shared_objects/' + walletName;
+            process.cwd() + '/shared_objects/' + walletName;
         return driver
             .wait(until.elementLocated(this.elements.selectWalletImportField))
             .sendKeys(targetFile);
