@@ -16,11 +16,15 @@ module.exports = {
     //wait for page loading according to displayed new account header
 
     waitNewAccountDialogue: async function() {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.newAccountPopupHeader,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal('New account'));
+        return await driver.wait(
+            until.elementTextIs(
+                driver.wait(
+                    until.elementLocated(this.elements.newAccountPopupHeader),
+                ),
+                'New account',
+            ),
+            80000,
+        );
     },
 
     //fill account name field
@@ -132,6 +136,8 @@ module.exports = {
             this.elements.createNewAccountButton,
         )).click();
     },
+
+    //close create new account dialogue
 
     closeCreateNewAccountDialogue: async function() {
         return (await shared.wdHelper.findVisibleElement(

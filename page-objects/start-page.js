@@ -1,5 +1,6 @@
 module.exports = {
-    url: 'https://sonm-io.github.io/wallet-web-dev/',
+    url: 'file://' + process.cwd() + '/dist/index.html',
+    //url: 'https://sonm-io.github.io/wallet-web/',
 
     elements: {
         accountsForm: by.xpath('//div[@class="sonm-login__center"]'),

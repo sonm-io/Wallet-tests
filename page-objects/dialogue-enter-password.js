@@ -13,11 +13,15 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitForPasswordPopup: async function() {
-        (await shared.wdHelper.findVisibleElement(
-            this.elements.passwordPopupHeader,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal('Enter password'));
+        await driver.wait(
+            until.elementTextIs(
+                driver.wait(
+                    until.elementLocated(this.elements.passwordPopupHeader),
+                ),
+                'Enter password',
+            ),
+            80000,
+        );
         return await shared.wdHelper.findVisibleElement(
             this.elements.loginToWalletButton,
         );

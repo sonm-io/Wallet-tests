@@ -19,8 +19,7 @@ module.exports = {
     //send ethereum to
 
     clickSendEthereum: async function() {
-        return (await shared.wdHelper.findVisibleElement(
-            this.elements.sendEtherBtn,
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendEtherBtn,
         )).click();
     },
 

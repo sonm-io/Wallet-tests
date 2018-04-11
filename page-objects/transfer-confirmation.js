@@ -20,40 +20,41 @@ module.exports = {
     //verify account form
 
     checkAccountFrom: async function(name, hex) {
-        (await shared.wdHelper.findVisibleElement(this.elements.addrFromName))
-            .getText()
-            .then(text => expect(text).to.equal(name));
-        return (await shared.wdHelper.findVisibleElement(
+        const addressNameText = await (await shared.wdHelper.findVisibleElement(
+            this.elements.addrFromName,
+        )).getText();
+        const addHexText = await (await shared.wdHelper.findVisibleElement(
             this.elements.addrFromHex,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal(hex));
+        )).getText();
+        await expect(addressNameText).to.equal(name);
+        return await expect(addHexText).to.equal(hex);
     },
 
     //verify send account to
 
     checkAccountTo: async function(address) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.addrTo))
-            .getText()
-            .then(text => expect(text).to.equal(address));
+        const addToText = await (await shared.wdHelper.findVisibleElement(
+            this.elements.addrTo,
+        )).getText();
+        return await expect(addToText).to.equal(address);
     },
 
     //verify amount
 
     checkAmount: async function(amount) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.amount))
-            .getText()
-            .then(text => expect(text).to.equal(amount));
+        const amountText = await (await shared.wdHelper.findVisibleElement(
+            this.elements.amount,
+        )).getText();
+        return await expect(amountText).to.equal(amount);
     },
 
     //verify gas limit amount
 
     checkGasLimit: async function(gasLimit) {
-        return (await shared.wdHelper.findVisibleElement(
+        const gasLimitText = await (await shared.wdHelper.findVisibleElement(
             this.elements.gasLimit,
-        ))
-            .getText()
-            .then(text => expect(text).to.equal(gasLimit));
+        )).getText();
+        return await expect(gasLimitText).to.equal(gasLimit);
     },
 
     //fill account password field
