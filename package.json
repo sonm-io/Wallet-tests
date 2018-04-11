@@ -1,0 +1,22 @@
+{
+  "name": "Wallet-tests",
+  "version": "1.0.0",
+  "description": "Wallet tests",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/selenium-cucumber-js/index.js CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonm-io/Wallet-tests.git"
+  },
+  "author": "SONM Team",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sonm-io/Wallet-tests/issues"
+  },
+  "homepage": "https://github.com/sonm-io/Wallet-tests#readme",
+  "dependencies": {
+    "selenium-cucumber-js": "^1.5.12"
+  }
+}

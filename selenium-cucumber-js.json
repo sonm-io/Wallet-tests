@@ -1,0 +1,4 @@
+{
+    "steps": "./features/step_definitions",
+    "timeout": 60000
+}
