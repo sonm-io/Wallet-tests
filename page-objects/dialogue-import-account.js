@@ -38,7 +38,7 @@ module.exports = {
     //upload account file
 
     uploadAccountFile: function(filename = 'for_upload.json') {
-        let targetFile = process.cwd() + '/shared_objects/' + filename;
+        let targetFile = process.cwd() + '/shared-objects/' + filename;
         return driver
             .wait(until.elementLocated(this.elements.fileField))
             .sendKeys(targetFile);

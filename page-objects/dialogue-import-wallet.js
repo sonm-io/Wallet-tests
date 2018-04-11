@@ -28,7 +28,7 @@ module.exports = {
 
     selectWalletFileForImport: function(walletName) {
         let targetFile =
-            process.cwd() + '/shared_objects/' + walletName;
+            process.cwd() + '/shared-objects/' + walletName;
         return driver
             .wait(until.elementLocated(this.elements.selectWalletImportField))
             .sendKeys(targetFile);
