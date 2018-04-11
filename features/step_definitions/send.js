@@ -57,6 +57,6 @@ module.exports = function () {
     });
 
     this.Then(/^Transaction Completed page is displayed$/, function () {
-        return page.transactionSended.waitForPageLoading();
+        return page.transactionSent.waitForPageLoading();
     });
 };
