@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 export CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce
+WALLET_PATH=''
 CI=''
 
 while test $# -gt 0
@@ -7,7 +8,7 @@ do
     case "$1" in
         -p|--path)
             shift
-            export WALLET_PATH=$1
+            WALLET_PATH=$1
             shift
             ;;
         --ci)
@@ -48,6 +49,7 @@ echo Migrating contracts to testrpc
 (cd blockchain && truffle migrate)
 
 echo Running tests...
+export WALLET_PATH=$WALLET_PATH
 npm install
 node ./node_modules/selenium-cucumber-js/index.js${tags}${CI}
 
