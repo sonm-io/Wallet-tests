@@ -3,8 +3,7 @@ function loadMainPage() {
         .manage()
         .window()
         .setSize(shared.config.browser.width, shared.config.browser.height);
-
-    let url = process.env.WALLET_PATH ? 'file://' + process.env.WALLET_PATH : page.startPage.url;
+    let url = process.env.WALLET_PATH.length > 0 ? 'file://' + process.env.WALLET_PATH : page.startPage.url;
     return helpers.loadPage(url, 5);
 }
 
