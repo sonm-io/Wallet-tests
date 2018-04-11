@@ -19,39 +19,30 @@ module.exports = function () {
         await shared.wdHelper.loadWalletToStorage(shared.wallets.emptyWallet);
     });
 
-    this.When(
-        /^Click the Dont Show Disclaimer Again button$/,
-        async function () {
-            await page.dialogueStartDisclaimer.waitForDisclaimerLoad();
-            return await page.dialogueStartDisclaimer.clickDontShowDisclaimerButton();
-        },
-    );
+    this.When(/^Click the Dont Show Disclaimer Again button$/, async function () {
+        await page.dialogueStartDisclaimer.waitForDisclaimerLoad();
+        return await page.dialogueStartDisclaimer.clickDontShowDisclaimerButton();
+    });
 
-    this.Given(
-        /^Login to wallet "([^"]*)" with password "([^"]*)"$/,
-        async function (walletName, password) {
-            await loadMainPage();
-            let wallet = shared.wdHelper.resolve(shared.wallets, walletName);
-            await shared.wdHelper.loadWalletToStorage(wallet);
-            await closeDisclaimer();
-            await page.dialogueEnterPassword.waitForPasswordPopup();
-            await page.dialogueEnterPassword.enterPassword(password);
-            return await page.dialogueEnterPassword.loginToWallet();
-        },
-    );
+    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)"$/, async function (walletName, password) {
+        await loadMainPage();
+        let wallet = shared.wdHelper.resolve(shared.wallets, walletName);
+        await shared.wdHelper.loadWalletToStorage(wallet);
+        await closeDisclaimer();
+        await page.dialogueEnterPassword.waitForPasswordPopup();
+        await page.dialogueEnterPassword.enterPassword(password);
+        return await page.dialogueEnterPassword.loginToWallet();
+    });
 
-    this.Given(
-        /^Login to wallet "([^"]*)" with password "([^"]*)" with Two Accounts$/,
-        async function (walletName, password) {
-            await loadMainPage();
-            let wallet = shared.wdHelper.resolve(shared.wallet, walletName);
-            await shared.wdHelper.loadWalletToStorage(wallet);
-            await closeDisclaimer();
-            await page.dialogueEnterPassword.waitForPasswordPopup();
-            await page.dialogueEnterPassword.enterPassword(password);
-            return await page.dialogueEnterPassword.loginToWallet();
-        },
-    );
+    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Two Accounts$/, async function (walletName, password) {
+        await loadMainPage();
+        let wallet = shared.wdHelper.resolve(shared.wallet, walletName);
+        await shared.wdHelper.loadWalletToStorage(wallet);
+        await closeDisclaimer();
+        await page.dialogueEnterPassword.waitForPasswordPopup();
+        await page.dialogueEnterPassword.enterPassword(password);
+        return await page.dialogueEnterPassword.loginToWallet();
+    });
 
     this.Given(/^Wallet with empty storage is opened$/, function () {
         return loadMainPage();
@@ -59,43 +50,26 @@ module.exports = function () {
 
     this.Given(/^Three wallet accounts are created$/, async function () {
         await loadMainPage();
-        return await shared.wdHelper.loadWalletsToStorage(
-            shared.config.accounts,
-        );
+        return await shared.wdHelper.loadWalletsToStorage(shared.config.accounts);
     });
 
-    this.When(/^Fill Wallet Popup Password field "([^"]*)"/, async function (
-        password,
-    ) {
+    this.When(/^Fill Wallet Popup Password field "([^"]*)"/, async function (password) {
         await page.dialogueEnterPassword.waitForPasswordPopup();
         await page.dialogueEnterPassword.enterPassword(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
-    this.When(
-        /^Enter value "([^"]*)" into Account Search field for search Accounts$/,
-        async function (valueForSearch) {
-            await page.startPage.clickWalletsDropdown();
-            return await page.startPage.searchFromWalletDropdown(
-                valueForSearch,
-            );
-        },
-    );
+    this.When(/^Enter value "([^"]*)" into Account Search field for search Accounts$/, async function (valueForSearch) {
+        await page.startPage.clickWalletsDropdown();
+        return await page.startPage.searchFromWalletDropdown(valueForSearch);
+    });
 
-    this.Then(
-        /^Wallets search results "([^"]*)" are displayed$/,
-        async function (searchResults) {
-            page.common.assertDropdownValues(
-                await page.startPage.getValuesFromWalletDropdown(),
-                searchResults.replace(/'/g, '"'),
-            );
-            return page.startPage.clearSearchWalletField();
-        },
-    );
+    this.Then(/^Wallets search results "([^"]*)" are displayed$/, async function (searchResults) {
+        page.common.assertDropdownValues(await page.startPage.getValuesFromWalletDropdown(), searchResults.replace(/'/g, '"'));
+        return page.startPage.clearSearchWalletField();
+    });
 
-    this.When(/^Wallet "([^"]*)" is selected from Wallets dropdown$/, function (
-        walletName,
-    ) {
+    this.When(/^Wallet "([^"]*)" is selected from Wallets dropdown$/, function (walletName) {
         return page.startPage.selectWalletFromDropdown(walletName);
     });
 
