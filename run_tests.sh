@@ -1,4 +1,3 @@
-#!/usr/bin/env bash
 export CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce
 WALLET_PATH=''
 CI=''

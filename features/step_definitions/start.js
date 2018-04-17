@@ -29,7 +29,7 @@ module.exports = function () {
         await shared.wdHelper.loadWalletToStorage(wallet);
         await closeDisclaimer();
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
@@ -39,7 +39,7 @@ module.exports = function () {
         await shared.wdHelper.loadWalletToStorage(wallet);
         await closeDisclaimer();
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
@@ -54,7 +54,7 @@ module.exports = function () {
 
     this.When(/^Fill Wallet Popup Password field "([^"]*)"/, async function (password) {
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 

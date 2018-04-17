@@ -1,4 +1,3 @@
-
 @importaccount
 Feature: Start screen
 

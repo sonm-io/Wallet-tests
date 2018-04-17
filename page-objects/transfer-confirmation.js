@@ -13,7 +13,7 @@ module.exports = {
 
     //wait for load account page according to displayed header
 
-    waitForAccountDetailPageLoading: function() {
+    waitForTransferConfirmationPageLoading: function() {
         return shared.wdHelper.findVisibleElement(this.elements.header);
     },
 

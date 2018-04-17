@@ -1,4 +1,3 @@
-
 @account
 Feature: Account
 
@@ -93,3 +92,39 @@ Feature: Account
     And Account "Some Account" Name for Delete is correct
     When Click the Cancel Delete Account button
     Then Account Name is "Some Account" is present in Accounts list
+
+  Scenario: Account - Verify Ether/Sonm values and sum
+    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Then Accounts page is displayed
+    And Account's "Some Account" Ether value is "76500"
+    And Account's "Some Account" Sonm value is "10000"
+    And Account's "Test Account" Ether value is "76500"
+    And Account's "Test Account" Sonm value is "10000"
+    And Total Ether value is "153000"
+    And Total SONM value is "20000"
+
+  Scenario: Account - View Private Key
+    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Then Accounts page is displayed
+    When Click the Show Private Key button next to "Some Account" Name
+    Then Show Private Key dialogue is displayed
+    And Fill Show Private Key Password field "11111111"
+    When Click the Show button
+    Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac64" is displayed
+
+  Scenario: Account - Validate Private Key
+    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Then Accounts page is displayed
+    When Click the Show Private Key button next to "Some Account" Name
+    Then Show Private Key dialogue is displayed
+    When Click the Show button
+    Then Private Key Password validation error message is displayed
+    And Fill Show Private Key Password field "1"
+    When Click the Show button
+    Then Private Key Password validation error message is displayed
+
+  Scenario: Account - Redirect to Account Detail
+    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Then Accounts page is displayed
+    When Click the Account's address "0x9bb7510dfce448af7b3588291ca8b1362e19d250"
+    Then Account Detail page is displayed

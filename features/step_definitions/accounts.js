@@ -26,4 +26,12 @@ module.exports = function () {
     this.When(/^Click the Logout button$/, async function () {
         return await page.accountsPage.logoutFromWallet();
     });
+
+    this.Then(/^Total Ether value is "([^"]*)"$/, async function (totalEtherValue) {
+        return await page.accountsPageAccountItem.getTotalEtherAmount(totalEtherValue);
+    });
+
+    this.Then(/^Total SONM value is "([^"]*)"$/, async function (totalSonmValue) {
+        return await page.accountsPageAccountItem.getTotalSonmAmount(totalSonmValue);
+    });
 };

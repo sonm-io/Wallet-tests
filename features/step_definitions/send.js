@@ -20,7 +20,7 @@ module.exports = function () {
     });
 
     this.Then(/^Send page is displayed$/, function () {
-        return page.sendPage.waitForAccountDetailPageLoading();
+        return page.sendPage.waitForSendPageLoading();
     });
 
     this.Then(/^Selected Currency "([^"]*)" is displayed$/, function (currency) {
@@ -28,7 +28,7 @@ module.exports = function () {
     });
 
     this.Then(/^Transfer Confirmation page is displayed$/, function () {
-        return page.transferConfirmation.waitForAccountDetailPageLoading();
+        return page.transferConfirmation.waitForTransferConfirmationPageLoading();
     });
 
     this.Then(/^Account From Name is "([^"]*)" and Address is "([^"]*)" is displayed$/, function (name, hex) {

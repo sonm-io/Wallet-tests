@@ -13,8 +13,6 @@ module.exports = {
         fundItem: by.css('.sonm-currency-balance-list__list .sonm-balance__symbol')
     },
 
-    //TODO add copy, download, show private key functions
-
     //wait for load accounts page according to displayed import account button
 
     waitForAccountPageLoading: async function () {

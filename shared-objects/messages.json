@@ -29,5 +29,8 @@
         "createAccountPasswordValidationMessage": "Password is required",
         "createAccountIncorrectPasswordValidationMessage": "Password must be at least 8 character",
         "createAccountConfirmPasswordValidationMessage": "Password does not match"
+    },
+    "privateKey": {
+        "privateKeyIncorrectPasswordValidationMessage": "incorrect_password1"
     }
 }

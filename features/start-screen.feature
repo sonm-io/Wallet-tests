@@ -1,5 +1,3 @@
-# ./front-tests/features/test.feature
-
 @wallet
 Feature: Start screen
 
