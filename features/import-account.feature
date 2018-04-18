@@ -57,7 +57,7 @@ Feature: Start screen
     Then Import Account File field validation error message "Account already exists" is displayed
 
   Scenario: Import Account - Cancel
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Import Account button
     Then Add Account dialogue is displayed

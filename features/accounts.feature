@@ -12,7 +12,7 @@ Feature: Account
     And Click the Create button
     Then Account "asda" is present in Accounts list
 
-  Scenario: Account - Creating new account from private key
+  Scenario: Account - Creating new account with private key
     Given Login to wallet "emptyWallet" with password "11111111"
     Then Accounts page is displayed
     When Click the Create Account button
@@ -59,24 +59,24 @@ Feature: Account
     Then Account "test" is present in Accounts list
 
   Scenario: Account - Editing Account name
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
     And Clear Account Name field
     And Fill Account "Test Account" Name field with new "Edit Account" Name
     When Press ENTER button
-    Then Account Name is "Edit Account" is present in Accounts list
+    Then Account Name "Edit Account" is present in Accounts list
 
   Scenario: Account - Editing Account name - Empty name
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
     And Clear Account Name field
     When Press ENTER button
-    Then Account Name is "Test Account" is present in Accounts list
+    Then Account Name "Test Account" is present in Accounts list
 
   Scenario: Account - Delete Account
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Delete Account button next to "Some Account" Name
     Then Delete Account dialogue is displayed
@@ -85,16 +85,16 @@ Feature: Account
     Then Account "Some Account" is not present in Accounts list
 
   Scenario: Account - Delete Account - Cancel
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Delete Account button next to "Some Account" Name
     Then Delete Account dialogue is displayed
     And Account "Some Account" Name for Delete is correct
     When Click the Cancel Delete Account button
-    Then Account Name is "Some Account" is present in Accounts list
+    Then Account Name "Some Account" is present in Accounts list
 
   Scenario: Account - Verify Ether/Sonm values and sum
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Account's "Some Account" Ether value is "76500"
     And Account's "Some Account" Sonm value is "10000"
@@ -104,7 +104,7 @@ Feature: Account
     And Total SONM value is "20000"
 
   Scenario: Account - View Private Key
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Show Private Key button next to "Some Account" Name
     Then Show Private Key dialogue is displayed
@@ -113,7 +113,7 @@ Feature: Account
     Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac64" is displayed
 
   Scenario: Account - Validate Private Key
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Show Private Key button next to "Some Account" Name
     Then Show Private Key dialogue is displayed
@@ -124,7 +124,40 @@ Feature: Account
     Then Private Key Password validation error message is displayed
 
   Scenario: Account - Redirect to Account Detail
-    Given Login to wallet "with2accounts" with password "1" with Two Accounts
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Account's address "0x9bb7510dfce448af7b3588291ca8b1362e19d250"
     Then Account Detail page is displayed
+
+  Scenario: Account - Create new Token
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Then Accounts page is displayed
+    When Click the ADD TOKEN button
+    Then Add Token dialogue is displayed
+    And Fill Token Address field "0xbdbbe3a1b4d7494c5b666e546d79ecbceed2c180"
+    When Click the Add New Token button
+    Then Token "DSD" is present in Tokens list
+
+  Scenario: Account - Create Account with existing Private Key
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Then Accounts page is displayed
+    When Click the Create Account button
+    Then Create New Account dialogue is displayed
+    When Fill Create New Account Name field "from privateKey"
+    And Fill Create New Account Password field "asdaasda"
+    And Fill Create New Account Password Confirmation field "asdaasda"
+    And Fill Create New Account Private Key field "11111c8a390315310d8b616df1ec816f174526635ed440ca5c255b8a3ee1701d"
+    When Click the Create button
+    Then Private Key field validation error message "Account already exists" is displayed
+
+  Scenario: Account - Validate Private Key
+    Given Login to wallet "emptyWallet" with password "11111111"
+    Then Accounts page is displayed
+    When Click the Create Account button
+    Then Create New Account dialogue is displayed
+    When Fill Create New Account Name field "from privateKey"
+    And Fill Create New Account Password field "asdaasda"
+    And Fill Create New Account Password Confirmation field "asdaasda"
+    And Fill Create New Account Private Key field "lalala123"
+    When Click the Create button
+    Then Private Key field validation error message "Should be hex string with length 64" is displayed

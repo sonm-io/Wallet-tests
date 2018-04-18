@@ -16,7 +16,8 @@ module.exports = function () {
     });
 
     this.When(/^Click the Create button$/, async function () {
-        return await page.dialogueNewAccount.clickCreateNewAccountButton();
+        await page.dialogueNewAccount.clickCreateNewAccountButton();
+        return await page.common.verifySpinnerIsNotVisible();
     });
 
     this.When(/^Fill Create New Account Private Key field "([^"]*)"$/, async function (privateKey) {
@@ -48,5 +49,9 @@ module.exports = function () {
         await page.dialogueNewAccount.verifyCreateNewAccountPasswordFieldIsEmpty();
         await page.dialogueNewAccount.verifyCreateNewAccountConfirmationPasswordFieldIsEmpty();
         return await page.dialogueNewAccount.verifyCreateNewAccountPrivateKeyFieldIsEmpty();
+    });
+
+    this.Then(/^Private Key field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
+        return await page.dialogueNewAccount.validateNewAccountPrivateKeyField(errorMessage);
     });
 };

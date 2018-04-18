@@ -33,7 +33,7 @@ module.exports = function () {
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
-    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Two Accounts$/, async function (walletName, password) {
+    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Three Accounts$/, async function (walletName, password) {
         await loadMainPage();
         let wallet = shared.wdHelper.resolve(shared.wallet, walletName);
         await shared.wdHelper.loadWalletToStorage(wallet);

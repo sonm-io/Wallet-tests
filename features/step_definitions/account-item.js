@@ -11,7 +11,7 @@ module.exports = function () {
         return await page.accountsPageAccountItem.fillAccountNameField(accName, newAccountName);
     });
 
-    this.Then(/^Account Name is "([^"]*)" is present in Accounts list$/, async function (newAccountName) {
+    this.Then(/^Account Name "([^"]*)" is present in Accounts list$/, async function (newAccountName) {
         return await page.accountsPageAccountItem.verifyAccountPresence(newAccountName);
     });
 

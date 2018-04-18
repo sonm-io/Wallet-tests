@@ -34,4 +34,24 @@ module.exports = function () {
     this.Then(/^Total SONM value is "([^"]*)"$/, async function (totalSonmValue) {
         return await page.accountsPageAccountItem.getTotalSonmAmount(totalSonmValue);
     });
+
+    this.When(/^Click the ADD TOKEN button$/, async function () {
+        return await page.accountsPage.addToken();
+    });
+
+    this.When(/^Click the Add New Token button$/, async function () {
+        return await page.dialogueAddToken.clickAddTokenButton();
+    });
+
+    this.Then(/^Add Token dialogue is displayed$/, async function () {
+        return await page.dialogueAddToken.waitAddTokenDialogue();
+    });
+
+    this.Then(/^Fill Token Address field "([^"]*)"$/, async function (tokenName) {
+        return await page.dialogueAddToken.fillTokenAddressField(tokenName);
+    });
+
+    this.Then(/^Token "([^"]*)" is present in Tokens list$/, async function (tokenName) {
+        return await page.accountsPage.findTokenInList(tokenName)
+    });
 };

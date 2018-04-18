@@ -53,7 +53,14 @@ module.exports = {
 
     findTokenInList: async function (createdToken) {
         return (await shared.wdHelper.findVisibleElements(this.elements.fundItem))
-            .then(elements => expect(elements.getText().to.equal(createdToken)));
+            .then(elements => expect(elements.getText()).to.equal(createdToken));
+    },
+
+    //
+
+    verifyThatTokenIsDeletedFromList: async function (deletedTokenName) {
+        let tokenElement = await driver.wait(until.stalenessOf(driver.findElement(by.xpath('//span[.="' + deletedTokenName + '"]'))));
+        await expect(tokenElement).to.equal(true);
     },
 
     //find account by name in the list
@@ -77,5 +84,5 @@ module.exports = {
     clickOnAccountInList: async function (accountName) {
         return (await shared.wdHelper.findVisibleElement(by.xpath('//div[@class="sonm-deletable-item__children"][.//span[contains(text(), "' +
             accountName + '")]]//a[@href="#"]'))).click();
-    },
+    }
 };
