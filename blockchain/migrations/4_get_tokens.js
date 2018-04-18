@@ -1,4 +1,5 @@
 var SNMT = artifacts.require('./SNMT.sol');
+var CUSTOM = artifacts.require('./CUSTOM.sol');
 
 module.exports = function(deployer) {
     var accs = [
@@ -15,8 +16,14 @@ module.exports = function(deployer) {
     ];
     SNMT.deployed().then(async function(snmt) {
         for (i = 0; i < accs.length; i++) {
-            console.log('[+] get tokens for ' + accs[i]);
+            console.log('[+] get SNMT tokens for ' + accs[i]);
             await snmt.getTokens({ from: accs[i] });
+        }
+    });
+    CUSTOM.deployed().then(async function(custom) {
+        for (i = 0; i < accs.length; i++) {
+            console.log('[+] get CUSTOM tokens for ' + accs[i]);
+            await custom.getTokens({ from: accs[i] });
         }
     });
 };
