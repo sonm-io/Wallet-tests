@@ -33,6 +33,9 @@
         "createAccountWithExistingPrivateKeyValidationMessage": "Account already exists"
     },
     "privateKey": {
-        "privateKeyIncorrectPasswordValidationMessage": "incorrect_password1"
+        "privateKeyIncorrectPasswordValidationMessage": "incorrect_password"
+    },
+    "addNewToken": {
+        "existingTokenValidationMessage": "token_already_exists"
     }
 }

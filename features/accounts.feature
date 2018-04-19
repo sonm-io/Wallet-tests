@@ -97,11 +97,11 @@ Feature: Account
     Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Account's "Some Account" Ether value is "76500"
-    And Account's "Some Account" Sonm value is "10000"
+    And Account's "Some Account" Sonm value is "1000"
     And Account's "Test Account" Ether value is "76500"
-    And Account's "Test Account" Sonm value is "10000"
+    And Account's "Test Account" Sonm value is "1000"
     And Total Ether value is "153000"
-    And Total SONM value is "20000"
+    And Total SONM value is "2000"
 
   Scenario: Account - View Private Key
     Given Login to wallet "with2accounts" with password "1" with Three Accounts
@@ -129,14 +129,39 @@ Feature: Account
     When Click the Account's address "0x9bb7510dfce448af7b3588291ca8b1362e19d250"
     Then Account Detail page is displayed
 
-  Scenario: Account - Create new Token
+  Scenario: Account - Creating new Token
     Given Login to wallet "with2accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the ADD TOKEN button
     Then Add Token dialogue is displayed
-    And Fill Token Address field "0xbdbbe3a1b4d7494c5b666e546d79ecbceed2c180"
+    And Fill Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
     When Click the Add New Token button
-    Then Token "DSD" is present in Tokens list
+    Then Token "CUSTOM" is present in Tokens list
+
+  Scenario: Account - Adding Existing Token
+    Given Login to wallet "withToken" with password "1" with Token
+    Then Accounts page is displayed
+    Then Token "CUSTOM" is present in Tokens list
+    When Click the ADD TOKEN button
+    And Fill Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
+    When Click the Add New Token button
+    Then Add New Token error message is displayed
+
+  Scenario: Account - Creating new Token - Verify Address field
+    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Then Accounts page is displayed
+    When Click the ADD TOKEN button
+    When Add New Token button is disabled
+
+  Scenario: Account - Delete Token
+    Given Login to wallet "withToken" with password "1" with Token
+    Then Accounts page is displayed
+    Then Token "CUSTOM" is present in Tokens list
+    When Click the Delete Token button next to Token "CUSTOM" Name
+    Then Delete Token dialogue is displayed
+    And Token "CUSTOM" Name for Delete is correct
+    When Click the Delete button
+    Then Token "CUSTOM" is not present in Tokens list
 
   Scenario: Account - Create Account with existing Private Key
     Given Login to wallet "with2accounts" with password "1" with Three Accounts

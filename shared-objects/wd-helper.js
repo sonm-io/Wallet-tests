@@ -37,6 +37,17 @@ module.exports = {
         return await driver.wait(until.elementIsNotVisible(el));
     },
 
+    //get element index in list for further operations (delete, edit etc.)
+
+    getElementPosition: async function(elements, elementName){
+        let elementsList = await driver.findElements(elements);
+        for (let i = 0; i < elementsList.length; i++) {
+            if ((await elementsList[i].getText()) === elementName) {
+                return i += 1;
+            }
+        }
+    },
+
     loadWalletToStorage: function(wallet) {
         loadWalletName(wallet);
         return loadWalletContent(wallet);

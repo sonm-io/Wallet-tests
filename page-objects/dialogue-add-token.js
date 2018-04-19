@@ -24,8 +24,9 @@ module.exports = {
         return (await shared.wdHelper.findVisibleElement(this.elements.addTokenButton)).click();
     },
 
-    verifyThatTokenIsDeletedFromList: async function (deletedTokenName) {
-        let tokenElement = await driver.wait(until.stalenessOf(driver.findElement(by.xpath('//span[.="' + deletedTokenName + '"]'))));
-        await expect(tokenElement).to.equal(true);
+    //verify that Add Token button is disabled
+
+    verifyThatAddTokenButtonIsDisabled: async function () {
+        return await page.common.checkElementIsDisabled(this.elements.addTokenButton, 'cursor', 'not-allowed');
     }
 };

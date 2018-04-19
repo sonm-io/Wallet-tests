@@ -54,4 +54,32 @@ module.exports = function () {
     this.Then(/^Token "([^"]*)" is present in Tokens list$/, async function (tokenName) {
         return await page.accountsPage.findTokenInList(tokenName)
     });
+
+    this.When(/^Click the Delete Token button next to Token "([^"]*)" Name$/, async function (tokenName) {
+        return await page.accountsPage.clickDeleteTokenButton(tokenName);
+    });
+
+    this.Then(/^Delete Token dialogue is displayed$/, async function () {
+        return await page.dialogueDeleteToken.waitForDeleteTokenPopup();
+    });
+
+    this.Then(/^Token "([^"]*)" Name for Delete is correct$/, async function (tokenName) {
+        return await page.dialogueDeleteToken.verifyTokenNameForDelete(tokenName);
+    });
+
+    this.When(/^Click the Delete button$/, async function () {
+        return await page.dialogueDeleteToken.clickDeleteToken();
+    });
+
+    this.Then(/^Token "([^"]*)" is not present in Tokens list$/, async function (tokenName) {
+        return await page.accountsPage.verifyThatTokenIsDeletedFromList(tokenName);
+    });
+
+    this.Then(/^Add New Token error message is displayed$/, async function () {
+        return await page.dialogueDeleteToken.validateAddNewTokenAddressField();
+    });
+
+    this.When(/^Add New Token button is disabled$/, async function () {
+        return await page.dialogueAddToken.verifyThatAddTokenButtonIsDisabled();
+    });
 };
