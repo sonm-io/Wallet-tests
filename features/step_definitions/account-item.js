@@ -1,6 +1,6 @@
 module.exports = function () {
     this.Then(/^Click the Edit Account button next to "([^"]*)" Name$/, async function (accName) {
-        return await page.accountsPageAccountItem.clickOnEditAccountNameButton(accName);
+        return await page.accountsPageAccountItem.clickEditAccountNameButton(accName);
     });
 
     this.Then(/^Clear Account Name field$/, async function () {
@@ -11,7 +11,7 @@ module.exports = function () {
         return await page.accountsPageAccountItem.fillAccountNameField(accName, newAccountName);
     });
 
-    this.Then(/^Account Name is "([^"]*)" is present in Accounts list$/, async function (newAccountName) {
+    this.Then(/^Account Name "([^"]*)" is present in Accounts list$/, async function (newAccountName) {
         return await page.accountsPageAccountItem.verifyAccountPresence(newAccountName);
     });
 
@@ -45,5 +45,45 @@ module.exports = function () {
 
     this.Then(/^Account "([^"]*)" was not created$/, async function (accName) {
         return await page.accountsPageAccountItem.verifyAccountIsNotPresent(accName);
+    });
+
+    this.Then(/^Account's "([^"]*)" Ether value is "([^"]*)"$/, async function (accName, etherValue) {
+        return await page.accountsPageAccountItem.getAccountEtherAmount(accName, etherValue);
+    });
+
+    this.Then(/^Account's "([^"]*)" Sonm value is "([^"]*)"$/, async function (accName, etherValue) {
+        return await page.accountsPageAccountItem.getAccountSonmAmount(accName, etherValue);
+    });
+
+    this.When(/^Click the Show Private Key button next to "([^"]*)" Name$/, async function (accName) {
+        return await page.accountsPageAccountItem.clickShowPrivateKeyButton(accName);
+    });
+    this.Then(/^Show Private Key dialogue is displayed$/, async function () {
+        return await page.dialogueShowPrivateKey.waitForShowPrivateKeyPopup();
+    });
+
+    this.Then(/^Fill Show Private Key Password field "([^"]*)"$/, async function (password) {
+        return await page.dialogueShowPrivateKey.fillPrivateKeyPasswordField(password);
+    });
+
+    this.When(/^Click the Show button$/, async function () {
+        return await page.dialogueShowPrivateKey.showPrivateKey();
+    });
+
+    this.Then(/^Private Key "([^"]*)" is displayed$/, async function (privateKey) {
+        await page.dialogueShowPrivateKey.waitForShowPrivateKeyPopup();
+        return await page.dialogueShowPrivateKey.gerPrivateKeyFieldText(privateKey);
+    });
+
+    this.When(/^Close Show Private Key dialogue$/, async function () {
+        return await page.dialogueShowPrivateKey.closePrivateKeyDialogue();
+    });
+
+    this.Then(/^Private Key Password validation error message is displayed$/, async function () {
+        return await page.dialogueShowPrivateKey.validatePrivateKeyPasswordField();
+    });
+
+    this.When(/^Click the Account's address "([^"]*)"$/, async function (accountAddress) {
+        return await page.accountsPageAccountItem.navigateToAccountDetailPage(accountAddress);
     });
 };

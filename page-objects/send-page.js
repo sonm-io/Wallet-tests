@@ -19,7 +19,7 @@ module.exports = {
 
     //wait for loading account page according to displayed header
 
-    waitForAccountDetailPageLoading: function () {
+    waitForSendPageLoading: function () {
         return shared.wdHelper.findVisibleElement(this.elements.header);
     },
 

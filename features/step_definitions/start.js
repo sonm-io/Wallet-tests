@@ -29,17 +29,27 @@ module.exports = function () {
         await shared.wdHelper.loadWalletToStorage(wallet);
         await closeDisclaimer();
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
-    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Two Accounts$/, async function (walletName, password) {
+    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Three Accounts$/, async function (walletName, password) {
         await loadMainPage();
         let wallet = shared.wdHelper.resolve(shared.wallet, walletName);
         await shared.wdHelper.loadWalletToStorage(wallet);
         await closeDisclaimer();
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
+        return await page.dialogueEnterPassword.loginToWallet();
+    });
+
+    this.Given(/^Login to wallet "([^"]*)" with password "([^"]*)" with Token$/, async function (walletName, password) {
+        await loadMainPage();
+        let wallet = shared.wdHelper.resolve(shared.walletToken, walletName);
+        await shared.wdHelper.loadWalletToStorage(wallet);
+        await closeDisclaimer();
+        await page.dialogueEnterPassword.waitForPasswordPopup();
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 
@@ -54,7 +64,7 @@ module.exports = function () {
 
     this.When(/^Fill Wallet Popup Password field "([^"]*)"/, async function (password) {
         await page.dialogueEnterPassword.waitForPasswordPopup();
-        await page.dialogueEnterPassword.enterPassword(password);
+        await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();
     });
 

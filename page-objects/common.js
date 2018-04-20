@@ -98,4 +98,10 @@ module.exports = {
     verifyFieldLength: async function (field) {
         return (await driver.findElement(field)).getAttribute('value');
     },
+
+    //verify that the spinner is not visible in import account form
+
+    verifySpinnerIsNotVisible: async function () {
+        await shared.wdHelper.waitElementIsNotVisible(by.css('.sonm-app > .sonm-load-mask'));
+    }
 };

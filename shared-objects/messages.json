@@ -28,6 +28,14 @@
         "createAccountNameValidationMessage": "Name is required",
         "createAccountPasswordValidationMessage": "Password is required",
         "createAccountIncorrectPasswordValidationMessage": "Password must be at least 8 character",
-        "createAccountConfirmPasswordValidationMessage": "Password does not match"
+        "createAccountConfirmPasswordValidationMessage": "Password does not match",
+        "createAccountPrivateKeyValidationMessage": "Should be hex string with length 64",
+        "createAccountWithExistingPrivateKeyValidationMessage": "Account already exists"
+    },
+    "privateKey": {
+        "privateKeyIncorrectPasswordValidationMessage": "incorrect_password"
+    },
+    "addNewToken": {
+        "existingTokenValidationMessage": "token_already_exists"
     }
 }

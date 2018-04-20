@@ -23,7 +23,7 @@ module.exports = {
 
     //fill password field
 
-    enterPassword: async function (password) {
+    fillPasswordField: async function (password) {
         return (await shared.wdHelper.findVisibleElement(this.elements.password)).sendKeys(password);
     },
 

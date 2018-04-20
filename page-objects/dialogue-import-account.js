@@ -16,12 +16,6 @@ module.exports = {
         ), 'Add account'), 80000);
     },
 
-    //verify that the spinner is not visible in import account form
-
-    verifySpinnerIsNotVisible: async function () {
-        await shared.wdHelper.waitElementIsNotVisible(by.css('.sonm-app > .sonm-load-mask'));
-    },
-
     //upload account file
 
     uploadAccountFile: function (filename = 'for_upload.json') {

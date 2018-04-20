@@ -17,7 +17,7 @@ module.exports = function () {
 
     this.When(/^Click the Add button$/, async function () {
         await page.dialogueImportAccount.clickAddImportAccountButton();
-        return await page.dialogueImportAccount.verifySpinnerIsNotVisible();
+        return await page.common.verifySpinnerIsNotVisible();
     });
 
     this.Then(/^Add Account dialogue is displayed$/, async function () {

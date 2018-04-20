@@ -10,10 +10,9 @@ module.exports = {
         balanceHeader: by.className('sonm-currency-balance-list__header'),
         accountNames: by.className('sonm-account-item__name-text'),
         myFundsList: by.css('.sonm-currency-balance-list__list'),
-        fundItem: by.css('.sonm-currency-balance-list__list .sonm-balance__symbol')
+        fundItem: by.css('.sonm-currency-balance-list__list .sonm-balance__symbol'),
+        customToken: by.css('.sonm-currency-balance-list__list .sonm-deletable-item .sonm-balance__symbol')
     },
-
-    //TODO add copy, download, show private key functions
 
     //wait for load accounts page according to displayed import account button
 
@@ -54,8 +53,21 @@ module.exports = {
     //verify that created token is displayed in the token list
 
     findTokenInList: async function (createdToken) {
-        return (await shared.wdHelper.findVisibleElements(this.elements.fundItem))
-            .then(elements => expect(elements.getText().to.equal(createdToken)));
+        return await shared.wdHelper.findVisibleElement(by.xpath('//span[.="' + createdToken + '"]'));
+    },
+
+    //delete token from list
+
+    clickDeleteTokenButton: async function (tokenName) {
+        return (await shared.wdHelper.findVisibleElement(by.css('.sonm-currency-balance-list__item .sonm-deletable-item:nth-of-type(' +
+            (await shared.wdHelper.getElementPosition(this.elements.customToken, tokenName)) + ') > button'))).click();
+    },
+
+    //verify that token is deleted from list
+
+    verifyThatTokenIsDeletedFromList: async function (deletedTokenName) {
+        let tokenElement = await driver.wait(until.stalenessOf(driver.findElement(by.xpath('//span[.="' + deletedTokenName + '"]'))));
+        await expect(tokenElement).to.equal(true);
     },
 
     //find account by name in the list
@@ -79,5 +91,5 @@ module.exports = {
     clickOnAccountInList: async function (accountName) {
         return (await shared.wdHelper.findVisibleElement(by.xpath('//div[@class="sonm-deletable-item__children"][.//span[contains(text(), "' +
             accountName + '")]]//a[@href="#"]'))).click();
-    },
+    }
 };

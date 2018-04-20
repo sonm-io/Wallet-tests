@@ -1,4 +1,3 @@
-
 @importwallet
 Feature: Import Wallet
 
