@@ -19,17 +19,15 @@ function loadWalletName(wallet) {
 
 module.exports = {
     findVisibleElement: async function(locator, timeout = 30) {
-        let element = await driver.wait(
-            until.elementLocated(locator),
-            timeout * 1000,
-        );
+        let element = await driver.wait(until.elementLocated(locator), timeout * 1000);
         await driver.wait(until.elementIsVisible(element));
         await expect(element.length).to.not.equal(0);
         return await element;
     },
 
-    findVisibleElements: function(locator, timeout = 20) {
-        return driver.wait(until.elementsLocated(locator), timeout * 1000);
+    findVisibleElements: async function(locator, timeout = 32) {
+        let elementsList = await driver.wait(until.elementsLocated(locator), timeout * 1000);
+        return await elementsList;
     },
 
     waitElementIsNotVisible: async function(locator) {
@@ -42,7 +40,7 @@ module.exports = {
     getElementPosition: async function(elements, elementName){
         let elementsList = await driver.findElements(elements);
         for (let i = 0; i < elementsList.length; i++) {
-            if ((await elementsList[i].getText()) === elementName) {
+            if (await elementsList[i].getText() === elementName) {
                 return i += 1;
             }
         }
