@@ -42,6 +42,8 @@ module.exports = {
 
     //select value from dropdown
 
+    //TODO refactor
+
     selectFromStandardDropdown: async function (element, dropdownItem, selectedItem, name) {
         (await shared.wdHelper.findVisibleElement(element)).click();
         (await shared.wdHelper.findVisibleElement(dropdownItem)).click();
@@ -56,8 +58,8 @@ module.exports = {
         (await shared.wdHelper.findVisibleElement(dropdown)).click();
         let values = await shared.wdHelper.findVisibleElements(dropdownValue);
         let valuesText = [];
-        for (let i = 0; i < values.length; i++) {
-            valuesText.push(await values[i].getText());
+        for (el of values) {
+            valuesText.push(await el.getText());
         }
         return await valuesText;
     },

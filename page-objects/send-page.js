@@ -13,8 +13,8 @@ module.exports = {
         currencySelect: by.className('sonm-currency-big-select__option'),
         selectedCurrency: by.className('sonm-currency-item__name'),
         sendTab: by.xpath('//li[.="Send"]'),
-        select: by.className('sonm-account-big-select'),
-        selectedAccount: by.className('sonm-account-item__name-text')
+        select: by.css('.sonm-account-big-select'),
+        selectedAccount: by.css('li .sonm-account-item__name-text')
     },
 
     //wait for loading account page according to displayed header
