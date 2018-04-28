@@ -1,6 +1,7 @@
 module.exports = {
     elements: {
         sendTab: by.xpath('//li[.="Send"]'),
+        accountTab: by.xpath('//li[.="Accounts"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
         successNotification: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/span[@class="sonm-alert__message"]'),
@@ -10,7 +11,13 @@ module.exports = {
     //navigate to send tab
 
     navigateToSendTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab,)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab)).click();
+    },
+
+    //navigate to account tab
+
+    navigateToAccountTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.accountTab)).click();
     },
 
     // verify part of notification

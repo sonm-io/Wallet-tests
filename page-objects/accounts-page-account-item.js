@@ -57,18 +57,20 @@ module.exports = {
 
     //get account ether amount
 
-    getAccountEtherAmount: async function (accName, etherAmount) {
-        let accountEtherAmount = await (await shared.wdHelper.findVisibleElement(by.css('.sonm-accounts__list-item:nth-of-type(' +
-            (await shared.wdHelper.getElementPosition(this.elements.accountsList, accName)) + ') *> .sonm-account-item__sonm .sonm-balance__number'))).getText();
-        return await expect(accountEtherAmount).to.equal(etherAmount);
+    getAccountEtherAmount: async function (accName, expectedEtherAmount) {
+        let accountEtherAmount = by.css('.sonm-accounts__list-item:nth-of-type(' +
+            (await shared.wdHelper.getElementPosition(this.elements.accountsList, accName)) +
+            ') .sonm-account-item__sonm .sonm-balance__number');
+        return await shared.wdHelper.waitForElementTextIs(accountEtherAmount, expectedEtherAmount);
     },
 
     //get account sonm amount
 
-    getAccountSonmAmount: async function (accName, etherAmount) {
-        let accountSonmAmount = await (await shared.wdHelper.findVisibleElement(by.css('.sonm-accounts__list-item:nth-of-type(' +
-            (await shared.wdHelper.getElementPosition(this.elements.accountsList, accName)) + ') *> .sonm-account-item__ether .sonm-balance__number'))).getText();
-        return await expect(accountSonmAmount).to.equal(etherAmount);
+    getAccountSonmAmount: async function (accName, expectedSonmAmount) {
+        let accountSonmAmount = by.css('.sonm-accounts__list-item:nth-of-type(' +
+            (await shared.wdHelper.getElementPosition(this.elements.accountsList, accName)) +
+            ') .sonm-account-item__ether .sonm-balance__number');
+        return await shared.wdHelper.waitForElementTextIs(accountSonmAmount, expectedSonmAmount);
     },
 
     //get total ether amount

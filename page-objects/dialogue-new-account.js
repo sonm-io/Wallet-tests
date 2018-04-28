@@ -12,8 +12,7 @@ module.exports = {
     //wait for page loading according to displayed new account header
 
     waitNewAccountDialogue: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.newAccountPopupHeader)),
-            'New account'), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.newAccountPopupHeader, 'New account');
     },
 
     //fill account name field

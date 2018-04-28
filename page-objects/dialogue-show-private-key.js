@@ -12,8 +12,7 @@ module.exports = {
     //wait for load show private key dialogue
 
     waitForShowPrivateKeyPopup: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.showPrivateKeyHeader)), 'Show private key',
-        ), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.showPrivateKeyHeader, 'Show private key');
     },
 
     //fill password field

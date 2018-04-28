@@ -9,8 +9,7 @@ module.exports = {
     //wait for page loading according to displayed delete account header
 
     waitForDeleteTokenPopup: async function () {
-        await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.deleteTokenPopupHeader)),
-            'Are you sude want to delete token?'), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.deleteTokenPopupHeader, 'Are you sude want to delete token?');
     },
 
     //verify account name for delete from wallet

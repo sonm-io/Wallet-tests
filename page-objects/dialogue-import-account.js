@@ -12,8 +12,7 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitImportAccountDialogue: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.importAccountPopupHeader),
-        ), 'Add account'), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.importAccountPopupHeader, 'Add account');
     },
 
     //upload account file
