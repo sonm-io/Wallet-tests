@@ -53,7 +53,7 @@ module.exports = function () {
     });
 
     this.When(/^Click the Send button$/, async function () {
-        return await page.transferConfirmation.clickSend();
+        return await page.transferConfirmation.clickSendButton();
     });
 
     this.Then(/^Transaction Completed page is displayed$/, async function () {
@@ -76,8 +76,8 @@ module.exports = function () {
        return await page.sendPage.getAmountFieldValue(expectedValue);
     });
 
-    this.Then(/^Amount validation error message is displayed$/, async function () {
-        return await page.sendPage.validateAmountField();
+    this.Then(/^Amount validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
+        return await page.sendPage.validateAmountField(errorMessage);
     });
 
     this.When(/^Fill Gas Limit field "([^"]*)"$/, async function (gasLimitAmount) {
@@ -86,5 +86,17 @@ module.exports = function () {
 
     this.Then(/^Gas Limit validation error message is displayed$/, async function () {
         return await page.sendPage.validateGasLimitField();
+    });
+
+    this.Then(/^Account Password validation error message is displayed$/, async function () {
+        return await page.transferConfirmation.validateAccountPasswordField();
+    });
+
+    this.Then(/^Click the Back button$/, async function () {
+        return await page.transferConfirmation.clickBackButton();
+    });
+
+    this.Then(/^Address Send To Address is "([^"]*)"$/, async function (address) {
+        return await page.sendPage.getSendAddressToFieldValue(address);
     });
 };

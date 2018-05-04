@@ -12,7 +12,7 @@ module.exports = {
         gasPriceHiBtn: by.xpath('//input[@type="radio"][@value="high"]'),
         NextBtn: by.xpath('//button[.="NEXT"]'),
         currencySelect: by.className('sonm-currency-big-select__option'),
-        selectedCurrency: by.className('sonm-currency-item__name'),
+        selectedCurrency: by.css('.ant-select-selection__rendered .sonm-currency-item__name'),
         sendTab: by.xpath('//li[.="Send"]'),
         select: by.css('.sonm-account-big-select'),
         selectedAccount: by.css('.sonm-big-select .sonm-account-item__name-text'),
@@ -40,12 +40,22 @@ module.exports = {
         return (await shared.wdHelper.findVisibleElement(this.elements.sendTo)).sendKeys(address);
     },
 
+    //get text from address field
+
+    getSendAddressToFieldValue: async function (expectedAddress) {
+        let sendToAddreessFieldText = await page.common.verifyFieldLength(this.elements.sendTo);
+        console.log(sendToAddreessFieldText);
+        return await expect(sendToAddreessFieldText).to.equal(expectedAddress);
+    },
+
     //validate send to address field
 
     validateSendToAddressField: async function (errorMessage) {
         return await page.common.verifyValidationErrorMessage(this.elements.addressValidationNotificationMessage,
             errorMessage);
     },
+
+    //veryfy that Send To Address validation is not diplayed
 
     verifyThatSendToAddressValidationMessageIsNotDisplayed: async function () {
         return await shared.wdHelper.verifyElementAppearing(this.elements.addressValidationNotificationMessage);
@@ -66,9 +76,9 @@ module.exports = {
 
     //validate amount field
 
-    validateAmountField: async function () {
+    validateAmountField: async function (errMessage) {
         return await page.common.verifyValidationErrorMessage(this.elements.amountValidationNotificationMessage,
-            shared.messages.send.incorrectAmountFieldValidationMessage);
+            errMessage);
     },
 
     //click Add Maximum button
@@ -106,8 +116,7 @@ module.exports = {
     //select currency from dropdown
 
     selectCurrency: async function (currency) {
-        (await shared.wdHelper.findVisibleElement(this.elements.currencySelect)).click();
-        (await shared.wdHelper.findVisibleElement(by.xpath('//li[@title="' + currency + '"]'))).click();
-        return this.checkSelectedCurrency(currency);
+        return await page.common.selectFromStandardDropdown(this.elements.currencySelect, by.css('li[title="' + currency + '"]'),
+            by.css('.ant-select-selection__rendered .sonm-currency-item__name'), currency);
     },
 };

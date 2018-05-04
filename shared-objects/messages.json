@@ -43,5 +43,8 @@
     "sendToIncorrectAddressValidationMessage": "Please input correct address",
     "incorrectAmountFieldValidationMessage": "Should be positive number",
     "incorrectGasLimitValidationMessage": "Should be positive integer"
+  },
+  "transfercomfirm": {
+    "incorrectAccountPasswordFieldValidationMessage": "Invalid password"
   }
 }

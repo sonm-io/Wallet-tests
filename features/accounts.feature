@@ -100,8 +100,8 @@ Feature: Account
     And Account's "Some Account" Sonm value is "1000"
     And Account's "Test Account" Ether value is "76500"
     And Account's "Test Account" Sonm value is "1000"
-    And Total Ether value is "153000"
-    And Total SONM value is "2000"
+    And Total Ether value is "153010"
+    And Total SONM value is "3000"
 
   Scenario: Account - View Private Key
     Given Login to wallet "with3accounts" with password "1" with Three Accounts
