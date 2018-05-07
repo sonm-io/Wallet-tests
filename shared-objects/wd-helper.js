@@ -2,42 +2,58 @@ function loadWalletContent(wallet) {
     //shared.config.DEBUG && console.log("window.localStorage.setItem('" + wallet.key + "','" + wallet.value + "')");
     return driver.executeScript(
         "window.localStorage.setItem('" +
-            wallet.key +
-            "','" +
-            wallet.value +
-            "')",
+        wallet.key +
+        "','" +
+        wallet.value +
+        "')",
     );
 }
 
 function loadWalletName(wallet) {
     return driver.executeScript(
         "window.localStorage.setItem('sonm_wallets','" +
-            JSON.stringify(wallet.name) +
-            "')",
+        JSON.stringify(wallet.name) +
+        "')",
     );
 }
 
 module.exports = {
-    findVisibleElement: async function(locator, timeout = 30) {
+
+    //wait element is visible
+
+    findVisibleElement: async function (locator, timeout = 30) {
         let element = await driver.wait(until.elementLocated(locator), timeout * 1000);
         await driver.wait(until.elementIsVisible(element));
         await expect(element.length).to.not.equal(0);
         return await element;
     },
 
-    findVisibleElements: async function(locator, timeout = 32) {
+    //wait elements are visible
+
+    findVisibleElements: async function (locator, timeout = 32) {
         let elementsList = await driver.wait(until.elementsLocated(locator), timeout * 1000);
         return await elementsList;
     },
 
-    waitElementIsNotVisible: async function(locator) {
+    //wait until element is not visible
+
+    waitElementIsNotVisible: async function (locator) {
         let el = await driver.findElement(locator);
         return await driver.wait(until.elementIsNotVisible(el));
     },
 
+    //verify that element appears or not
+
+    verifyElementAppearing: async function (locator) {
+        let element = await driver.findElements(locator);
+        if (element.length !== 0) {
+            throw new Error("Element is displayed");
+        }
+    },
+
     //get element index in list for further operations (delete, edit etc.)
 
-    getElementPosition: async function(elements, elementName){
+    getElementPosition: async function (elements, elementName) {
         let elementsList = await driver.findElements(elements);
         for (let i = 0; i < elementsList.length; i++) {
             if (await elementsList[i].getText() === elementName) {
@@ -46,31 +62,38 @@ module.exports = {
         }
     },
 
-    loadWalletToStorage: function(wallet) {
+    //waiting for element's text is appeared
+
+    waitForElementTextIs: async function (locator, text) {
+        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(locator)),
+            text), 80000);
+    },
+
+    loadWalletToStorage: function (wallet) {
         loadWalletName(wallet);
         return loadWalletContent(wallet);
     },
 
-    loadWalletsToStorage: function(wallets) {
+    loadWalletsToStorage: function (wallets) {
         //shared.config.DEBUG && console.log("window.localStorage.setItem('sonm_wallets','" + JSON.stringify(wallets.names) + "')");
         driver.executeScript(
             "window.localStorage.setItem('sonm_wallets','" +
-                JSON.stringify(wallets.names) +
-                "')",
+            JSON.stringify(wallets.names) +
+            "')",
         );
-        wallets.content.forEach(function(element) {
+        wallets.content.forEach(function (element) {
             loadWalletContent(element);
         });
     },
 
     //doesn't work
-    loadHideDisclaimerToStorage: function() {
+    loadHideDisclaimerToStorage: function () {
         driver.executeScript(
             "window.localStorage.setItem('sonm-hide-disclaimer','1')",
         );
     },
 
-    resolve: function(o, s) {
+    resolve: function (o, s) {
         s = s.replace(/\[(\w+)\]/g, '.$1'); // convert indexes to properties
         s = s.replace(/^\./, ''); // strip a leading dot
         let a = s.split('.');

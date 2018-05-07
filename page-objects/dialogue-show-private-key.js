@@ -5,15 +5,14 @@ module.exports = {
         privateKeyValue: by.css('.sonm-show-key__hash--visible'),
         closePrivateKeyDialogueButton: by.css('.sonm-popup__inner .sonm-popup__cross'),
         passwordField: by.xpath('//input[@type="password"]'),
-        passwordValidationMessage: by.css('.sonm-form-field__help'),
-        showButton: by.xpath('//button[@type="submit"]')
+        passwordValidationMessage: by.css('.sonm-form-field--error .sonm-form-field__help'),
+        showButton: by.css('.sonm-show-key__form button')
     },
 
     //wait for load show private key dialogue
 
     waitForShowPrivateKeyPopup: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.showPrivateKeyHeader)), 'Show private key',
-        ), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.showPrivateKeyHeader, 'Show private key');
     },
 
     //fill password field

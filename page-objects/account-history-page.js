@@ -7,8 +7,7 @@ module.exports = {
     //wait for load accounts page according to displayed import account button
 
     waitForHistoryPageLoading: async function (accountName) {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.selectedAccountName)),
-            accountName), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.selectedAccountName, accountName);
     },
 
     //verify selected Account address

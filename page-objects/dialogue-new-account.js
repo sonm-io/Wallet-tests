@@ -1,19 +1,18 @@
 module.exports = {
     elements: {
-        newAccountPopupHeader: by.xpath('//form/h3'),
+        newAccountPopupHeader: by.css('.sonm-accounts-create-account__form h3'),
         newAccountNameField: by.xpath('//input[@name="name"]'),
         newAccountPasswordField: by.xpath('//input[@name="password"]'),
         newAccountPasswordConfirmationField: by.xpath('//input[@name="confirmation"]'),
         newAccountPrivateKeyField: by.xpath('//input[@name="privateKey"]'),
-        createNewAccountButton: by.xpath('//button[.="Create"]'),
+        createNewAccountButton: by.css('.sonm-accounts-create-account__form button'),
         closeCreateNewAccountDialogueButton: by.xpath('//div[@class="sonm-popup__inner"]/button')
     },
 
     //wait for page loading according to displayed new account header
 
     waitNewAccountDialogue: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.newAccountPopupHeader)),
-            'New account'), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.newAccountPopupHeader, 'New account');
     },
 
     //fill account name field

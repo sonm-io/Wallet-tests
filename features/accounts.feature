@@ -59,7 +59,7 @@ Feature: Account
     Then Account "test" is present in Accounts list
 
   Scenario: Account - Editing Account name
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
     And Clear Account Name field
@@ -68,7 +68,7 @@ Feature: Account
     Then Account Name "Edit Account" is present in Accounts list
 
   Scenario: Account - Editing Account name - Empty name
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
     And Clear Account Name field
@@ -76,7 +76,7 @@ Feature: Account
     Then Account Name "Test Account" is present in Accounts list
 
   Scenario: Account - Delete Account
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Delete Account button next to "Some Account" Name
     Then Delete Account dialogue is displayed
@@ -85,7 +85,7 @@ Feature: Account
     Then Account "Some Account" is not present in Accounts list
 
   Scenario: Account - Delete Account - Cancel
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Delete Account button next to "Some Account" Name
     Then Delete Account dialogue is displayed
@@ -94,17 +94,17 @@ Feature: Account
     Then Account Name "Some Account" is present in Accounts list
 
   Scenario: Account - Verify Ether/Sonm values and sum
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Account's "Some Account" Ether value is "76500"
     And Account's "Some Account" Sonm value is "1000"
     And Account's "Test Account" Ether value is "76500"
     And Account's "Test Account" Sonm value is "1000"
-    And Total Ether value is "153000"
-    And Total SONM value is "2000"
+    And Total Ether value is "153010"
+    And Total SONM value is "3000"
 
   Scenario: Account - View Private Key
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Show Private Key button next to "Some Account" Name
     Then Show Private Key dialogue is displayed
@@ -113,7 +113,7 @@ Feature: Account
     Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac64" is displayed
 
   Scenario: Account - Validate Private Key
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Show Private Key button next to "Some Account" Name
     Then Show Private Key dialogue is displayed
@@ -124,13 +124,13 @@ Feature: Account
     Then Private Key Password validation error message is displayed
 
   Scenario: Account - Redirect to Account Detail
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Account's address "0x9bb7510dfce448af7b3588291ca8b1362e19d250"
     Then Account Detail page is displayed
 
   Scenario: Account - Creating new Token
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the ADD TOKEN button
     Then Add Token dialogue is displayed
@@ -148,7 +148,7 @@ Feature: Account
     Then Add New Token error message is displayed
 
   Scenario: Account - Creating new Token - Verify Address field
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the ADD TOKEN button
     When Add New Token button is disabled
@@ -164,7 +164,7 @@ Feature: Account
     Then Token "CUSTOM" is not present in Tokens list
 
   Scenario: Account - Create Account with existing Private Key
-    Given Login to wallet "with2accounts" with password "1" with Three Accounts
+    Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed

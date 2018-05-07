@@ -14,8 +14,7 @@ module.exports = {
     //wait for page loading according to displayed new wallet header
 
     waitNewWalletDialogue: async function () {
-        await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.newWalletPopuoHeader)),
-            'New wallet'), 80000);
+        await shared.wdHelper.waitForElementTextIs(this.elements.newWalletPopuoHeader, 'New wallet');
         return await shared.wdHelper.findVisibleElement(this.elements.createNewWallet);
     },
 

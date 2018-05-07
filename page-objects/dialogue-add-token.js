@@ -8,8 +8,7 @@ module.exports = {
     //wait for load account page according to displayed header
 
     waitAddTokenDialogue: async function () {
-        return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(this.elements.addTokenPopupHeader),
-        ), 'Add token'), 80000);
+        return await shared.wdHelper.waitForElementTextIs(this.elements.addTokenPopupHeader, 'Add token');
     },
 
     //fill account password for further token request

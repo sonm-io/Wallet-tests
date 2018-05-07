@@ -16,4 +16,8 @@ module.exports = function () {
     this.Then(/^Close Notification$/, function () {
         return page.common.closeNotification();
     });
+
+    this.Then(/^Navigate to Accounts page$/, async function () {
+        return await page.common.navigateToAccountTab();
+    });
 };
