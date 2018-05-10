@@ -11,7 +11,7 @@ module.exports = {
     //wait for page loading according to displayed import wallet header
 
     waitImportWalletDialogue: async function() {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.importWalletPopupHeader, 'Import wallet');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.importWalletPopupHeader, shared.messages.dialogues.importWalletTitle);
     },
 
     //select wallet file for further import

@@ -9,15 +9,13 @@ module.exports = {
     //wait for page loading according to displayed delete account header
 
     waitForDeleteTokenPopup: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.deleteTokenPopupHeader, 'Are you sude want to delete token?');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.deleteTokenPopupHeader, shared.messages.dialogues.deleteTokenTitle);
     },
 
     //verify account name for delete from wallet
 
     verifyTokenNameForDelete: async function (tokenName) {
-        (await shared.wdHelper.findVisibleElement(this.elements.tokenName))
-            .getText()
-            .then(text => expect(text).to.equal(tokenName));
+        return await shared.wdHelper.verifyTextElement(this.elements.tokenName, tokenName);
     },
 
     //click cancel delete button

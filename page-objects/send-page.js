@@ -44,7 +44,6 @@ module.exports = {
 
     getSendAddressToFieldValue: async function (expectedAddress) {
         let sendToAddreessFieldText = await page.common.verifyFieldLength(this.elements.sendTo);
-        console.log(sendToAddreessFieldText);
         return await expect(sendToAddreessFieldText).to.equal(expectedAddress);
     },
 
@@ -55,7 +54,7 @@ module.exports = {
             errorMessage);
     },
 
-    //veryfy that Send To Address validation is not diplayed
+    //verify that Send To Address validation is not diplayed
 
     verifyThatSendToAddressValidationMessageIsNotDisplayed: async function () {
         return await shared.wdHelper.verifyElementAppearing(this.elements.addressValidationNotificationMessage);

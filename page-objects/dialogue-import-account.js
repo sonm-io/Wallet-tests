@@ -12,7 +12,7 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitImportAccountDialogue: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.importAccountPopupHeader, 'Add account');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.importAccountPopupHeader, shared.messages.dialogues.importAccountTitle);
     },
 
     //upload account file

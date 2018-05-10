@@ -12,7 +12,8 @@ module.exports = {
     //wait for load show private key dialogue
 
     waitForShowPrivateKeyPopup: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.showPrivateKeyHeader, 'Show private key');
+        await shared.wdHelper.waitForElementTextIs(this.elements.showPrivateKeyHeader, shared.messages.dialogues.showPrivateKeyTitle);
+        return await shared.wdHelper.findVisibleElement(this.elements.showButton);
     },
 
     //fill password field
