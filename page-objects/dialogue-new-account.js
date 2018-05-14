@@ -12,7 +12,8 @@ module.exports = {
     //wait for page loading according to displayed new account header
 
     waitNewAccountDialogue: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.newAccountPopupHeader, 'New account');
+        await shared.wdHelper.waitForElementTextIs(this.elements.newAccountPopupHeader, shared.messages.dialogues.newAccountTitle);
+        return await shared.wdHelper.findVisibleElement(this.elements.createNewAccountButton);
     },
 
     //fill account name field

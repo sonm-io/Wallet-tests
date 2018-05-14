@@ -4,24 +4,24 @@ module.exports = {
         nwName: by.xpath('//input[@name="newName"]'),
         nwPass: by.xpath('//input[@name="newPassword"]'),
         nwPassConfirm: by.xpath('//input[@name="newPasswordConfirmation"]'),
-        closeNewWalletDialogue: by.xpath('//div[@class="sonm-popup__inner"]/button'),
-        createNewWallet: by.xpath('//div[@class="sonm-popup__inner"]//button[.="CREATE WALLET"]'),
+        closeNewWalletDialogue: by.css('.sonm-popup__outer .sonm-popup__cross'),
+        createNewWallet: by.css('.sonm-login__popup-content button'),
         networkField: by.css('div.sonm-login__network-type > div'),
         selectedNetwork: by.css('div.sonm-login__network-type div > div > div.sonm-select-selection-selected-value'),
-        closeCreateNewWalletDialogueButton: by.xpath('//div[@class="sonm-popup__inner"]/button')
+        closeCreateNewWalletDialogueButton: by.css('.sonm-popup__inner .sonm-popup__cross')
     },
 
     //wait for page loading according to displayed new wallet header
 
     waitNewWalletDialogue: async function () {
-        await shared.wdHelper.waitForElementTextIs(this.elements.newWalletPopuoHeader, 'New wallet');
+        await shared.wdHelper.waitForElementTextIs(this.elements.newWalletPopuoHeader, shared.messages.dialogues.newWalletTitle);
         return await shared.wdHelper.findVisibleElement(this.elements.createNewWallet);
     },
 
     //close create wallet dialogue
 
     closeCreateNewWalletDialogue: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue,)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue)).click();
     },
 
     //fill all fields in new wallet dialogue and create wallet
@@ -90,6 +90,8 @@ module.exports = {
     verifyCreateNewWalletConfirmationPasswordFieldIsEmpty: async function () {
         return await expect((await page.common.verifyFieldLength(this.elements.nwPassConfirm)).length).to.equal(0);
     },
+
+    //select network value from dropdown
 
     selectNetworkValue: function (chainname) {
         return page.common.selectFromStandardDropdown(this.elements.networkField, by.xpath('//li[.="' + chainname + '"]'),

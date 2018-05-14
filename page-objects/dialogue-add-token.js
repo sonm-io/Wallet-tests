@@ -8,7 +8,7 @@ module.exports = {
     //wait for load account page according to displayed header
 
     waitAddTokenDialogue: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.addTokenPopupHeader, 'Add token');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.addTokenPopupHeader, shared.messages.dialogues.addTokenTitle);
     },
 
     //fill account password for further token request

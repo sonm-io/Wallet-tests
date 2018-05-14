@@ -2,6 +2,7 @@ module.exports = {
     elements: {
         sendTab: by.xpath('//li[.="Send"]'),
         accountTab: by.xpath('//li[.="Accounts"]'),
+        historyTab: by.xpath('//li[.="History"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
         successNotification: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/span[@class="sonm-alert__message"]'),
@@ -18,6 +19,12 @@ module.exports = {
 
     navigateToAccountTab: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.accountTab)).click();
+    },
+
+    //navigate to account tab
+
+    navigateToHistoryTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyTab)).click();
     },
 
     // verify part of notification
@@ -52,8 +59,8 @@ module.exports = {
     //TODO refactor
 
     selectFromStandardDropdown: async function (element, dropdownItem, selectedItem, name) {
-        (await shared.wdHelper.findVisibleElement(element)).click();
-        (await shared.wdHelper.findVisibleElement(dropdownItem)).click();
+        await (await shared.wdHelper.findVisibleElement(element)).click();
+        await (await shared.wdHelper.findVisibleElement(dropdownItem)).click();
         return (await shared.wdHelper.findVisibleElement(selectedItem))
             .getText()
             .then(text => expect(text).to.equal(name));

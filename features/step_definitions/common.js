@@ -20,4 +20,8 @@ module.exports = function () {
     this.Then(/^Navigate to Accounts page$/, async function () {
         return await page.common.navigateToAccountTab();
     });
+
+    this.When(/^Navigate to History page$/, async function () {
+        return await page.common.navigateToHistoryTab();
+    });
 };

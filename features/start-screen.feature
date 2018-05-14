@@ -1,5 +1,5 @@
 @wallet
-Feature: Start screen
+Feature: Operations with Wallet
 
   Scenario: Correct login - one account
     Given Wallet with one existing wallet is opened
