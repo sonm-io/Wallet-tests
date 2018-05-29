@@ -94,7 +94,7 @@ module.exports = {
     //select network value from dropdown
 
     selectNetworkValue: function (chainname) {
-        return page.common.selectFromStandardDropdown(this.elements.networkField, by.xpath('//li[.="' + chainname + '"]'),
+        return page.common.selectFromDropdown(this.elements.networkField, by.xpath('//li[.="' + chainname + '"]'),
             this.elements.selectedNetwork, chainname);
     },
 

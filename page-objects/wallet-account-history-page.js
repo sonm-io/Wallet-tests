@@ -16,7 +16,7 @@ module.exports = {
         status: by.css('.sonm-tx-list__cell-status .sonm-tx-list__cell-status')
     },
 
-    //wait for load accounts page according to displayed import account button
+    //wait for load account history page
 
     waitForHistoryPageLoading: async function () {
         return await shared.wdHelper.waitForElementTextIs(this.elements.accountsHeader, "All accounts");

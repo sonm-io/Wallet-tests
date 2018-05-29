@@ -73,7 +73,7 @@ module.exports = {
 
     waitForElementTextIs: async function (locator, text) {
         return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(locator)),
-            text), 80000);
+            text), 100000);
     },
 
     loadWalletToStorage: function (wallet) {

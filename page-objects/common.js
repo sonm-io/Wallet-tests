@@ -1,30 +1,87 @@
 module.exports = {
     elements: {
-        sendTab: by.xpath('//li[.="Send"]'),
-        accountTab: by.xpath('//li[.="Accounts"]'),
-        historyTab: by.xpath('//li[.="History"]'),
+        walletMenuButton: by.xpath('//button[.="Wallet"]'),
+        marketMenuButton: by.xpath('//button[.="Market"]'),
+        accountsMenuOption: by.css('button[value="/wallet/accounts"]'),
+        historyMenuOption: by.css('button[value="/wallet/history"]'),
+        sendMenuOption: by.css('button[value="/wallet/send"]'),
+        profilesMenuOption: by.css('button[value="/market/profiles"]'),
+        depositMenuOption: by.css('button[value="/market/dw/deposit"]'),
+        withdrawMenuOption: by.css('button[value="/market/dw/withdraw"]'),
+        historyMarketMenuOption: by.css('button[value="/market/dw/history"]'),
+        dealsMenuOption: by.css('button[value="/market/deals"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
         successNotification: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/span[@class="sonm-alert__message"]'),
-        successNotificationCross: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/div[@type="button"]')
+        successNotificationCross: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/div[@type="button"]'),
+        marketAccountDropdown: by.css(".sonm-market-account__button")
+    },
+
+    //open Wallet menu
+
+    openWalletMenu: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.walletMenuButton)).click();
     },
 
     //navigate to send tab
 
     navigateToSendTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
     },
 
     //navigate to account tab
 
     navigateToAccountTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.accountTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
     },
 
     //navigate to account tab
 
     navigateToHistoryTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.historyTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
+    },
+
+    //open Market menu
+
+    openMarketMenu: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.marketMenuButton)).click();
+    },
+
+    //navigate to market profiles tab
+
+    navigateToProfilesTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.profilesMenuOption)).click();
+    },
+
+    //navigate to market deposit tab
+
+    navigateToDepositTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.depositMenuOption)).click();
+    },
+
+    //navigate to market withdraw tab
+
+    navigateToWithdrawTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.withdrawMenuOption)).click();
+    },
+
+    //navigate to market history tab
+
+    navigateToMarketHistoryTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyMarketMenuOption)).click();
+    },
+
+    //navigate to market deals tab
+
+    navigateToDealsTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.dealsMenuOption)).click();
+    },
+
+    //select account from market account dropdown
+
+    selectMarketAccount: async function (marketAccountName){
+       return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
+           marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
     },
 
     // verify part of notification
@@ -33,9 +90,7 @@ module.exports = {
         return (await shared.wdHelper.findVisibleElement(this.elements.successNotification))
             .getText()
             .then(validMessageText => {
-                expect(validMessageText).to.contain(
-                    shared.messages.tx.successtx,
-                );
+                expect(validMessageText).to.contain(shared.messages.tx.successtx);
                 expect(validMessageText).to.contain(text);
             });
     },

@@ -1,6 +1,6 @@
 module.exports = {
     elements: {
-        sendTab: by.xpath('//li[.="Send"]'),
+        sendMenuOption: by.xpath('//li[.="Send"]'),
         logoutButton: by.xpath('//a[@href="#exit"]'),
         addTokenButton: by.xpath('//a[.="+ ADD TOKEN"]'),
         exportWalletButton: by.css('sonm-accounts__export-wallet-button'),
@@ -23,7 +23,7 @@ module.exports = {
     //verify that send tab is disabled
 
     checkSendTabIsDisabled: async function () {
-        return await page.common.checkElementIsDisabled(this.elements.sendTab, 'cursor', 'not-allowed');
+        return await page.common.checkElementIsDisabled(this.elements.sendMenuOption, 'cursor', 'not-allowed');
     },
 
     //logout from wallet
