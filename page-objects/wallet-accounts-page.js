@@ -80,10 +80,9 @@ module.exports = {
 
     //find account by name and hash in the list
 
-    findAccountInListWithHash: async function (name, hash) {
-        return shared.wdHelper.findVisibleElements(by.xpath('//span[@class="sonm-account-item__name-text"][.="' +
-            name + '"]/../../' + 'a[@href="#' + hash + '"]'))
-            .then(elements => expect(elements.length).to.equal(1));
+    findAccountInListWithHash: async function (hash) {
+        let accHash = await shared.wdHelper.findVisibleElements(by.xpath('//a[@href="#' + hash + '"]'));
+        return await expect(accHash.length).to.equal(1);
     },
 
     //click on account from the list

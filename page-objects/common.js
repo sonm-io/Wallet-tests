@@ -12,8 +12,8 @@ module.exports = {
         dealsMenuOption: by.css('button[value="/market/deals"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
-        successNotification: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/span[@class="sonm-alert__message"]'),
-        successNotificationCross: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/div[@type="button"]'),
+        successNotification: by.css('.sonm-alert-list__item.sonm-alert--success'),
+        successNotificationCross: by.css('.sonm-alert__cross'),
         marketAccountDropdown: by.css(".sonm-market-account__button")
     },
 

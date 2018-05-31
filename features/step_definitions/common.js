@@ -20,8 +20,8 @@ module.exports = function () {
         return await page.accountsPage.checkSendTabIsDisabled();
     });
 
-    this.Then(/^Notification contained text "([^"]*)" is displayed$/, function (text) {
-        return page.common.verifyNotificationText(text);
+    this.Then(/^Notification contained text "([^"]*)" is displayed$/, async function (text) {
+        return await page.common.verifyNotificationText(text);
     });
 
     this.Then(/^Close Notification$/, function () {

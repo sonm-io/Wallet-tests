@@ -57,7 +57,7 @@ module.exports = function () {
     });
 
     this.Then(/^Transaction Completed page is displayed$/, async function () {
-        return await page.transferConfirmationPage.waitForPageLoading();
+        return await page.transferConfirmationPage.waitForTransferConfirmationPageLoading();
     });
 
     this.Then(/^Send To Address validation error message "([^"]*)" is displayed$/, async function (errMessage) {

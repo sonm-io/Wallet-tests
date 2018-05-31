@@ -15,8 +15,9 @@ module.exports = function () {
         return page.walletAccountsPage.findAccountInList(name);
     });
 
-    this.Then(/^Account "([^"]*)" is present in Accounts list with hash "([^"]*)"$/, function (name, hash) {
-        return page.walletAccountsPage.findAccountInListWithHash(name, hash);
+    this.Then(/^Account "([^"]*)" is present in Accounts list with hash "([^"]*)"$/, async function (name, hash) {
+        await page.walletAccountsPage.findAccountInList(name);
+        return await page.walletAccountsPage.findAccountInListWithHash(hash);
     });
 
     this.When(/^Open Account "([^"]*)" details$/, function (name) {
