@@ -13,7 +13,7 @@ module.exports = {
         NextBtn: by.xpath('//button[.="NEXT"]'),
         currencySelect: by.className('sonm-currency-big-select__option'),
         selectedCurrency: by.css('.ant-select-selection__rendered .sonm-currency-item__name'),
-        sendTab: by.xpath('//li[.="Send"]'),
+        sendMenuOption: by.xpath('//li[.="Send"]'),
         select: by.css('.sonm-account-big-select'),
         selectedAccount: by.css('.sonm-big-select .sonm-account-item__name-text'),
         addressValidationNotificationMessage: by.css('.sonm-form-field--error .sonm-form-field__help'),

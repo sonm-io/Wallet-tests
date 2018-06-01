@@ -1,42 +1,43 @@
 module.exports = function () {
     this.Then(/^Accounts page is displayed$/, async function () {
-        return await page.accountsPage.waitForAccountPageLoading();
+        return await page.walletAccountsPage.waitForAccountPageLoading();
     });
 
     this.When(/^Click the Import Account button$/, async function () {
-        return await page.accountsPage.importAccount();
+        return await page.walletAccountsPage.importAccount();
     });
 
     this.When(/^Click the Create Account button$/, function () {
-        return page.accountsPage.createNewAccount();
+        return page.walletAccountsPage.createNewAccount();
     });
 
     this.Then(/^Account "([^"]*)" is present in Accounts list$/, function (name) {
-        return page.accountsPage.findAccountInList(name);
+        return page.walletAccountsPage.findAccountInList(name);
     });
 
-    this.Then(/^Account "([^"]*)" is present in Accounts list with hash "([^"]*)"$/, function (name, hash) {
-        return page.accountsPage.findAccountInListWithHash(name, hash);
+    this.Then(/^Account "([^"]*)" is present in Accounts list with hash "([^"]*)"$/, async function (name, hash) {
+        await page.walletAccountsPage.findAccountInList(name);
+        return await page.walletAccountsPage.findAccountInListWithHash(hash);
     });
 
     this.When(/^Open Account "([^"]*)" details$/, function (name) {
-        return page.accountsPage.clickOnAccountInList(name);
+        return page.walletAccountsPage.clickOnAccountInList(name);
     });
 
     this.When(/^Click the Logout button$/, async function () {
-        return await page.accountsPage.logoutFromWallet();
+        return await page.walletAccountsPage.logoutFromWallet();
     });
 
     this.Then(/^Total Ether value is "([^"]*)"$/, async function (totalEtherValue) {
-        return await page.accountsPageAccountItem.getTotalEtherAmount(totalEtherValue);
+        return await page.walletAccountsPageAccountItem.getTotalEtherAmount(totalEtherValue);
     });
 
     this.Then(/^Total SONM value is "([^"]*)"$/, async function (totalSonmValue) {
-        return await page.accountsPageAccountItem.getTotalSonmAmount(totalSonmValue);
+        return await page.walletAccountsPageAccountItem.getTotalSonmAmount(totalSonmValue);
     });
 
     this.When(/^Click the ADD TOKEN button$/, async function () {
-        return await page.accountsPage.addToken();
+        return await page.walletAccountsPage.addToken();
     });
 
     this.When(/^Click the Add New Token button$/, async function () {
@@ -52,11 +53,11 @@ module.exports = function () {
     });
 
     this.Then(/^Token "([^"]*)" is present in Tokens list$/, async function (tokenName) {
-        return await page.accountsPage.findTokenInList(tokenName)
+        return await page.walletAccountsPage.findTokenInList(tokenName)
     });
 
     this.When(/^Click the Delete Token button next to Token "([^"]*)" Name$/, async function (tokenName) {
-        return await page.accountsPage.clickDeleteTokenButton(tokenName);
+        return await page.walletAccountsPage.clickDeleteTokenButton(tokenName);
     });
 
     this.Then(/^Delete Token dialogue is displayed$/, async function () {
@@ -72,7 +73,7 @@ module.exports = function () {
     });
 
     this.Then(/^Token "([^"]*)" is not present in Tokens list$/, async function (tokenName) {
-        return await page.accountsPage.verifyThatTokenIsDeletedFromList(tokenName);
+        return await page.walletAccountsPage.verifyThatTokenIsDeletedFromList(tokenName);
     });
 
     this.Then(/^Add New Token error message is displayed$/, async function () {

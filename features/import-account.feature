@@ -1,5 +1,5 @@
 @importaccount
-Feature: Start screen
+Feature: Import Account
 
   Scenario: Import Account - invalid file
     Given Login to wallet "emptyWallet" with password "11111111"

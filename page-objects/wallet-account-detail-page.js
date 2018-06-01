@@ -16,7 +16,7 @@ module.exports = {
     //wait for load account page according to displayed header
 
     waitForAccountDetailPageLoading: async function () {
-        return shared.wdHelper.findVisibleElement(this.elements.header);
+        return await shared.wdHelper.findVisibleElement(this.elements.header);
     },
 
     //send ethereum to

@@ -2,7 +2,7 @@
   "dialogues": {
     "deleteAccountTitle": "Are you sure you want to delete this account?",
     "addTokenTitle": "Add token",
-    "deleteTokenTitle": "Are you sude want to delete token?",
+    "deleteTokenTitle": "Are you sure want to delete token?",
     "enterPasswordTitle": "Enter password",
     "importAccountTitle": "Add account",
     "importWalletTitle": "Import wallet",

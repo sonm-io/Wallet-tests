@@ -6,7 +6,6 @@ Feature: Operations with Wallet
     When Click the I Understand button
     And Fill Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet
 
@@ -58,7 +57,6 @@ Feature: Operations with Wallet
     When Click the Dont Show Disclaimer Again button
     When Fill Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet and Enter Password popup is displayed
 
@@ -102,6 +100,5 @@ Feature: Operations with Wallet
     And Click the Login button
     And Fill Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet

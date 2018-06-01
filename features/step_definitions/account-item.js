@@ -1,22 +1,22 @@
 module.exports = function () {
     this.Then(/^Click the Edit Account button next to "([^"]*)" Name$/, async function (accName) {
-        return await page.accountsPageAccountItem.clickEditAccountNameButton(accName);
+        return await page.walletAccountsPageAccountItem.clickEditAccountNameButton(accName);
     });
 
     this.Then(/^Clear Account Name field$/, async function () {
-        return await page.accountsPageAccountItem.clearAccountNameField();
+        return await page.walletAccountsPageAccountItem.clearAccountNameField();
     });
 
     this.When(/^Fill Account "([^"]*)" Name field with new "([^"]*)" Name$/, async function (accName, newAccountName) {
-        return await page.accountsPageAccountItem.fillAccountNameField(accName, newAccountName);
+        return await page.walletAccountsPageAccountItem.fillAccountNameField(accName, newAccountName);
     });
 
     this.Then(/^Account Name "([^"]*)" is present in Accounts list$/, async function (newAccountName) {
-        return await page.accountsPageAccountItem.verifyAccountPresence(newAccountName);
+        return await page.walletAccountsPageAccountItem.verifyAccountPresence(newAccountName);
     });
 
     this.When(/^Press ENTER button$/, async function () {
-        return await page.accountsPageAccountItem.applyEditChanges();
+        return await page.walletAccountsPageAccountItem.applyEditChanges();
     });
 
     this.When(/^Click the Delete Account button$/, async function () {
@@ -32,11 +32,11 @@ module.exports = function () {
     });
 
     this.Then(/^Account "([^"]*)" is not present in Accounts list$/, async function (accName) {
-        return await page.accountsPageAccountItem.verifyAccountIsDeleted(accName);
+        return await page.walletAccountsPageAccountItem.verifyAccountIsDeleted(accName);
     });
 
     this.Then(/^Click the Delete Account button next to "([^"]*)" Name$/, async function (accName) {
-        return await page.accountsPageAccountItem.clickDeleteAccountButton(accName);
+        return await page.walletAccountsPageAccountItem.clickDeleteAccountButton(accName);
     });
 
     this.When(/^Click the Cancel Delete Account button$/, async function () {
@@ -44,19 +44,19 @@ module.exports = function () {
     });
 
     this.Then(/^Account "([^"]*)" was not created$/, async function (accName) {
-        return await page.accountsPageAccountItem.verifyAccountIsNotPresent(accName);
+        return await page.walletAccountsPageAccountItem.verifyAccountIsNotPresent(accName);
     });
 
     this.Then(/^Account's "([^"]*)" Ether value is "([^"]*)"$/, async function (accName, etherValue) {
-        return await page.accountsPageAccountItem.getAccountEtherAmount(accName, etherValue);
+        return await page.walletAccountsPageAccountItem.getAccountEtherAmount(accName, etherValue);
     });
 
     this.Then(/^Account's "([^"]*)" Sonm value is "([^"]*)"$/, async function (accName, etherValue) {
-        return await page.accountsPageAccountItem.getAccountSonmAmount(accName, etherValue);
+        return await page.walletAccountsPageAccountItem.getAccountSonmAmount(accName, etherValue);
     });
 
     this.When(/^Click the Show Private Key button next to "([^"]*)" Name$/, async function (accName) {
-        return await page.accountsPageAccountItem.clickShowPrivateKeyButton(accName);
+        return await page.walletAccountsPageAccountItem.clickShowPrivateKeyButton(accName);
     });
     this.Then(/^Show Private Key dialogue is displayed$/, async function () {
         return await page.dialogueShowPrivateKey.waitForShowPrivateKeyPopup();
@@ -84,6 +84,6 @@ module.exports = function () {
     });
 
     this.When(/^Click the Account's address "([^"]*)"$/, async function (accountAddress) {
-        return await page.accountsPageAccountItem.navigateToAccountDetailPage(accountAddress);
+        return await page.walletAccountsPageAccountItem.navigateToAccountDetailPage(accountAddress);
     });
 };

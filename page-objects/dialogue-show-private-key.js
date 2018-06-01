@@ -1,5 +1,4 @@
 module.exports = {
-
     elements: {
         showPrivateKeyHeader: by.xpath('//form/h3'),
         privateKeyValue: by.css('.sonm-show-key__hash--visible'),

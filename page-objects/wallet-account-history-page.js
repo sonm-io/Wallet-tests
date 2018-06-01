@@ -2,9 +2,9 @@ const moment = require("moment");
 
 module.exports = {
     elements: {
-        accountsHeader: by.css('.sonm-account-big-select__option-emty'),
+        marketHistoryHeader: by.css('.sonm-account-big-select__option-empty'),
         selectedAccountName: by.css('.sonm-account-item__name-text'),
-        selectedAccountAddress: by.css('.sonm-account-big-select__option > a'),
+        selectedAccountAddress: by.css('.sonm-account-item__address a'),
         dateText: by.css('.sonm-tx-list__cell-time div:nth-of-type(2)'),
         fromAddressName: by.css('.sonm-tx-list__cell-from .sonm-tx-list__cell-from-name'),
         fromAddress: by.css('.sonm-tx-list__cell-from-addr'),
@@ -16,10 +16,10 @@ module.exports = {
         status: by.css('.sonm-tx-list__cell-status .sonm-tx-list__cell-status')
     },
 
-    //wait for load accounts page according to displayed import account button
+    //wait for load account history page
 
     waitForHistoryPageLoading: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.accountsHeader, "All accounts");
+        return await shared.wdHelper.waitForElementTextIs(this.elements.marketHistoryHeader, "All accounts");
     },
 
     //wait for load accounts page according to displayed import account button
