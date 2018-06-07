@@ -1,7 +1,7 @@
 module.exports = {
     elements: {
         passwordPopupHeader: by.xpath('//form/h3'),
-        password: by.xpath('//div[@class="sonm-login__label"]/input'),
+        passwordField: by.css('input[class="sonm-input__input"]'),
         passwordFieldValidMessage: by.className('sonm-login__label-error'),
         loginToWalletButton: by.className('sonm-login__create'),
         closePasswordDialogueButton: by.xpath('//div[@class="sonm-popup__inner"]/button')
@@ -23,7 +23,7 @@ module.exports = {
     //fill password field
 
     fillPasswordField: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.password)).sendKeys(password);
+        return (await shared.wdHelper.findVisibleElement(this.elements.passwordField)).sendKeys(password);
     },
 
     //validation of password field

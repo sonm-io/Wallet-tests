@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://sonm-io.github.io/wallet-web-dev/',
+    url: 'https://sonm-io.github.io/gui/#/',
 
     elements: {
         accountsForm: by.xpath('//div[@class="sonm-login__center"]'),

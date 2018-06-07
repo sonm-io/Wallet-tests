@@ -12,7 +12,6 @@ Feature: Import Wallet
     And Fill Import Wallet Password field "1"
     When Click the Import button
     Then Accounts page is displayed
-    Then Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet
 
@@ -35,7 +34,6 @@ Feature: Import Wallet
     And Fill Import Wallet Password field "1"
     When Click the Import button
     Then Accounts page is displayed
-    Then Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet
 
@@ -53,7 +51,6 @@ Feature: Import Wallet
     And Wallet file for import "correct_wallet.txt" is selected
     When Click the Import button
     Then Accounts page is displayed
-    Then Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet
 

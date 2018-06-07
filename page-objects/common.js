@@ -1,8 +1,5 @@
 module.exports = {
     elements: {
-        accountsTab: by.css('a[href="/accounts"]'),
-        sendTab: by.css('a[href="/send"]'),
-        historyTab: by.css('a[href="/history"]'),
         walletMenuButton: by.xpath('//button[.="Wallet"]'),
         marketMenuButton: by.xpath('//button[.="Market"]'),
         accountsMenuOption: by.css('button[value="/wallet/accounts"]'),
@@ -29,22 +26,19 @@ module.exports = {
     //navigate to send tab
 
     navigateToSendTab: async function () {
-        //return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
-        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
     },
 
     //navigate to account tab
 
     navigateToAccountTab: async function () {
-        //return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
-        return (await shared.wdHelper.findVisibleElement(this.elements.accountsTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
     },
 
     //navigate to account tab
 
     navigateToHistoryTab: async function () {
-        //return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
-        return (await shared.wdHelper.findVisibleElement(this.elements.historyTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
     },
 
     //open Market menu
