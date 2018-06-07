@@ -1,7 +1,7 @@
 module.exports = {
     elements: {
         profileTitle: by.css('.sonm-panel__title'),
-        //accountAddress: by.css('.sonm-hash.sonm-profile-details__address-hash')
+        accountAddress: by.css('.sonm-hash.sonm-profile-details__address-hash'),
         goToOrdersButton: by.css('.sonm-profile__orders'),
         profileName: by.css('.sonm-profile-details__main-info dd:nth-of-type(1)')
     },
@@ -18,9 +18,8 @@ module.exports = {
     //verify account address
 
     verifyAccountAddress: async function (expectedProfileAccountAddress) {
-        let actualProfileAddress = await (await shared.wdHelper.findVisibleElement(by.css('.sonm-hash.sonm-profile-details__address-hash'))).getText();
+        let actualProfileAddress = await (await shared.wdHelper.findVisibleElement(this.elements.accountAddress)).getText();
         return await expect(actualProfileAddress.split().join().replace(/\n/, "")).to.equal(expectedProfileAccountAddress);
-        console.log(sde);
     },
 
     //click on Go to Orders button for further redirect to orders page
