@@ -1,16 +1,16 @@
 module.exports = function () {
     this.Then(/^Navigate to Accounts page$/, async function () {
-        await page.common.openWalletMenu();
+        //await page.common.openWalletMenu();
         return await page.common.navigateToAccountTab();
     });
 
     this.When(/^Navigate to History page$/, async function () {
-        await page.common.openWalletMenu();
+        //await page.common.openWalletMenu();
         return await page.common.navigateToHistoryTab();
     });
 
     this.Given(/^Navigate to Send page$/, async function () {
-        await page.common.openWalletMenu();
+        //await page.common.openWalletMenu();
         return await page.common.navigateToSendTab();
     });
 
@@ -29,7 +29,7 @@ module.exports = function () {
     });
 
     this.Given(/^Navigate to Profiles page$/, async function () {
-        await page.common.openMarketMenu();
+        //await page.common.openMarketMenu();
         return await page.common.navigateToProfilesTab();
     });
 };

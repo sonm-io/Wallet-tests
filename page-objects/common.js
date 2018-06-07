@@ -1,5 +1,8 @@
 module.exports = {
     elements: {
+        accountsTab: by.css('a[href="/accounts"]'),
+        sendTab: by.css('a[href="/send"]'),
+        historyTab: by.css('a[href="/history"]'),
         walletMenuButton: by.xpath('//button[.="Wallet"]'),
         marketMenuButton: by.xpath('//button[.="Market"]'),
         accountsMenuOption: by.css('button[value="/wallet/accounts"]'),
@@ -26,19 +29,22 @@ module.exports = {
     //navigate to send tab
 
     navigateToSendTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
+        //return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab)).click();
     },
 
     //navigate to account tab
 
     navigateToAccountTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
+        //return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.accountsTab)).click();
     },
 
     //navigate to account tab
 
     navigateToHistoryTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
+        //return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyTab)).click();
     },
 
     //open Market menu
@@ -79,9 +85,9 @@ module.exports = {
 
     //select account from market account dropdown
 
-    selectMarketAccount: async function (marketAccountName){
-       return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
-           marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
+    selectMarketAccount: async function (marketAccountName) {
+        return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
+            marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
     },
 
     // verify part of notification
