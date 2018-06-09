@@ -1,9 +1,10 @@
 module.exports = {
     elements: {
         profileTitle: by.css('.sonm-panel__title'),
+        profileName: by.css('.sonm-profile-details__main-info dt:nth-of-type(1)'),
+        accountName: by.css('.sonm-hash.sonm-profile-details__address-hash'),
         accountAddress: by.css('.sonm-hash.sonm-profile-details__address-hash'),
         goToOrdersButton: by.css('.sonm-profile__orders'),
-        profileName: by.css('.sonm-profile-details__main-info dd:nth-of-type(1)')
     },
 
     //wait for load profile item page

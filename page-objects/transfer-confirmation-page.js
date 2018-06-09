@@ -9,7 +9,6 @@ module.exports = {
         passwordField: by.xpath('//input[@placeholder="Password"]'),
         passwordErrorMessage: by.css('.sonm-send-confirm__password-field .sonm-form-field__help'),
         sendBtn: by.xpath('//button[.="Send"]'),
-        backBtn: by.xpath('//button[.="Back"]')
     },
 
     //wait for load account page according to displayed header
@@ -65,11 +64,5 @@ module.exports = {
 
     clickSendButton: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.sendBtn)).click();
-    },
-
-    //go to previous page
-
-    clickBackButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.backBtn)).click();
-    },
+    }
 };

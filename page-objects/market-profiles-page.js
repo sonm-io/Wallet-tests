@@ -23,13 +23,13 @@ module.exports = {
     //select from status dropdown
 
     selectProfileStatus: async function (profileStatus) {
-        (await shared.wdHelper.findVisibleElement(this.elements.statusDropdown)).click();
+        await (await shared.wdHelper.findVisibleElement(this.elements.statusDropdown)).click();
         return await (await shared.wdHelper.findVisibleElement(by.xpath('//button[.="' + profileStatus + '"]'))).click();
     },
 
     //select from role dropdown
 
-    selectRole: async function (role) {
+    selectProfileRole: async function (role) {
         (await shared.wdHelper.findVisibleElement(this.elements.roleDropdown)).click();
         return await (await shared.wdHelper.findVisibleElement(by.xpath('//button[.="' + role + '"]'))).click();
     },
@@ -37,8 +37,8 @@ module.exports = {
     //select from country dropdown
 
     selectCountry: async function (country) {
-        (await shared.wdHelper.findVisibleElement(this.elements.countryDropdown)).click();
-        (await shared.wdHelper.findVisibleElement(this.elements.countryDropdown)).sendKeys(country);
+        await (await shared.wdHelper.findVisibleElement(this.elements.countryDropdown)).click();
+        await (await shared.wdHelper.findVisibleElement(this.elements.countryDropdown)).sendKeys(country);
         return await (await shared.wdHelper.findVisibleElement(this.elements.applyCountrySearchBtn)).click();
     },
 
@@ -52,7 +52,7 @@ module.exports = {
     //fill search field for further search by name
 
     searchProfileByName: async function (profileName) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.searchByNameField)).sendKeys(profileName);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.searchByNameField)).sendKeys(profileName);
     },
 
     //navigate to Profile Item page

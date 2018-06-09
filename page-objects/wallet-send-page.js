@@ -10,7 +10,6 @@ module.exports = {
         gasPriceLowBtn: by.xpath('//input[@type="radio"][@value="low"]'),
         gasPriceNormalBtn: by.xpath('//input[@type="radio"][@value="normal"]'),
         gasPriceHiBtn: by.xpath('//input[@type="radio"][@value="high"]'),
-        NextBtn: by.xpath('//button[.="NEXT"]'),
         currencySelect: by.className('sonm-currency-big-select__option'),
         selectedCurrency: by.css('.ant-select-selection__rendered .sonm-currency-item__name'),
         sendMenuOption: by.xpath('//li[.="Send"]'),
@@ -99,12 +98,6 @@ module.exports = {
             shared.messages.send.incorrectGasLimitValidationMessage);
     },
 
-    // click next button
-
-    clickNext: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.NextBtn)).click();
-    },
-
     //verify selected currency
 
     checkSelectedCurrency: async function (currency) {
@@ -117,5 +110,5 @@ module.exports = {
     selectCurrency: async function (currency) {
         return await page.common.selectFromStandardDropdown(this.elements.currencySelect, by.css('li[title="' + currency + '"]'),
             by.css('.ant-select-selection__rendered .sonm-currency-item__name'), currency);
-    },
+    }
 };

@@ -9,8 +9,7 @@ module.exports = {
         gasPriceField: by.css('.sonm-deposit-withdraw__values-gas-price .sonm-form-field__input'),
         lowGasBtn: by.css('input[value="low"]'),
         normalGasBtn: by.css('input[value="normal"]'),
-        highGasBtn: by.css('input[value="high"]'),
-        nextBtn: by.css('.sonm-button.sonm-button--color-violet')
+        highGasBtn: by.css('input[value="high"]')
     },
 
     //wait for load depost page according
@@ -27,8 +26,8 @@ module.exports = {
 
     //verify account address on Deposit page
 
-    verifyAccountAddressOnDepositPage: async function (accountName) {
-        return await shared.wdHelper.verifyTextElement(this.elements.accountAddress, accountName)
+    verifyAccountAddressOnDepositPage: async function (accounAddress) {
+        return await shared.wdHelper.verifyTextElement(this.elements.accountAddress, accounAddress)
     },
 
     //fill amount field
@@ -71,11 +70,5 @@ module.exports = {
 
     clickMaxGasPriceDepositButton: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.highGasBtn)).click();
-    },
-
-    //navigate to deposit confirmation page for further deposit operation complete
-
-    navigateToDepositConfirmationPage: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nextBtn)).click();
     }
 };

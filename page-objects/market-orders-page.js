@@ -6,7 +6,7 @@ module.exports = {
 
     //wait for load account history page
 
-    waitForMarketDealsPageLoading: async function () {
+    waitForMarketOrdersPageLoading: async function () {
         return await shared.wdHelper.waitForElementTextIs(this.elements.marketDealsHeader, "Market orders");
     },
 

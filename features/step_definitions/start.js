@@ -62,7 +62,7 @@ module.exports = function () {
         return await shared.wdHelper.loadWalletsToStorage(shared.config.accounts);
     });
 
-    this.When(/^Fill Wallet Popup Password field "([^"]*)"/, async function (password) {
+    this.When(/^Fill in the Wallet Popup Password field "([^"]*)"/, async function (password) {
         await page.dialogueEnterPassword.waitForPasswordPopup();
         await page.dialogueEnterPassword.fillPasswordField(password);
         return await page.dialogueEnterPassword.loginToWallet();

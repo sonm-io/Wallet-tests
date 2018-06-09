@@ -3,7 +3,7 @@ module.exports = function () {
         return await page.walletSendPage.selectAddressFromByName(accName);
     });
 
-    this.When(/^Fill Send To Address field "([^"]*)"$/, async function (address) {
+    this.When(/^Fill in the Send To Address field "([^"]*)"$/, async function (address) {
         return await page.walletSendPage.fillAddressTo(address);
     });
 
@@ -11,12 +11,8 @@ module.exports = function () {
         return await page.walletSendPage.selectCurrency(currency);
     });
 
-    this.When(/^Fill Amount field "([^"]*)"$/, async function (amount) {
+    this.When(/^Fill in the Send Amount field "([^"]*)"$/, async function (amount) {
         return await page.walletSendPage.fillAmountField(amount);
-    });
-
-    this.When(/^Click the Next button$/, async function () {
-        return await page.walletSendPage.clickNext();
     });
 
     this.Then(/^Send page is displayed$/, async function () {
@@ -39,16 +35,16 @@ module.exports = function () {
         return await page.transferConfirmationPage.checkAccountTo(address);
     });
 
-    this.Then(/^Amount is equal to "([^"]*)"$/, async function (amount) {
+    this.Then(/^Send Amount is equal to "([^"]*)"$/, async function (amount) {
         return await page.transferConfirmationPage.checkAmount(amount);
     });
 
-    this.Then(/^Gas limit is equal to "([^"]*)"$/, async function (gasLimit) {
+    this.Then(/^Send Gas Limit is equal to "([^"]*)"$/, async function (gasLimit) {
         let gasL = shared.wdHelper.resolve(shared.config, gasLimit);
         return await page.transferConfirmationPage.checkGasLimit(gasL);
     });
 
-    this.When(/^Fill Account Password field "([^"]*)"/, async function (password) {
+    this.When(/^Fill in the Account Password field "([^"]*)"/, async function (password) {
         return await page.transferConfirmationPage.fillPassword(password);
     });
 
@@ -68,11 +64,11 @@ module.exports = function () {
         return await page.walletSendPage.verifyThatSendToAddressValidationMessageIsNotDisplayed();
     });
 
-    this.When(/^Click the Add Maximum button$/, async function () {
+    this.When(/^Click the Send Add Maximum button$/, async function () {
        return await page.walletSendPage.clickAddMaximumButton();
     });
 
-    this.Then(/^Amount field is equal to "([^"]*)"$/, async function (expectedValue) {
+    this.Then(/^Send Amount field is equal to "([^"]*)"$/, async function (expectedValue) {
        return await page.walletSendPage.getAmountFieldValue(expectedValue);
     });
 
@@ -80,7 +76,7 @@ module.exports = function () {
         return await page.walletSendPage.validateAmountField(errorMessage);
     });
 
-    this.When(/^Fill Gas Limit field "([^"]*)"$/, async function (gasLimitAmount) {
+    this.When(/^Fill in the Send Gas Limit field "([^"]*)"$/, async function (gasLimitAmount) {
         return await page.walletSendPage.fillGasLimitField(gasLimitAmount);
     });
 
@@ -93,7 +89,7 @@ module.exports = function () {
     });
 
     this.Then(/^Click the Back button$/, async function () {
-        return await page.transferConfirmationPage.clickBackButton();
+        return await page.common.clickBackButton();
     });
 
     this.Then(/^Address Send To Address is "([^"]*)"$/, async function (address) {

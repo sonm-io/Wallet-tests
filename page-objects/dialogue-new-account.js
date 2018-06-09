@@ -19,7 +19,7 @@ module.exports = {
     //fill account name field
 
     fillNewAccountAccountName: async function (name) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.newAccountNameField)).sendKeys(name);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.newAccountNameField)).sendKeys(name);
     },
 
     //validate account name field
@@ -38,7 +38,7 @@ module.exports = {
     //validate account password field
 
     fillNewAccountPassword: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.newAccountPasswordField)).sendKeys(password);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.newAccountPasswordField)).sendKeys(password);
     },
 
     //verify that create new account password empty or not
@@ -57,7 +57,7 @@ module.exports = {
     //fill account password confirmation field
 
     fillNewAccountPasswordConfirmation: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.newAccountPasswordConfirmationField)).sendKeys(password);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.newAccountPasswordConfirmationField)).sendKeys(password);
     },
 
     //verify that create account confirmation password empty or not
@@ -82,7 +82,7 @@ module.exports = {
     //fill private key field
 
     fillNewAccountPrivateKeyField: async function (privateKey) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.newAccountPrivateKeyField)).sendKeys(privateKey);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.newAccountPrivateKeyField)).sendKeys(privateKey);
     },
 
     //validate account private key field
