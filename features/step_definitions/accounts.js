@@ -48,7 +48,7 @@ module.exports = function () {
         return await page.dialogueAddToken.waitAddTokenDialogue();
     });
 
-    this.Then(/^Fill Token Address field "([^"]*)"$/, async function (tokenName) {
+    this.Then(/^Fill in the Token Address field "([^"]*)"$/, async function (tokenName) {
         return await page.dialogueAddToken.fillTokenAddressField(tokenName);
     });
 

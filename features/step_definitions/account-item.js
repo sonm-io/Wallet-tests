@@ -3,11 +3,11 @@ module.exports = function () {
         return await page.walletAccountsPageAccountItem.clickEditAccountNameButton(accName);
     });
 
-    this.Then(/^Clear Account Name field$/, async function () {
+    this.Then(/^Clear the Account Name field$/, async function () {
         return await page.walletAccountsPageAccountItem.clearAccountNameField();
     });
 
-    this.When(/^Fill Account "([^"]*)" Name field with new "([^"]*)" Name$/, async function (accName, newAccountName) {
+    this.When(/^Fill in the Account "([^"]*)" Name field with new "([^"]*)" Name$/, async function (accName, newAccountName) {
         return await page.walletAccountsPageAccountItem.fillAccountNameField(accName, newAccountName);
     });
 
@@ -15,7 +15,7 @@ module.exports = function () {
         return await page.walletAccountsPageAccountItem.verifyAccountPresence(newAccountName);
     });
 
-    this.When(/^Press ENTER button$/, async function () {
+    this.When(/^Press the ENTER button$/, async function () {
         return await page.walletAccountsPageAccountItem.applyEditChanges();
     });
 
@@ -62,7 +62,7 @@ module.exports = function () {
         return await page.dialogueShowPrivateKey.waitForShowPrivateKeyPopup();
     });
 
-    this.Then(/^Fill Show Private Key Password field "([^"]*)"$/, async function (password) {
+    this.Then(/^Fill in the Show Private Key Password field "([^"]*)"$/, async function (password) {
         return await page.dialogueShowPrivateKey.fillPrivateKeyPasswordField(password);
     });
 

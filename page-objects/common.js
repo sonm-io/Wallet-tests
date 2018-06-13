@@ -14,7 +14,9 @@ module.exports = {
         selectedAccount: by.className('sonm-account-item__name-text'),
         successNotification: by.css('.sonm-alert-list__item.sonm-alert--success'),
         successNotificationCross: by.css('.sonm-alert__cross'),
-        marketAccountDropdown: by.css(".sonm-market-account__button")
+        marketAccountDropdown: by.css(".sonm-market-account__button"),
+        nextBtn: by.css('.sonm-button.sonm-button--color-violet'),
+        backBtn: by.css('.sonm-button--color-blue.sonm-button--transparent')
     },
 
     //open Wallet menu
@@ -79,9 +81,9 @@ module.exports = {
 
     //select account from market account dropdown
 
-    selectMarketAccount: async function (marketAccountName){
-       return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
-           marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
+    selectMarketAccount: async function (marketAccountName) {
+        return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
+            marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
     },
 
     // verify part of notification
@@ -137,6 +139,18 @@ module.exports = {
 
     clickDropdown: async function (element) {
         return (await shared.wdHelper.findVisibleElement(element)).click();
+    },
+
+    // click next button
+
+    clickNextButton: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.nextBtn)).click();
+    },
+
+    // click back button
+
+    clickBackButton: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.backBtn)).click();
     },
 
     //assert array to string

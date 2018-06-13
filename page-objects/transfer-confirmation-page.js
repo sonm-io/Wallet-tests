@@ -6,10 +6,9 @@ module.exports = {
         addrTo: by.className('sonm-send-confirm__account-target'),
         amount: by.xpath('//dl[@class="sonm-send-confirm__values"]/dd[1]'),
         gasLimit: by.xpath('//dl[@class="sonm-send-confirm__values"]//dd[2]'),
-        password: by.xpath('//input[@placeholder="Password"]'),
+        passwordField: by.xpath('//input[@placeholder="Password"]'),
         passwordErrorMessage: by.css('.sonm-send-confirm__password-field .sonm-form-field__help'),
         sendBtn: by.xpath('//button[.="Send"]'),
-        backBtn: by.xpath('//button[.="Back"]')
     },
 
     //wait for load account page according to displayed header
@@ -51,7 +50,7 @@ module.exports = {
     //fill account password field
 
     fillPassword: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.password)).sendKeys(password);
+        return (await shared.wdHelper.findVisibleElement(this.elements.passwordField)).sendKeys(password);
     },
 
     //validate Password field
@@ -65,11 +64,5 @@ module.exports = {
 
     clickSendButton: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.sendBtn)).click();
-    },
-
-    //go to previous page
-
-    clickBackButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.backBtn)).click();
-    },
+    }
 };

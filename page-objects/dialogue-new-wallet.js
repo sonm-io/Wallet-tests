@@ -1,6 +1,6 @@
 module.exports = {
     elements: {
-        newWalletPopuoHeader: by.xpath('//form[@class="sonm-login__popup-content"]/h3'),
+        newWalletPopuoHeader: by.css('.sonm-login__popup-content h3'),
         nwName: by.xpath('//input[@name="newName"]'),
         nwPass: by.xpath('//input[@name="newPassword"]'),
         nwPassConfirm: by.xpath('//input[@name="newPasswordConfirmation"]'),
@@ -21,7 +21,7 @@ module.exports = {
     //close create wallet dialogue
 
     closeCreateNewWalletDialogue: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue)).click();
     },
 
     //fill all fields in new wallet dialogue and create wallet
@@ -37,7 +37,7 @@ module.exports = {
     //fill wallet name field
 
     fillWalletNameField: async function (walletName) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwName)).sendKeys(walletName);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwName)).sendKeys(walletName);
     },
 
     //validate correct wallet name
@@ -56,7 +56,7 @@ module.exports = {
     //fill password wallet field
 
     fillWalletPasswordField: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwPass)).sendKeys(password);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwPass)).sendKeys(password);
     },
 
     //validate correct wallet password
@@ -75,7 +75,7 @@ module.exports = {
     //fill confirm password wallet field
 
     fillWalletConfirmPasswordField: async function (confirmPassword) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwPassConfirm)).sendKeys(confirmPassword);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwPassConfirm)).sendKeys(confirmPassword);
     },
 
     //validate correct wallet confirm password
@@ -107,6 +107,6 @@ module.exports = {
     //click create wallet button for further creating wallet
 
     createNewWalletButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.createNewWallet)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.createNewWallet)).click();
     },
 };

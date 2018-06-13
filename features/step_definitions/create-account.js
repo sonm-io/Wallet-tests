@@ -3,15 +3,15 @@ module.exports = function () {
         return await page.dialogueNewAccount.waitNewAccountDialogue();
     });
 
-    this.When(/^Fill Create New Account Password field "([^"]*)"/, async function (password) {
+    this.When(/^Fill in the Create New Account Password field "([^"]*)"/, async function (password) {
         return await page.dialogueNewAccount.fillNewAccountPassword(password);
     });
 
-    this.When(/^Fill Create New Account Password Confirmation field "([^"]*)"/, async function (password) {
+    this.When(/^Fill in the Create New Account Password Confirmation field "([^"]*)"/, async function (password) {
         return await page.dialogueNewAccount.fillNewAccountPasswordConfirmation(password);
     });
 
-    this.When(/^Fill Create New Account Name field "([^"]*)"/, async function (name) {
+    this.When(/^Fill in the Create New Account Name field "([^"]*)"/, async function (name) {
         return await page.dialogueNewAccount.fillNewAccountAccountName(name);
     });
 
@@ -20,7 +20,7 @@ module.exports = function () {
         //return await page.common.verifySpinnerIsNotVisible();
     });
 
-    this.When(/^Fill Create New Account Private Key field "([^"]*)"$/, async function (privateKey) {
+    this.When(/^Fill in the Create New Account Private Key field "([^"]*)"$/, async function (privateKey) {
         return await page.dialogueNewAccount.fillNewAccountPrivateKeyField(privateKey);
     });
 

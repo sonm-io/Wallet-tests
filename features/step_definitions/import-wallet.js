@@ -3,11 +3,11 @@ module.exports = function () {
         return page.dialogueImportWallet.selectWalletFileForImport(walletName);
     });
 
-    this.When(/^Fill Import Wallet Name field "([^"]*)"$/, async function (importWalletName) {
+    this.When(/^Fill in the Import Wallet Name field "([^"]*)"$/, async function (importWalletName) {
         return await page.dialogueImportWallet.fillImportWalletNameField(importWalletName);
     });
 
-    this.When(/^Fill Import Wallet Password field "([^"]*)"$/, async function (importWalletPassword) {
+    this.When(/^Fill in the Import Wallet Password field "([^"]*)"$/, async function (importWalletPassword) {
         return await page.dialogueImportWallet.fillImportWalletPasswordField(importWalletPassword);
     });
 
@@ -30,11 +30,11 @@ module.exports = function () {
             shared.messages.importWallet.importWalletIncorrectPasswordValidationMessage);
     });
 
-    this.Then(/^Clear Import Wallet Name field$/, function () {
+    this.Then(/^Clear the Import Wallet Name field$/, function () {
         return page.dialogueImportWallet.clearImportWalletNameField();
     });
 
-    this.Then(/^Clear Import Wallet Password field$/, function () {
+    this.Then(/^Clear the Import Wallet Password field$/, function () {
         return page.dialogueImportWallet.clearImportWalletPasswordField();
     });
 
@@ -42,11 +42,11 @@ module.exports = function () {
         return await page.dialogueImportWallet.waitImportWalletDialogue();
     });
 
-    this.When(/^Close Import Wallet dialogue$/, async function () {
+    this.When(/^Close the Import Wallet dialogue$/, async function () {
         return await page.dialogueImportWallet.closeImportWalletDialogue();
     });
 
-    this.Then(/^All Import Wallet fields are empty$/, async function () {
+    this.Then(/^All the Import Wallet fields are empty$/, async function () {
         await page.dialogueImportWallet.verifyImportWalletFileFieldIsEmpty();
         await page.dialogueImportWallet.verifyImportWalletNameFieldIsEmpty();
         return await page.dialogueImportWallet.verifyImportWalletPasswordFieldIsEmpty();

@@ -6,7 +6,6 @@ module.exports = {
         gasPriceValue: by.css('input[name="gasPrice"]'),
         sonmValue: by.css('.sonm-deposit-withdraw__commission-grid-left dd'),
         sonmCommissionValue: by.css('.sonm-deposit-withdraw__commission-grid-right dd'),
-        backBtn: by.css('.sonm-button--color-blue.sonm-button--transparent'),
         withdrawBtn: by.css('.sonm-button.sonm-button--color-violet')
     },
 
@@ -38,12 +37,6 @@ module.exports = {
 
     verifySonmComissionValue: async function (expectedSonmComValue) {
         return await shared.wdHelper.verifyTextElement(this.elements.sonmCommissionValue, expectedSonmComValue)
-    },
-
-    //go back to deposit page
-
-    goBackToDepositPage: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.backBtn)).click();
     },
 
     //finish deposit

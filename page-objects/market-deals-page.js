@@ -2,7 +2,7 @@ module.exports = {
     elements: {
         marketDealsHeader: by.css('.sonm-app-common-block__title'),
         searchByAddressField: by.css('input[placeholder="Search by address"]'),
-        onlyActiveToggler: by.css('input[name="deals-active"]')
+        onlyActiveToggle: by.css('input[name="deals-active"]')
     },
 
     //wait for load account history page
@@ -19,7 +19,7 @@ module.exports = {
 
     //show all Deals
 
-    showActiveDeals: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.onlyActiveToggler)).click();
+    clickOnlyActiveToggle: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.onlyActiveToggle)).click();
     }
 };

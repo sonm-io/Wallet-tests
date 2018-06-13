@@ -32,4 +32,8 @@ module.exports = function () {
         await page.common.openMarketMenu();
         return await page.common.navigateToProfilesTab();
     });
+
+    this.When(/^Click the Next button$/, async function () {
+        return await page.common.clickNextButton();
+    });
 };

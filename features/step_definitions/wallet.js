@@ -14,7 +14,7 @@ module.exports = function () {
         return await page.startPage.createWalletFromStartPage();
     });
 
-    this.Then(/^Fill Create New Wallet Name field "([^"]*)"$/, async function (walletName) {
+    this.Then(/^Fill in the Create New Wallet Name field "([^"]*)"$/, async function (walletName) {
         return await page.dialogueNewWallet.fillWalletNameField(walletName);
     });
 
@@ -35,7 +35,7 @@ module.exports = function () {
         return page.dialogueNewWallet.validateCreateWalletPasswordField();
     });
 
-    this.Then(/^Fill Create New Wallet Password field "([^"]*)"$/, function (walletPassword) {
+    this.Then(/^Fill in the Create New Wallet Password field "([^"]*)"$/, function (walletPassword) {
         return page.dialogueNewWallet.fillWalletPasswordField(walletPassword);
     });
 
@@ -43,7 +43,7 @@ module.exports = function () {
         return page.dialogueNewWallet.validateCreateWalletConfirmPasswordField();
     });
 
-    this.Then(/^Fill Create New Wallet Confirmation Password field "([^"]*)"$/, function (walletConfirmPassword) {
+    this.Then(/^Fill in the Create New Wallet Confirmation Password field "([^"]*)"$/, function (walletConfirmPassword) {
         return page.dialogueNewWallet.fillWalletConfirmPasswordField(walletConfirmPassword);
     });
 

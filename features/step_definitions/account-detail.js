@@ -23,7 +23,7 @@ module.exports = function () {
         return await page.walletAccountDetailPage.getAlertMessageText(alertMessage);
     });
 
-    this.Then(/^Fill Account Password field for request tokens "([^"]*)"$/, async function (accPassword) {
+    this.Then(/^Fill in the Account Password field for request tokens "([^"]*)"$/, async function (accPassword) {
         return await page.walletAccountDetailPage.fillTokenRequestPasswordField(accPassword);
     });
 
