@@ -42,27 +42,6 @@ Feature: Send
     When Click the Transaction History button
     Then Send page is displayed
 
-  Scenario: Send snm to address without 0x - Verify Navigation to Send page
-    Given Login to wallet "oneAccount" with password "11111111"
-    And Navigate to Send page
-    When Account "one-account" is selected From Accounts dropdown
-    And Fill in the Send To Address field "233a526fb4b4b96809432b17d39309bae0a1513d"
-    And Fill in the Send Amount field "123"
-    And Select currency "SONM"
-    And Click the Next button
-    Then Transfer Confirmation page is displayed
-    And Account From Name is "one-account" and Address is "0x53b14178576e5597a0ab529ba8ba46166599c3af" is displayed
-    And Account to is equal to "233a526fb4b4b96809432b17d39309bae0a1513d"
-    And Send Amount is equal to "123 SNM"
-    And Send Gas limit is equal to "defaultGasLimit"
-    When Fill in the Account Password field "11111111"
-    And Click the Send button
-    Then Transaction Completed page is displayed
-    And Notification contained text "123 SNM has been sent to the address" is displayed
-    And Close Notification
-    When Click the New Transaction button
-    Then Send page is displayed
-
   Scenario: Send ethereum to address with 0x
     Given Login to wallet "oneAccount" with password "11111111"
     And Navigate to Send page
