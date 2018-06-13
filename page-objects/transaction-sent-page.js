@@ -1,17 +1,18 @@
 module.exports = {
     elements: {
-        header: by.xpath('//h1[.="Transaction has been sent"]')
+        transHistoryButton: by.css('.sonm-send-success__icon-history'),
+        newTransactionButton: by.css('.sonm-send-success__icon-send')
     },
 
-    waitForPageLoading: function() {
-        return shared.wdHelper.findVisibleElement(this.elements.header);
+    //navigate to transactions History page
+
+    clickTransactionHistoryButton: async function () {
+        return await (await shared.wdHelper.findVisibleElement(this.elements.transHistoryButton)).click();
     },
 
-    clickOpenHistory: function() {
-        return shared.wdHelper.findVisibleElement(this.elements.createNewAccountButton).click();
-    },
+    //navigate to Send page
 
-    clickSendTransaction: function() {
-        return shared.wdHelper.findVisibleElement(this.elements.importAccountButton).click();
-    },
+    clickSendTransactionButton: async function () {
+        return await (await shared.wdHelper.findVisibleElement(this.elements.newTransactionButton)).click();
+    }
 };

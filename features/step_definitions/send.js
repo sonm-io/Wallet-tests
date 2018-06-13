@@ -39,12 +39,8 @@ module.exports = function () {
         return await page.transferConfirmationPage.checkAmount(amount);
     });
 
-    this.Then(/^Send Gas Limit is equal to "([^"]*)"$/, async function (gasLimit) {
-        let gasL = shared.wdHelper.resolve(shared.config, gasLimit);
-        return await page.transferConfirmationPage.checkGasLimit(gasL);
-    });
 
-    this.When(/^Fill in the Account Password field "([^"]*)"/, async function (password) {
+    this.When(/^Fill in the Account Password field "([^"]*)"$/, async function (password) {
         return await page.transferConfirmationPage.fillPassword(password);
     });
 
@@ -65,11 +61,16 @@ module.exports = function () {
     });
 
     this.When(/^Click the Send Add Maximum button$/, async function () {
-       return await page.walletSendPage.clickAddMaximumButton();
+        return await page.walletSendPage.clickAddMaximumButton();
     });
 
     this.Then(/^Send Amount field is equal to "([^"]*)"$/, async function (expectedValue) {
-       return await page.walletSendPage.getAmountFieldValue(expectedValue);
+        return await page.walletSendPage.getAmountFieldValue(expectedValue);
+    });
+
+    this.Then(/^Send Gas limit is equal to "([^"]*)"$/, async function (gasLimit) {
+        let gasL = shared.wdHelper.resolve(shared.config, gasLimit);
+        return await page.transferConfirmationPage.checkGasLimit(gasL);
     });
 
     this.Then(/^Amount validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
@@ -94,5 +95,13 @@ module.exports = function () {
 
     this.Then(/^Address Send To Address is "([^"]*)"$/, async function (address) {
         return await page.walletSendPage.getSendAddressToFieldValue(address);
+    });
+
+    this.When(/^Click the New Transaction button$/, async function () {
+        return await page.transactionSentPage.clickSendTransactionButton();
+    });
+
+    this.When(/^Click the Transaction History button$/, async function () {
+        return await page.transactionSentPage.clickTransactionHistoryButton();
     });
 };
