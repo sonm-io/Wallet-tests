@@ -3,3 +3,4 @@
 /package-lock.json
 **/.DS_Store
 /reports
+run_tests.sh
