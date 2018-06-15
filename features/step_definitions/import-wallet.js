@@ -16,17 +16,17 @@ module.exports = function () {
     });
 
     this.Then(/^Import Wallet File field validation error message is displayed$/, async function () {
-        return await page.dialogueImportWallet.validateImportWalletFileField(
+        return await page.pagesNotifications.validateImportWalletFileField(
             shared.messages.importWallet.importWalletIncorrectFileValidationMessage);
     });
 
     this.Then(/^Import Wallet Name field validation error message is displayed$/, async function () {
-        return await page.dialogueImportWallet.validateImportWalletNameField(
+        return await page.pagesNotifications.validateImportWalletNameField(
             shared.messages.importWallet.importWalletSameNameValidationMessage);
     });
 
     this.Then(/^Import Wallet Password field validation error message is displayed$/, async function () {
-        return await page.dialogueImportWallet.validateImportWalletPasswordField(
+        return await page.pagesNotifications.validateImportWalletPasswordField(
             shared.messages.importWallet.importWalletIncorrectPasswordValidationMessage);
     });
 

@@ -25,15 +25,15 @@ module.exports = function () {
     });
 
     this.Then(/^Import Account File field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueImportAccount.validateImportAccountFileField(errorMessage);
+        return await page.pagesNotifications.validateImportAccountFileField(errorMessage);
     });
 
     this.Then(/^Import Account Name field validation error message is displayed$/, async function () {
-        return await page.dialogueImportAccount.validateImportAccountNameField();
+        return await page.pagesNotifications.validateImportAccountNameField();
     });
 
     this.Then(/^Import Account Password validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueImportAccount.validateImportAccountPasswordField(errorMessage);
+        return await page.pagesNotifications.validateImportAccountPasswordField(errorMessage);
     });
 
     this.Then(/^Clear Import Account Password Field$/, async function () {

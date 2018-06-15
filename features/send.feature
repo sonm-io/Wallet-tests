@@ -40,7 +40,7 @@ Feature: Send
     Then Transaction Completed page is displayed
     And Notification contained text "321 Ether has been sent to the address" is displayed
     When Click the Transaction History button
-    Then Send page is displayed
+    Then History page is displayed
 
   Scenario: Send ethereum to address with 0x
     Given Login to wallet "oneAccount" with password "11111111"
@@ -158,7 +158,7 @@ Feature: Send
     And Account From Name is "Token Account" and Address is "0x8f890bb038859234db3f397bb2474713defee42c" is displayed
     And Account to is equal to "a62ce519e29976d340790e2e61058346506b8ac1"
     And Send Amount is equal to "9.9792 Ether"
-    And Send Gas Limit is equal to "defaultGasLimit"
+    And Send Gas limit is equal to "defaultGasLimit"
     When Fill in the Account Password field "11111111"
     And Click the Send button
     Then Transaction Completed page is displayed
@@ -182,7 +182,7 @@ Feature: Send
     And Account From Name is "Test Account" and Address is "0xa62ce519e29976d340790e2e61058346506b8ac1" is displayed
     And Account to is equal to "0x9bb7510dfce448af7b3588291ca8b1362e19d250"
     And Send Amount is equal to "1000 SNM"
-    And Send Gas Limit is equal to "defaultGasLimit"
+    And Send Gas limit is equal to "defaultGasLimit"
     When Fill in the Account Password field "11111111"
     And Click the Send button
     Then Transaction Completed page is displayed
@@ -212,9 +212,9 @@ Feature: Send
     When Fill in the Send To Address field "#%#$lalala"
     Then Send To Address validation error message "Please input correct address" is displayed
     When Fill in the Send Amount field "!@#erfdf"
-    Then Amount validation error message "Should be positive number" is displayed
+    Then Send Amount validation error message "Should be positive number" is displayed
     When Fill in the Send Gas Limit field "!№4#%#%"
-    Then Gas Limit validation error message is displayed
+    Then Send Gas Limit validation error message is displayed
 
   Scenario: Send - Send eth value more than account has
     Given Login to wallet "with3accounts" with password "1" with Three Accounts
@@ -222,7 +222,7 @@ Feature: Send
     And Account "Test Account" is selected From Accounts dropdown
     And Fill in the Send To Address field "0x8f890bb038859234db3f397bb2474713defee42c"
     When Fill in the Send Amount field "76510"
-    Then Amount validation error message "Value is greater than maximum" is displayed
+    Then Send Amount validation error message "Value is greater than maximum" is displayed
 
   Scenario: Send - Enter incorrect account password
     Given Login to wallet "oneAccount" with password "11111111"
@@ -236,7 +236,7 @@ Feature: Send
     And Account From Name is "one-account" and Address is "0x53b14178576e5597a0ab529ba8ba46166599c3af" is displayed
     And Account to is equal to "233a526fb4b4b96809432b17d39309bae0a1513d"
     And Send Amount is equal to "123 SNM"
-    And Send Gas Limit is equal to "defaultGasLimit"
+    And Send Gas limit is equal to "defaultGasLimit"
     And Fill in the Account Password field "1111111"
     When Click the Send button
     Then Account Password validation error message is displayed
@@ -253,7 +253,7 @@ Feature: Send
     And Account From Name is "one-account" and Address is "0x53b14178576e5597a0ab529ba8ba46166599c3af" is displayed
     And Account to is equal to "233a526fb4b4b96809432b17d39309bae0a1513d"
     And Send Amount is equal to "123 SNM"
-    And Send Gas Limit is equal to "defaultGasLimit"
+    And Send Gas limit is equal to "defaultGasLimit"
     When Click the Back button
     Then Send page is displayed
     Then Address Send To Address is "233a526fb4b4b96809432b17d39309bae0a1513d"
@@ -271,7 +271,7 @@ Feature: Send
     And Account From Name is "one-account" and Address is "0x53b14178576e5597a0ab529ba8ba46166599c3af" is displayed
     And Account to is equal to "233a526fb4b4b96809432b17d39309bae0a1513d"
     And Send Amount is equal to "123 SNM"
-    And Send Gas Limit is equal to "defaultGasLimit"
+    And Send Gas limit is equal to "defaultGasLimit"
     When Fill in the Account Password field "11111111"
     And Click the Send button
     Then Transaction Completed page is displayed

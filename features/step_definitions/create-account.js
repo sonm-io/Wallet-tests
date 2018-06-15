@@ -25,15 +25,19 @@ module.exports = function () {
     });
 
     this.Then(/^Create New Account Name field validation error message is displayed$/, async function () {
-        return await page.dialogueNewAccount.validateNewAccountNameField();
+        return await page.pagesNotifications.validateNewAccountNameField();
     });
 
     this.Then(/^Create New Account Password field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueNewAccount.validateNewAccountPasswordField(errorMessage,);
+        return await page.pagesNotifications.validateNewAccountPasswordField(errorMessage);
     });
 
     this.Then(/^Create New Account Password Confirmation field validation error message is displayed$/, async function () {
-        return await page.dialogueNewAccount.validateNewAccountConfirmationPasswordField();
+        return await page.pagesNotifications.validateNewAccountConfirmationPasswordField();
+    });
+
+    this.Then(/^Private Key field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
+        return await page.pagesNotifications.validateNewAccountPrivateKeyField(errorMessage);
     });
 
     this.Then(/^Clear Create New Account Password field$/, async function () {
@@ -49,9 +53,5 @@ module.exports = function () {
         await page.dialogueNewAccount.verifyCreateNewAccountPasswordFieldIsEmpty();
         await page.dialogueNewAccount.verifyCreateNewAccountConfirmationPasswordFieldIsEmpty();
         return await page.dialogueNewAccount.verifyCreateNewAccountPrivateKeyFieldIsEmpty();
-    });
-
-    this.Then(/^Private Key field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueNewAccount.validateNewAccountPrivateKeyField(errorMessage);
     });
 };

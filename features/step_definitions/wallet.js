@@ -28,11 +28,11 @@ module.exports = function () {
 
     this.Then(/^Create New Wallet Name validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
         await page.dialogueNewWallet.waitNewWalletDialogue();
-        return await page.dialogueNewWallet.validateCreateWalletNameField(errorMessage);
+        return await page.pagesNotifications.validateCreateWalletNameField(errorMessage);
     });
 
     this.Then(/^Create New Wallet Password validation error message is displayed$/, function () {
-        return page.dialogueNewWallet.validateCreateWalletPasswordField();
+        return page.pagesNotifications.validateCreateWalletPasswordField();
     });
 
     this.Then(/^Fill in the Create New Wallet Password field "([^"]*)"$/, function (walletPassword) {
@@ -40,7 +40,7 @@ module.exports = function () {
     });
 
     this.Then(/^Create New Wallet Confirmation Password validation error message is displayed$/, function () {
-        return page.dialogueNewWallet.validateCreateWalletConfirmPasswordField();
+        return page.pagesNotifications.validateCreateWalletConfirmPasswordField();
     });
 
     this.Then(/^Fill in the Create New Wallet Confirmation Password field "([^"]*)"$/, function (walletConfirmPassword) {

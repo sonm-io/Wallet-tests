@@ -15,6 +15,7 @@ module.exports = {
         successNotification: by.css('.sonm-alert-list__item.sonm-alert--success'),
         successNotificationCross: by.css('.sonm-alert__cross'),
         marketAccountDropdown: by.css(".sonm-market-account__button"),
+        amountField: by.css('input[placeholder="Amount"]'),
         nextBtn: by.css('.sonm-button.sonm-button--color-violet'),
         backBtn: by.css('.sonm-button--color-blue.sonm-button--transparent')
     },
@@ -23,6 +24,12 @@ module.exports = {
 
     openWalletMenu: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.walletMenuButton)).click();
+    },
+
+    //open Market menu
+
+    openMarketMenu: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.marketMenuButton)).click();
     },
 
     //navigate to send tab
@@ -41,12 +48,6 @@ module.exports = {
 
     navigateToHistoryTab: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
-    },
-
-    //open Market menu
-
-    openMarketMenu: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.marketMenuButton)).click();
     },
 
     //navigate to market profiles tab
@@ -109,6 +110,12 @@ module.exports = {
         const webElement = await driver.wait(until.elementLocated(el));
         const actualCssValue = await webElement.getCssValue(cssValue);
         return expect(actualCssValue).to.equal(expectedCssValue);
+    },
+
+    //verify that Next button is disabled
+
+    checkNextButtonIsDisabled: async function () {
+        return await this.checkElementIsDisabled(this.elements.nextBtn, 'cursor', 'not-allowed');
     },
 
     //select value from dropdown
@@ -176,6 +183,12 @@ module.exports = {
 
     clearInputField: async function (field) {
         return (await shared.wdHelper.findVisibleElement(field)).clear();
+    },
+
+    //clear amount field (send, deposit page etc.)
+
+    clearAmountField: async function () {
+        return await this.clearInputField(this.elements.amountField);
     },
 
     //verify that field is empty or not
