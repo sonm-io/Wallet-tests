@@ -23,7 +23,7 @@ module.exports = {
     //logout from wallet
 
     logoutFromWallet: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.logoutButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.logoutButton)).click();
     },
 
     //click on import account button for further account import

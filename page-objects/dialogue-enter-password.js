@@ -17,7 +17,7 @@ module.exports = {
     //close password dialogue
 
     closePasswordDialogue: async function () {
-        (await shared.wdHelper.findVisibleElement(this.elements.closePasswordDialogueButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.closePasswordDialogueButton)).click();
     },
 
     //fill password field
