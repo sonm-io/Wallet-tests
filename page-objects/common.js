@@ -2,14 +2,15 @@ module.exports = {
     elements: {
         walletMenuButton: by.xpath('//button[.="Wallet"]'),
         marketMenuButton: by.xpath('//button[.="Market"]'),
-        accountsMenuOption: by.css('button[value="/wallet/accounts"]'),
-        historyMenuOption: by.css('button[value="/wallet/history"]'),
-        sendMenuOption: by.css('button[value="/wallet/send"]'),
-        profilesMenuOption: by.css('button[value="/market/profiles"]'),
-        depositMenuOption: by.css('button[value="/market/dw/deposit"]'),
-        withdrawMenuOption: by.css('button[value="/market/dw/withdraw"]'),
-        historyMarketMenuOption: by.css('button[value="/market/dw/history"]'),
-        dealsMenuOption: by.css('button[value="/market/deals"]'),
+        accountsMenuOption: by.css('button[data-display-id="nav-menu-item-accounts"]'),
+        historyMenuOption: by.css('button[data-display-id="nav-menu-item-history"]'),
+        sendMenuOption: by.css('button[data-display-id="nav-menu-item-send"]'),
+        ordersMenuOption: by.css('button[data-display-id="nav-menu-item-orders"]'),
+        profilesMenuOption: by.css('button[data-display-id="nav-menu-item-profiles"]'),
+        dealsMenuOption: by.css('button[data-display-id="nav-menu-item-deals"]'),
+        depositMenuOption: by.css('button[data-display-id="nav-menu-item-deposit"]'),
+        withdrawMenuOption: by.css('button[data-display-id="nav-menu-item-withdraw"]'),
+        historyMarketMenuOption: by.css('button[data-display-id="nav-menu-item-history"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
         successNotification: by.css('.sonm-alert-list__item.sonm-alert--success'),
@@ -50,10 +51,22 @@ module.exports = {
         return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
     },
 
+    //navigate to market orders tab
+
+    navigateToOrdersTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.ordersMenuOption)).click();
+    },
+
     //navigate to market profiles tab
 
     navigateToProfilesTab: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.profilesMenuOption)).click();
+    },
+
+    //navigate to market deals tab
+
+    navigateToDealsTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.dealsMenuOption)).click();
     },
 
     //navigate to market deposit tab
@@ -72,12 +85,6 @@ module.exports = {
 
     navigateToMarketHistoryTab: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.historyMarketMenuOption)).click();
-    },
-
-    //navigate to market deals tab
-
-    navigateToDealsTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.dealsMenuOption)).click();
     },
 
     //select account from market account dropdown
