@@ -28,13 +28,6 @@ module.exports = {
         return await expect((await page.common.verifyFieldLength(this.elements.newAccountNameField)).length).to.equal(0);
     },
 
-    //fill account password field
-
-    validateNewAccountNameField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(1) * > .sonm-form-field__help'),
-            shared.messages.createAccount.createAccountNameValidationMessage);
-    },
-
     //validate account password field
 
     fillNewAccountPassword: async function (password) {
@@ -45,13 +38,6 @@ module.exports = {
 
     verifyCreateNewAccountPasswordFieldIsEmpty: async function () {
         return await expect((await page.common.verifyFieldLength(this.elements.newAccountPasswordField)).length).to.equal(0);
-    },
-
-    //validate account password field
-
-    validateNewAccountPasswordField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(2) * > .sonm-form-field__help'),
-            errorMessage);
     },
 
     //fill account password confirmation field
@@ -66,13 +52,6 @@ module.exports = {
         return await expect((await page.common.verifyFieldLength(this.elements.newAccountPasswordConfirmationField)).length).to.equal(0);
     },
 
-    //validate account confirmation password field
-
-    validateNewAccountConfirmationPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(3) * > .sonm-form-field__help'),
-            shared.messages.createAccount.createAccountConfirmPasswordValidationMessage);
-    },
-
     //clear account password field
 
     clearNewAccountPasswordField: async function () {
@@ -83,13 +62,6 @@ module.exports = {
 
     fillNewAccountPrivateKeyField: async function (privateKey) {
         return await (await shared.wdHelper.findVisibleElement(this.elements.newAccountPrivateKeyField)).sendKeys(privateKey);
-    },
-
-    //validate account private key field
-
-    validateNewAccountPrivateKeyField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(4) * > .sonm-form-field__help'),
-            errorMessage);
     },
 
     //verify that create account private key field empty or not
@@ -108,5 +80,5 @@ module.exports = {
 
     closeCreateNewAccountDialogue: async function () {
         return (await shared.wdHelper.findVisibleElement(this.elements.closeCreateNewAccountDialogueButton)).click();
-    },
+    }
 };

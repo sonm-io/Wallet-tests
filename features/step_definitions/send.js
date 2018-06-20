@@ -39,7 +39,6 @@ module.exports = function () {
         return await page.transferConfirmationPage.checkAmount(amount);
     });
 
-
     this.When(/^Fill in the Account Password field "([^"]*)"$/, async function (password) {
         return await page.transferConfirmationPage.fillPassword(password);
     });
@@ -53,7 +52,7 @@ module.exports = function () {
     });
 
     this.Then(/^Send To Address validation error message "([^"]*)" is displayed$/, async function (errMessage) {
-        return await page.walletSendPage.validateSendToAddressField(errMessage);
+        return await page.pagesNotifications.validateSendToAddressField(errMessage);
     });
 
     this.Then(/^Send To Address validation message in not displayed$/, async function () {
@@ -73,20 +72,20 @@ module.exports = function () {
         return await page.transferConfirmationPage.checkGasLimit(gasL);
     });
 
-    this.Then(/^Amount validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.walletSendPage.validateAmountField(errorMessage);
+    this.Then(/^Send Amount validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
+        return await page.pagesNotifications.validateSendAmountField(errorMessage);
     });
 
     this.When(/^Fill in the Send Gas Limit field "([^"]*)"$/, async function (gasLimitAmount) {
         return await page.walletSendPage.fillGasLimitField(gasLimitAmount);
     });
 
-    this.Then(/^Gas Limit validation error message is displayed$/, async function () {
-        return await page.walletSendPage.validateGasLimitField();
+    this.Then(/^Send Gas Limit validation error message is displayed$/, async function () {
+        return await page.pagesNotifications.validateSendGasLimitField();
     });
 
     this.Then(/^Account Password validation error message is displayed$/, async function () {
-        return await page.transferConfirmationPage.validateAccountPasswordField();
+        return await page.pagesNotifications.validateAccountPasswordField();
     });
 
     this.Then(/^Click the Back button$/, async function () {

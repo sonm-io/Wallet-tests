@@ -40,13 +40,6 @@ module.exports = {
         return await (await shared.wdHelper.findVisibleElement(this.elements.nwName)).sendKeys(walletName);
     },
 
-    //validate correct wallet name
-
-    validateCreateWalletNameField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(1) > .sonm-login__label-error'),
-            errorMessage);
-    },
-
     //verify that import wallet file field is empty or not
 
     verifyCreateNewWalletNameFieldIsEmpty: async function () {
@@ -59,13 +52,6 @@ module.exports = {
         return await (await shared.wdHelper.findVisibleElement(this.elements.nwPass)).sendKeys(password);
     },
 
-    //validate correct wallet password
-
-    validateCreateWalletPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(2) > .sonm-login__label-error'),
-            shared.messages.wallet.walletPasswordValidationMessage);
-    },
-
     //verify that import wallet file field is empty or not
 
     verifyCreateNewWalletPasswordFieldIsEmpty: async function () {
@@ -76,13 +62,6 @@ module.exports = {
 
     fillWalletConfirmPasswordField: async function (confirmPassword) {
         return await (await shared.wdHelper.findVisibleElement(this.elements.nwPassConfirm)).sendKeys(confirmPassword);
-    },
-
-    //validate correct wallet confirm password
-
-    validateCreateWalletConfirmPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(3) > .sonm-login__label-error'),
-            shared.messages.wallet.walletConfirmPasswordValidationMessage);
     },
 
     //verify that import wallet file field is empty or not

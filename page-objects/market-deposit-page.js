@@ -1,6 +1,6 @@
 module.exports = {
     elements: {
-        withdrawPageTitle: by.css('.sonm-app-common-block'),
+        depositPageTitle: by.css('.sonm-app-common-block'),
         accountName: by.css('.sonm-account-item__name-text'),
         accountAddress: by.css('.sonm-account-item__address'),
         amountField: by.css('input[placeholder="Amount"]'),
@@ -15,7 +15,7 @@ module.exports = {
     //wait for load depost page according
 
     waitForMarketDepositPageLoading: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.withdrawPageTitle, 'Deposit');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.depositPageTitle, 'Deposit');
     },
 
     //verify account name on Deposit page

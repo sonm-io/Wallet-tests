@@ -46,14 +46,7 @@ module.exports = {
         return await expect(sendToAddreessFieldText).to.equal(expectedAddress);
     },
 
-    //validate send to address field
-
-    validateSendToAddressField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(this.elements.addressValidationNotificationMessage,
-            errorMessage);
-    },
-
-    //verify that Send To Address validation is not diplayed
+    //verify that Send To Address validation is not displayed
 
     verifyThatSendToAddressValidationMessageIsNotDisplayed: async function () {
         return await shared.wdHelper.verifyElementAppearing(this.elements.addressValidationNotificationMessage);
@@ -72,13 +65,6 @@ module.exports = {
         return await expect(amountFieldText).to.equal(expectedValue);
     },
 
-    //validate amount field
-
-    validateAmountField: async function (errMessage) {
-        return await page.common.verifyValidationErrorMessage(this.elements.amountValidationNotificationMessage,
-            errMessage);
-    },
-
     //click Add Maximum button
 
     clickAddMaximumButton: async function () {
@@ -89,13 +75,6 @@ module.exports = {
 
     fillGasLimitField: async function (gasAmount) {
         return (await shared.wdHelper.findVisibleElement(this.elements.gasLimit)).sendKeys(gasAmount);
-    },
-
-    //validate gas limit field
-
-    validateGasLimitField: async function () {
-        return await page.common.verifyValidationErrorMessage(this.elements.gasLimitValidationNotificationMessage,
-            shared.messages.send.incorrectGasLimitValidationMessage);
     },
 
     //verify selected currency
