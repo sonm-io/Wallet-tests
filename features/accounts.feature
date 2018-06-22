@@ -110,7 +110,7 @@ Feature: Account
     Then Show Private Key dialogue is displayed
     And Fill in the Show Private Key Password field "11111111"
     When Click the Show button
-    Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac64" is displayed
+    Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac644bec1f" is displayed
 
   Scenario: Account - Validate Private Key
     Given Login to wallet "with3accounts" with password "1" with Three Accounts

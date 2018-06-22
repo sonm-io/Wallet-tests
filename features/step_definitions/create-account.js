@@ -16,8 +16,8 @@ module.exports = function () {
     });
 
     this.When(/^Click the Create button$/, async function () {
+        //await page.common.verifySpinnerIsNotVisible();
         return await page.dialogueNewAccount.clickCreateNewAccountButton();
-        //return await page.common.verifySpinnerIsNotVisible();
     });
 
     this.When(/^Fill in the Create New Account Private Key field "([^"]*)"$/, async function (privateKey) {

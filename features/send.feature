@@ -284,5 +284,5 @@ Feature: Send
     And Account From address is "0x53b14178576e5597a0ab529ba8ba46166599c3af"
     And Account To address is "0x233a526fb4b4b96809432b17d39309bae0a1513d"
     And Amount is "123 SNM"
-    And Amount fee is "0.0007329 Ether"
+    And Amount fee is "0.00073296 Ether"
     And Status is "SUCCESS"
