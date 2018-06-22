@@ -87,6 +87,13 @@ module.exports = {
             errorMessage);
     },
 
+    //validate private key password field
+
+    validatePrivateKeyPasswordField: async function () {
+        return await page.common.verifyValidationErrorMessage(this.elements.sendAddressMessage,
+            shared.messages.privateKey.privateKeyIncorrectPasswordValidationMessage);
+    },
+
     //validate wallet name field
 
     validateCreateWalletNameField: async function (errorMessage) {

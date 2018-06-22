@@ -72,7 +72,7 @@ module.exports = function () {
 
     this.Then(/^Private Key "([^"]*)" is displayed$/, async function (privateKey) {
         await page.dialogueShowPrivateKey.waitForShowPrivateKeyPopup();
-        return await page.dialogueShowPrivateKey.gerPrivateKeyFieldText(privateKey);
+        return await page.dialogueShowPrivateKey.getPrivateKeyFieldText(privateKey);
     });
 
     this.When(/^Close Show Private Key dialogue$/, async function () {
@@ -80,7 +80,7 @@ module.exports = function () {
     });
 
     this.Then(/^Private Key Password validation error message is displayed$/, async function () {
-        return await page.dialogueShowPrivateKey.validatePrivateKeyPasswordField();
+        return await page.pagesNotifications.validatePrivateKeyPasswordField();
     });
 
     this.When(/^Click the Account's address "([^"]*)"$/, async function (accountAddress) {

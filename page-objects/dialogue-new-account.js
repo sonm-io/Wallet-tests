@@ -73,7 +73,7 @@ module.exports = {
     //click create new account button
 
     clickCreateNewAccountButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.createNewAccountButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.createNewAccountButton)).click();
     },
 
     //close create new account dialogue

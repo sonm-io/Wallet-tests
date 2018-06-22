@@ -1,10 +1,10 @@
 module.exports = {
     elements: {
         showPrivateKeyHeader: by.xpath('//form/h3'),
-        privateKeyValue: by.css('.sonm-show-key__hash--visible'),
+        privateKeyStartValue: by.css('.sonm-show-key__hash--visible .sonm-hash__start'),
+        privateKeyEndValue: by.css('.sonm-show-key__hash--visible .sonm-hash__end'),
         closePrivateKeyDialogueButton: by.css('.sonm-popup__inner .sonm-popup__cross'),
         passwordField: by.xpath('//input[@type="password"]'),
-        passwordValidationMessage: by.css('.sonm-form-field--error .sonm-form-field__help'),
         showButton: by.css('.sonm-show-key__form button')
     },
 
@@ -29,16 +29,12 @@ module.exports = {
 
     //assert private key field
 
-    gerPrivateKeyFieldText: async function (expectedPrivateKey) {
-        const privateKeyText = await (await shared.wdHelper.findVisibleElement(this.elements.privateKeyValue)).getText();
-        return await expect(privateKeyText).to.equal(expectedPrivateKey);
-    },
+    //TODO refactor
 
-    //validate private key password field
-
-    validatePrivateKeyPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(this.elements.passwordValidationMessage,
-            shared.messages.privateKey.privateKeyIncorrectPasswordValidationMessage);
+    getPrivateKeyFieldText: async function (expectedPrivateKey) {
+        const actualPrivateKey = await (await shared.wdHelper.findVisibleElement(this.elements.privateKeyStartValue)).getText() +
+            await (await shared.wdHelper.findVisibleElement(this.elements.privateKeyEndValue)).getText();
+        return await expect(actualPrivateKey).to.equal(expectedPrivateKey);
     },
 
     //close private key dialogue
