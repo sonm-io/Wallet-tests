@@ -1,7 +1,7 @@
 module.exports = function () {
 
     this.Then(/^History page is displayed$/, async function () {
-        return await page.walletAccountHistoryPage.waitForHistoryPageLoading();
+        return await page.walletAccountHistoryPage.waitForWalletHistoryPageLoading();
     });
 
     this.Then(/^Account address is "([^"]*)"$/, async function (accountAddress) {

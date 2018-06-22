@@ -41,6 +41,8 @@ Feature: Send
     And Notification contained text "321 Ether has been sent to the address" is displayed
     When Click the Transaction History button
     Then History page is displayed
+    And Account "one-account" is selected From Accounts dropdown
+    And Account address is "0x53b14178576e5597a0ab529ba8ba46166599c3af"
 
   Scenario: Send ethereum to address with 0x
     Given Login to wallet "oneAccount" with password "11111111"
