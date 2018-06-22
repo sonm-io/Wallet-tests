@@ -2,7 +2,7 @@ const moment = require("moment");
 
 module.exports = {
     elements: {
-        marketHistoryHeader: by.css('.sonm-account-big-select__option-empty'),
+        marketHistoryHeader: by.css('.sonm-app-common-block__title'),
         selectedAccountName: by.css('.sonm-account-item__name-text'),
         selectedAccountAddress: by.css('.sonm-account-item__address a'),
         dateText: by.css('.sonm-tx-list__cell-time div:nth-of-type(2)'),
@@ -18,8 +18,8 @@ module.exports = {
 
     //wait for load account history page
 
-    waitForHistoryPageLoading: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.marketHistoryHeader, "All accounts");
+    waitForWalletHistoryPageLoading: async function () {
+        return await shared.wdHelper.waitForElementTextIs(this.elements.marketHistoryHeader, "History");
     },
 
     //wait for load accounts page according to displayed import account button
