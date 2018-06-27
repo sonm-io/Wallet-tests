@@ -1,7 +1,7 @@
 module.exports = {
     elements: {
         passwordPopupHeader: by.xpath('//form/h3'),
-        password: by.xpath('//div[@class="sonm-login__label"]/input'),
+        passwordField: by.css('input[class="sonm-input__input"]'),
         passwordFieldValidMessage: by.className('sonm-login__label-error'),
         loginToWalletButton: by.className('sonm-login__create'),
         closePasswordDialogueButton: by.xpath('//div[@class="sonm-popup__inner"]/button')
@@ -10,20 +10,20 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitForPasswordPopup: async function () {
-        await shared.wdHelper.waitForElementTextIs(this.elements.passwordPopupHeader, 'Enter password');
+        await shared.wdHelper.waitForElementTextIs(this.elements.passwordPopupHeader, shared.messages.dialogues.enterPasswordTitle);
         return await shared.wdHelper.findVisibleElement(this.elements.loginToWalletButton);
     },
 
     //close password dialogue
 
     closePasswordDialogue: async function () {
-        (await shared.wdHelper.findVisibleElement(this.elements.closePasswordDialogueButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.closePasswordDialogueButton)).click();
     },
 
     //fill password field
 
     fillPasswordField: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.password)).sendKeys(password);
+        return (await shared.wdHelper.findVisibleElement(this.elements.passwordField)).sendKeys(password);
     },
 
     //validation of password field

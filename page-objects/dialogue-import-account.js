@@ -12,7 +12,7 @@ module.exports = {
     //wait for page loading according to displayed add account header
 
     waitImportAccountDialogue: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.importAccountPopupHeader, 'Add account');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.importAccountPopupHeader, shared.messages.dialogues.importAccountTitle);
     },
 
     //upload account file
@@ -38,27 +38,6 @@ module.exports = {
 
     fillImportAccountPassword: async function (password) {
         return (await shared.wdHelper.findVisibleElement(this.elements.accountPasswordField)).sendKeys(password);
-    },
-
-    //validation of account file
-
-    validateImportAccountFileField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(1) * > .sonm-form-field__help'),
-            errorMessage);
-    },
-
-    //validation of account name field
-
-    validateImportAccountNameField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(2) * > .sonm-form-field__help'),
-            shared.messages.importAccount.importAccountNameValidationMessage);
-    },
-
-    //validation of account password field
-
-    validateImportAccountPasswordField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(3) * > .sonm-form-field__help'),
-            errorMessage);
     },
 
     clearImportAccountPasswordField: async function () {
@@ -93,5 +72,5 @@ module.exports = {
 
     verifyImportAccountPasswordFieldIsEmpty: async function () {
         return await expect((await page.common.verifyFieldLength(this.elements.accountPasswordField)).length).to.equal(0);
-    },
+    }
 };

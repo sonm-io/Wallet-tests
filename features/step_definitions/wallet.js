@@ -14,7 +14,7 @@ module.exports = function () {
         return await page.startPage.createWalletFromStartPage();
     });
 
-    this.Then(/^Fill Create New Wallet Name field "([^"]*)"$/, async function (walletName) {
+    this.Then(/^Fill in the Create New Wallet Name field "([^"]*)"$/, async function (walletName) {
         return await page.dialogueNewWallet.fillWalletNameField(walletName);
     });
 
@@ -28,22 +28,22 @@ module.exports = function () {
 
     this.Then(/^Create New Wallet Name validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
         await page.dialogueNewWallet.waitNewWalletDialogue();
-        return await page.dialogueNewWallet.validateCreateWalletNameField(errorMessage);
+        return await page.pagesNotifications.validateCreateWalletNameField(errorMessage);
     });
 
     this.Then(/^Create New Wallet Password validation error message is displayed$/, function () {
-        return page.dialogueNewWallet.validateCreateWalletPasswordField();
+        return page.pagesNotifications.validateCreateWalletPasswordField();
     });
 
-    this.Then(/^Fill Create New Wallet Password field "([^"]*)"$/, function (walletPassword) {
+    this.Then(/^Fill in the Create New Wallet Password field "([^"]*)"$/, function (walletPassword) {
         return page.dialogueNewWallet.fillWalletPasswordField(walletPassword);
     });
 
     this.Then(/^Create New Wallet Confirmation Password validation error message is displayed$/, function () {
-        return page.dialogueNewWallet.validateCreateWalletConfirmPasswordField();
+        return page.pagesNotifications.validateCreateWalletConfirmPasswordField();
     });
 
-    this.Then(/^Fill Create New Wallet Confirmation Password field "([^"]*)"$/, function (walletConfirmPassword) {
+    this.Then(/^Fill in the Create New Wallet Confirmation Password field "([^"]*)"$/, function (walletConfirmPassword) {
         return page.dialogueNewWallet.fillWalletConfirmPasswordField(walletConfirmPassword);
     });
 

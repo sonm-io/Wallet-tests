@@ -1,6 +1,5 @@
 module.exports = {
     elements: {
-        sendTab: by.xpath('//li[.="Send"]'),
         logoutButton: by.xpath('//a[@href="#exit"]'),
         addTokenButton: by.xpath('//a[.="+ ADD TOKEN"]'),
         exportWalletButton: by.css('sonm-accounts__export-wallet-button'),
@@ -20,16 +19,11 @@ module.exports = {
         return await shared.wdHelper.findVisibleElement(this.elements.importAccountButton);
     },
 
-    //verify that send tab is disabled
-
-    checkSendTabIsDisabled: async function () {
-        return await page.common.checkElementIsDisabled(this.elements.sendTab, 'cursor', 'not-allowed');
-    },
 
     //logout from wallet
 
     logoutFromWallet: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.logoutButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.logoutButton)).click();
     },
 
     //click on import account button for further account import
@@ -80,10 +74,9 @@ module.exports = {
 
     //find account by name and hash in the list
 
-    findAccountInListWithHash: async function (name, hash) {
-        return shared.wdHelper.findVisibleElements(by.xpath('//span[@class="sonm-account-item__name-text"][.="' +
-            name + '"]/../../' + 'a[@href="#' + hash + '"]'))
-            .then(elements => expect(elements.length).to.equal(1));
+    findAccountInListWithHash: async function (hash) {
+        let accHash = await shared.wdHelper.findVisibleElements(by.xpath('//a[@href="#' + hash + '"]'));
+        return await expect(accHash.length).to.equal(1);
     },
 
     //click on account from the list

@@ -7,11 +7,11 @@ module.exports = function () {
         return await page.dialogueImportAccount.findPreview();
     });
 
-    this.When(/^Fill Import Account Password field "([^"]*)"$/, async function (password) {
+    this.When(/^Fill in the Import Account Password field "([^"]*)"$/, async function (password) {
         return await page.dialogueImportAccount.fillImportAccountPassword(password);
     });
 
-    this.When(/^Fill Import Account Name field "([^"]*)"$/, async function (name) {
+    this.When(/^Fill in the Import Account Name field "([^"]*)"$/, async function (name) {
         return await page.dialogueImportAccount.fillImportAccountName(name);
     });
 
@@ -25,15 +25,15 @@ module.exports = function () {
     });
 
     this.Then(/^Import Account File field validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueImportAccount.validateImportAccountFileField(errorMessage);
+        return await page.pagesNotifications.validateImportAccountFileField(errorMessage);
     });
 
     this.Then(/^Import Account Name field validation error message is displayed$/, async function () {
-        return await page.dialogueImportAccount.validateImportAccountNameField();
+        return await page.pagesNotifications.validateImportAccountNameField();
     });
 
     this.Then(/^Import Account Password validation error message "([^"]*)" is displayed$/, async function (errorMessage) {
-        return await page.dialogueImportAccount.validateImportAccountPasswordField(errorMessage);
+        return await page.pagesNotifications.validateImportAccountPasswordField(errorMessage);
     });
 
     this.Then(/^Clear Import Account Password Field$/, async function () {

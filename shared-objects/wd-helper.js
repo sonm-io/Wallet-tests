@@ -51,6 +51,13 @@ module.exports = {
         }
     },
 
+    //verify that element's text is matches to expected
+
+    verifyTextElement: async function (locator, expectedText) {
+        let actualElementText = await (await shared.wdHelper.findVisibleElement(locator)).getText();
+        return await expect(expectedText).to.equal(actualElementText);
+    },
+
     //get element index in list for further operations (delete, edit etc.)
 
     getElementPosition: async function (elements, elementName) {
@@ -66,7 +73,7 @@ module.exports = {
 
     waitForElementTextIs: async function (locator, text) {
         return await driver.wait(until.elementTextIs(driver.wait(until.elementLocated(locator)),
-            text), 80000);
+            text), 100000);
     },
 
     loadWalletToStorage: function (wallet) {
@@ -84,13 +91,6 @@ module.exports = {
         wallets.content.forEach(function (element) {
             loadWalletContent(element);
         });
-    },
-
-    //doesn't work
-    loadHideDisclaimerToStorage: function () {
-        driver.executeScript(
-            "window.localStorage.setItem('sonm-hide-disclaimer','1')",
-        );
     },
 
     resolve: function (o, s) {

@@ -9,7 +9,7 @@ module.exports = {
     //wait for page loading according to displayed delete account header
 
     waitForDeleteAccountPopup: async function () {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.deleteAccountPopupHeader, 'Are you sure you want to delete this account?');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.deleteAccountPopupHeader, shared.messages.dialogues.deleteAccountTitle);
     },
 
     //verify account name for delete from wallet

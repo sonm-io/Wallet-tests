@@ -1,12 +1,11 @@
 @wallet
-Feature: Start screen
+Feature: Operations with Wallet
 
   Scenario: Correct login - one account
     Given Wallet with one existing wallet is opened
     When Click the I Understand button
-    And Fill Wallet Popup Password field "11111111"
+    And Fill in the Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet
 
@@ -49,23 +48,22 @@ Feature: Start screen
     And Close Password dialogue
     When Click the CREATE WALLET button
     Then Create New Wallet dialogue is displayed
-    And Fill Create New Wallet Name field "empty"
+    And Fill in the Create New Wallet Name field "empty"
     When Click the Create Wallet button
     Then Create New Wallet Name validation error message "Already exist" is displayed
 
   Scenario: Login with existing wallet without displaying disclaimer in future
     Given Wallet with one existing wallet is opened
     When Click the Dont Show Disclaimer Again button
-    When Fill Wallet Popup Password field "11111111"
+    When Fill in the Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet and Enter Password popup is displayed
 
   Scenario: Login to wallet - incorrect password
     Given Wallet with one existing wallet is opened
     When Click the I Understand button
-    When Fill Wallet Popup Password field "22#435asds2"
+    When Fill in the Wallet Popup Password field "22#435asds2"
     Then Enter Password popup Password field validation error message is displayed
 
   Scenario: Creating wallet - fields validation
@@ -74,17 +72,17 @@ Feature: Start screen
     And Create New Wallet dialogue is displayed
     When Click the Create Wallet button
     Then Create New Wallet Name validation error message "Name length must be in range 1..20" is displayed
-    And Fill Create New Wallet Name field "autotest"
+    And Fill in the Create New Wallet Name field "autotest"
     When Click the Create Wallet button
     Then Create New Wallet Password validation error message is displayed
-    And Fill Create New Wallet Password field "122"
+    And Fill in the Create New Wallet Password field "122"
     When Click the Create Wallet button
     Then Create New Wallet Confirmation Password validation error message is displayed
-    And Fill Create New Wallet Confirmation Password field "22"
+    And Fill in the Create New Wallet Confirmation Password field "22"
     And Click the Create Wallet button
     Then Create New Wallet Confirmation Password validation error message is displayed
     And Clear Create New Wallet Confirmation Password field
-    And Fill Create New Wallet Confirmation Password field "122"
+    And Fill in the Create New Wallet Confirmation Password field "122"
     And Select Network for wallet "rinkeby"
     And Click the Create Wallet button
     Then Accounts page is displayed
@@ -100,8 +98,7 @@ Feature: Start screen
     Then Wallets search results "['45te']" are displayed
     When Wallet "45te" is selected from Wallets dropdown
     And Click the Login button
-    And Fill Wallet Popup Password field "11111111"
+    And Fill in the Wallet Popup Password field "11111111"
     Then Accounts page is displayed
-    And Send link tab is disabled
     When Click the Logout button
     Then Logged out from wallet

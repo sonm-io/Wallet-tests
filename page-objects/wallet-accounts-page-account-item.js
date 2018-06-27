@@ -1,7 +1,5 @@
 const webdriver = require('selenium-webdriver');
 
-//get Account index in list for further operations (delete, edit etc.)
-
 module.exports = {
     elements: {
         accountName: by.className('sonm-account-item__name-text'),

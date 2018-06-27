@@ -1,23 +1,97 @@
 module.exports = {
     elements: {
-        sendTab: by.xpath('//li[.="Send"]'),
-        accountTab: by.xpath('//li[.="Accounts"]'),
+        walletMenuButton: by.xpath('//button[.="Wallet"]'),
+        marketMenuButton: by.xpath('//button[.="Market"]'),
+        accountsMenuOption: by.css('li a[href="accounts"]'),
+        historyMenuOption: by.css('li a[href="history"]'),
+        sendMenuOption: by.css('li a[href="send"]'),
+        profilesMenuOption: by.css('li a[href="profiles"]'),
+        ordersMenuOption: by.css('li a[href="orders"]'),
+        dealsMenuOption: by.css('li a[href="deals"]'),
+        depositMenuOption: by.css('li a[href="deposit"]'),
+        withdrawMenuOption: by.css('li a[href="withdraw"]'),
+        historyMarketMenuOption: by.css('li a[href="history"]'),
         select: by.className('sonm-account-big-select'),
         selectedAccount: by.className('sonm-account-item__name-text'),
-        successNotification: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/span[@class="sonm-alert__message"]'),
-        successNotificationCross: by.xpath('//div[@class="sonm-alert-list__item sonm-alert sonm-alert--success"]/div[@type="button"]')
+        successNotification: by.css('.sonm-alert-list__item.sonm-alert--success'),
+        successNotificationCross: by.css('.sonm-alert__cross'),
+        marketAccountDropdown: by.css(".sonm-market-account__button"),
+        amountField: by.css('input[placeholder="Amount"]'),
+        nextBtn: by.css('.sonm-button.sonm-button--color-violet'),
+        backBtn: by.css('.sonm-button--color-blue.sonm-button--transparent')
+    },
+
+    //open Wallet menu
+
+    openWalletMenu: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.walletMenuButton)).click();
+    },
+
+    //open Market menu
+
+    openMarketMenu: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.marketMenuButton)).click();
     },
 
     //navigate to send tab
 
     navigateToSendTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.sendTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.sendMenuOption)).click();
     },
 
     //navigate to account tab
 
     navigateToAccountTab: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.accountTab)).click();
+        return (await shared.wdHelper.findVisibleElement(this.elements.accountsMenuOption)).click();
+    },
+
+    //navigate to account tab
+
+    navigateToHistoryTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyMenuOption)).click();
+    },
+
+    //navigate to market orders tab
+
+    navigateToOrdersTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.ordersMenuOption)).click();
+    },
+
+    //navigate to market profiles tab
+
+    navigateToProfilesTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.profilesMenuOption)).click();
+    },
+
+    //navigate to market deals tab
+
+    navigateToDealsTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.dealsMenuOption)).click();
+    },
+
+    //navigate to market deposit tab
+
+    navigateToDepositTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.depositMenuOption)).click();
+    },
+
+    //navigate to market withdraw tab
+
+    navigateToWithdrawTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.withdrawMenuOption)).click();
+    },
+
+    //navigate to market history tab
+
+    navigateToMarketHistoryTab: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.historyMarketMenuOption)).click();
+    },
+
+    //select account from market account dropdown
+
+    selectMarketAccount: async function (marketAccountName) {
+        return await selectFromStandardDropdown(this.elements.marketAccountDropdown, by.xpath('//div[3]/div//div[.="' +
+            marketAccountName + '"]'), by.css('.sonm-app-header__item .sonm-market-select-item__name'), marketAccountName)
     },
 
     // verify part of notification
@@ -26,9 +100,7 @@ module.exports = {
         return (await shared.wdHelper.findVisibleElement(this.elements.successNotification))
             .getText()
             .then(validMessageText => {
-                expect(validMessageText).to.contain(
-                    shared.messages.tx.successtx,
-                );
+                expect(validMessageText).to.contain(shared.messages.tx.successtx);
                 expect(validMessageText).to.contain(text);
             });
     },
@@ -47,13 +119,19 @@ module.exports = {
         return expect(actualCssValue).to.equal(expectedCssValue);
     },
 
+    //verify that Next button is disabled
+
+    checkNextButtonIsDisabled: async function () {
+        return await this.checkElementIsDisabled(this.elements.nextBtn, 'cursor', 'not-allowed');
+    },
+
     //select value from dropdown
 
     //TODO refactor
 
     selectFromStandardDropdown: async function (element, dropdownItem, selectedItem, name) {
-        (await shared.wdHelper.findVisibleElement(element)).click();
-        (await shared.wdHelper.findVisibleElement(dropdownItem)).click();
+        await (await shared.wdHelper.findVisibleElement(element)).click();
+        await (await shared.wdHelper.findVisibleElement(dropdownItem)).click();
         return (await shared.wdHelper.findVisibleElement(selectedItem))
             .getText()
             .then(text => expect(text).to.equal(name));
@@ -75,6 +153,18 @@ module.exports = {
 
     clickDropdown: async function (element) {
         return (await shared.wdHelper.findVisibleElement(element)).click();
+    },
+
+    // click next button
+
+    clickNextButton: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.nextBtn)).click();
+    },
+
+    // click back button
+
+    clickBackButton: async function () {
+        return (await shared.wdHelper.findVisibleElement(this.elements.backBtn)).click();
     },
 
     //assert array to string
@@ -100,6 +190,12 @@ module.exports = {
 
     clearInputField: async function (field) {
         return (await shared.wdHelper.findVisibleElement(field)).clear();
+    },
+
+    //clear amount field (send, deposit page etc.)
+
+    clearAmountField: async function () {
+        return await this.clearInputField(this.elements.amountField);
     },
 
     //verify that field is empty or not

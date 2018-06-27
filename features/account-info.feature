@@ -37,7 +37,7 @@ Feature: Account Info
     When Click the Give me SONM tokens! button
     Then Alert "Required parameter missed" is displayed
     And Close Alert Message
-    And Fill Account Password field for request tokens "1"
+    And Fill in the Account Password field for request tokens "1"
     When Click the Give me SONM tokens! button
     Then Alert "SNM delivery delayed cause: Password is not valid" is displayed
 

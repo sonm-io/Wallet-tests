@@ -1,27 +1,27 @@
 module.exports = {
     elements: {
-        newWalletPopuoHeader: by.xpath('//form[@class="sonm-login__popup-content"]/h3'),
+        newWalletPopuoHeader: by.css('.sonm-login__popup-content h3'),
         nwName: by.xpath('//input[@name="newName"]'),
         nwPass: by.xpath('//input[@name="newPassword"]'),
         nwPassConfirm: by.xpath('//input[@name="newPasswordConfirmation"]'),
-        closeNewWalletDialogue: by.xpath('//div[@class="sonm-popup__inner"]/button'),
-        createNewWallet: by.xpath('//div[@class="sonm-popup__inner"]//button[.="CREATE WALLET"]'),
+        closeNewWalletDialogue: by.css('.sonm-popup__outer .sonm-popup__cross'),
+        createNewWallet: by.css('.sonm-login__popup-content button'),
         networkField: by.css('div.sonm-login__network-type > div'),
         selectedNetwork: by.css('div.sonm-login__network-type div > div > div.sonm-select-selection-selected-value'),
-        closeCreateNewWalletDialogueButton: by.xpath('//div[@class="sonm-popup__inner"]/button')
+        closeCreateNewWalletDialogueButton: by.css('.sonm-popup__inner .sonm-popup__cross')
     },
 
     //wait for page loading according to displayed new wallet header
 
     waitNewWalletDialogue: async function () {
-        await shared.wdHelper.waitForElementTextIs(this.elements.newWalletPopuoHeader, 'New wallet');
+        await shared.wdHelper.waitForElementTextIs(this.elements.newWalletPopuoHeader, shared.messages.dialogues.newWalletTitle);
         return await shared.wdHelper.findVisibleElement(this.elements.createNewWallet);
     },
 
     //close create wallet dialogue
 
     closeCreateNewWalletDialogue: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue,)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.closeNewWalletDialogue)).click();
     },
 
     //fill all fields in new wallet dialogue and create wallet
@@ -37,14 +37,7 @@ module.exports = {
     //fill wallet name field
 
     fillWalletNameField: async function (walletName) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwName)).sendKeys(walletName);
-    },
-
-    //validate correct wallet name
-
-    validateCreateWalletNameField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(1) > .sonm-login__label-error'),
-            errorMessage);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwName)).sendKeys(walletName);
     },
 
     //verify that import wallet file field is empty or not
@@ -56,14 +49,7 @@ module.exports = {
     //fill password wallet field
 
     fillWalletPasswordField: async function (password) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwPass)).sendKeys(password);
-    },
-
-    //validate correct wallet password
-
-    validateCreateWalletPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(2) > .sonm-login__label-error'),
-            shared.messages.wallet.walletPasswordValidationMessage);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwPass)).sendKeys(password);
     },
 
     //verify that import wallet file field is empty or not
@@ -75,14 +61,7 @@ module.exports = {
     //fill confirm password wallet field
 
     fillWalletConfirmPasswordField: async function (confirmPassword) {
-        return (await shared.wdHelper.findVisibleElement(this.elements.nwPassConfirm)).sendKeys(confirmPassword);
-    },
-
-    //validate correct wallet confirm password
-
-    validateCreateWalletConfirmPasswordField: async function () {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-login__label:nth-of-type(3) > .sonm-login__label-error'),
-            shared.messages.wallet.walletConfirmPasswordValidationMessage);
+        return await (await shared.wdHelper.findVisibleElement(this.elements.nwPassConfirm)).sendKeys(confirmPassword);
     },
 
     //verify that import wallet file field is empty or not
@@ -90,6 +69,8 @@ module.exports = {
     verifyCreateNewWalletConfirmationPasswordFieldIsEmpty: async function () {
         return await expect((await page.common.verifyFieldLength(this.elements.nwPassConfirm)).length).to.equal(0);
     },
+
+    //select network value from dropdown
 
     selectNetworkValue: function (chainname) {
         return page.common.selectFromStandardDropdown(this.elements.networkField, by.xpath('//li[.="' + chainname + '"]'),
@@ -105,6 +86,6 @@ module.exports = {
     //click create wallet button for further creating wallet
 
     createNewWalletButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.createNewWallet)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.createNewWallet)).click();
     },
 };

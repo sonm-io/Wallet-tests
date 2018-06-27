@@ -10,10 +10,9 @@ module.exports = {
         gasPriceLowBtn: by.xpath('//input[@type="radio"][@value="low"]'),
         gasPriceNormalBtn: by.xpath('//input[@type="radio"][@value="normal"]'),
         gasPriceHiBtn: by.xpath('//input[@type="radio"][@value="high"]'),
-        NextBtn: by.xpath('//button[.="NEXT"]'),
         currencySelect: by.className('sonm-currency-big-select__option'),
         selectedCurrency: by.css('.ant-select-selection__rendered .sonm-currency-item__name'),
-        sendTab: by.xpath('//li[.="Send"]'),
+        sendMenuOption: by.xpath('//li[.="Send"]'),
         select: by.css('.sonm-account-big-select'),
         selectedAccount: by.css('.sonm-big-select .sonm-account-item__name-text'),
         addressValidationNotificationMessage: by.css('.sonm-form-field--error .sonm-form-field__help'),
@@ -44,18 +43,10 @@ module.exports = {
 
     getSendAddressToFieldValue: async function (expectedAddress) {
         let sendToAddreessFieldText = await page.common.verifyFieldLength(this.elements.sendTo);
-        console.log(sendToAddreessFieldText);
         return await expect(sendToAddreessFieldText).to.equal(expectedAddress);
     },
 
-    //validate send to address field
-
-    validateSendToAddressField: async function (errorMessage) {
-        return await page.common.verifyValidationErrorMessage(this.elements.addressValidationNotificationMessage,
-            errorMessage);
-    },
-
-    //veryfy that Send To Address validation is not diplayed
+    //verify that Send To Address validation is not displayed
 
     verifyThatSendToAddressValidationMessageIsNotDisplayed: async function () {
         return await shared.wdHelper.verifyElementAppearing(this.elements.addressValidationNotificationMessage);
@@ -74,13 +65,6 @@ module.exports = {
         return await expect(amountFieldText).to.equal(expectedValue);
     },
 
-    //validate amount field
-
-    validateAmountField: async function (errMessage) {
-        return await page.common.verifyValidationErrorMessage(this.elements.amountValidationNotificationMessage,
-            errMessage);
-    },
-
     //click Add Maximum button
 
     clickAddMaximumButton: async function () {
@@ -91,19 +75,6 @@ module.exports = {
 
     fillGasLimitField: async function (gasAmount) {
         return (await shared.wdHelper.findVisibleElement(this.elements.gasLimit)).sendKeys(gasAmount);
-    },
-
-    //validate gas limit field
-
-    validateGasLimitField: async function () {
-        return await page.common.verifyValidationErrorMessage(this.elements.gasLimitValidationNotificationMessage,
-            shared.messages.send.incorrectGasLimitValidationMessage);
-    },
-
-    // click next button
-
-    clickNext: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.NextBtn)).click();
     },
 
     //verify selected currency
@@ -118,5 +89,5 @@ module.exports = {
     selectCurrency: async function (currency) {
         return await page.common.selectFromStandardDropdown(this.elements.currencySelect, by.css('li[title="' + currency + '"]'),
             by.css('.ant-select-selection__rendered .sonm-currency-item__name'), currency);
-    },
+    }
 };

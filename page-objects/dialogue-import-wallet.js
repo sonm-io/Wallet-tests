@@ -11,7 +11,7 @@ module.exports = {
     //wait for page loading according to displayed import wallet header
 
     waitImportWalletDialogue: async function() {
-        return await shared.wdHelper.waitForElementTextIs(this.elements.importWalletPopupHeader, 'Import wallet');
+        return await shared.wdHelper.waitForElementTextIs(this.elements.importWalletPopupHeader, shared.messages.dialogues.importWalletTitle);
     },
 
     //select wallet file for further import
@@ -19,13 +19,6 @@ module.exports = {
     selectWalletFileForImport: function(walletName) {
         let targetFile = process.cwd() + '/shared-objects/' + walletName;
         return driver.wait(until.elementLocated(this.elements.selectWalletImportField)).sendKeys(targetFile);
-    },
-
-    //validation of wallet file field
-
-    validateImportWalletFileField: async function(errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(1) *> .sonm-form-field__help'),
-            errorMessage);
     },
 
     //verify that import wallet file field is empty or not
@@ -38,13 +31,6 @@ module.exports = {
 
     fillImportWalletNameField: async function(walletName) {
         return (await shared.wdHelper.findVisibleElement(this.elements.importWalletNameField)).sendKeys(walletName);
-    },
-
-    //validation of wallet name field
-
-    validateImportWalletNameField: async function(errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(2) *> .sonm-form-field__help'),
-            errorMessage);
     },
 
     //clear import wallet name field
@@ -63,13 +49,6 @@ module.exports = {
 
     fillImportWalletPasswordField: async function(password) {
         return (await shared.wdHelper.findVisibleElement(this.elements.importWalletPasswordField)).sendKeys(password);
-    },
-
-    //validation of import wallet password field
-
-    validateImportWalletPasswordField: async function(errorMessage) {
-        return await page.common.verifyValidationErrorMessage(by.css('.sonm-form__row:nth-of-type(3) *> .sonm-form-field__help'),
-            errorMessage);
     },
 
     //clear import wallet password field
@@ -94,5 +73,5 @@ module.exports = {
 
     closeImportWalletDialogue: async function() {
         return (await shared.wdHelper.findVisibleElement(this.elements.closeImportWalletDialogueButton)).click();
-    },
+    }
 };

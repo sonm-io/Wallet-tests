@@ -6,9 +6,9 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed
-    When Fill Create New Account Name field "asda"
-    And Fill Create New Account Password field "asdaasda"
-    And Fill Create New Account Password Confirmation field "asdaasda"
+    When Fill in the Create New Account Name field "asda"
+    And Fill in the Create New Account Password field "asdaasda"
+    And Fill in the Create New Account Password Confirmation field "asdaasda"
     And Click the Create button
     Then Account "asda" is present in Accounts list
 
@@ -17,10 +17,10 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed
-    When Fill Create New Account Name field "from privateKey"
-    And Fill Create New Account Password field "asdaasda"
-    And Fill Create New Account Password Confirmation field "asdaasda"
-    And Fill Create New Account Private Key field "b7bacfa65397ea40b67608bf0d2b93da9bf807a4fde55f122922db2373e7f432"
+    When Fill in the Create New Account Name field "from privateKey"
+    And Fill in the Create New Account Password field "asdaasda"
+    And Fill in the Create New Account Password Confirmation field "asdaasda"
+    And Fill in the Create New Account Private Key field "b7bacfa65397ea40b67608bf0d2b93da9bf807a4fde55f122922db2373e7f432"
     And Click the Create button
     Then Account "from privateKey" is present in Accounts list with hash "0x3195198151a456f59d39ce95dd302c5b2d034bff"
 
@@ -29,10 +29,10 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed
-    When Fill Create New Account Name field "asda"
-    And Fill Create New Account Password field "asdaasda"
-    And Fill Create New Account Password Confirmation field "asdaasda"
-    And Fill Create New Account Private Key field "b7bacfa65397ea40b67608bf0d2b93da9bf807a4fde55f122922db2373e7f432"
+    When Fill in the Create New Account Name field "asda"
+    And Fill in the Create New Account Password field "asdaasda"
+    And Fill in the Create New Account Password Confirmation field "asdaasda"
+    And Fill in the Create New Account Private Key field "b7bacfa65397ea40b67608bf0d2b93da9bf807a4fde55f122922db2373e7f432"
     And Close Create New Account dialogue
     Then Account "asda" was not created
     When Click the Create Account button
@@ -47,14 +47,14 @@ Feature: Account
     When Click the Create button
     Then Create New Account Name field validation error message is displayed
     And Create New Account Password field validation error message "Password is required" is displayed
-    And Fill Create New Account Name field "test"
-    And Fill Create New Account Password field "1"
+    And Fill in the Create New Account Name field "test"
+    And Fill in the Create New Account Password field "1"
     When Click the Create button
     Then Create New Account Password field validation error message "Password must be at least 8 character" is displayed
     And Create New Account Password Confirmation field validation error message is displayed
     And Clear Create New Account Password field
-    And Fill Create New Account Password field "12345678"
-    And Fill Create New Account Password Confirmation field "12345678"
+    And Fill in the Create New Account Password field "12345678"
+    And Fill in the Create New Account Password Confirmation field "12345678"
     When Click the Create button
     Then Account "test" is present in Accounts list
 
@@ -62,17 +62,17 @@ Feature: Account
     Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
-    And Clear Account Name field
-    And Fill Account "Test Account" Name field with new "Edit Account" Name
-    When Press ENTER button
+    And Clear the Account Name field
+    And Fill in the Account "Test Account" Name field with new "Edit Account" Name
+    When Press the ENTER button
     Then Account Name "Edit Account" is present in Accounts list
 
   Scenario: Account - Editing Account name - Empty name
     Given Login to wallet "with3accounts" with password "1" with Three Accounts
     Then Accounts page is displayed
     And Click the Edit Account button next to "Test Account" Name
-    And Clear Account Name field
-    When Press ENTER button
+    And Clear the Account Name field
+    When Press the ENTER button
     Then Account Name "Test Account" is present in Accounts list
 
   Scenario: Account - Delete Account
@@ -108,9 +108,9 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Show Private Key button next to "Some Account" Name
     Then Show Private Key dialogue is displayed
-    And Fill Show Private Key Password field "11111111"
+    And Fill in the Show Private Key Password field "11111111"
     When Click the Show button
-    Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac64" is displayed
+    Then Private Key "285a745c8179f9771946b1d35449534eb25594aec8b2e694550d7bac644bec1f" is displayed
 
   Scenario: Account - Validate Private Key
     Given Login to wallet "with3accounts" with password "1" with Three Accounts
@@ -119,7 +119,7 @@ Feature: Account
     Then Show Private Key dialogue is displayed
     When Click the Show button
     Then Private Key Password validation error message is displayed
-    And Fill Show Private Key Password field "1"
+    And Fill in the Show Private Key Password field "1"
     When Click the Show button
     Then Private Key Password validation error message is displayed
 
@@ -134,7 +134,7 @@ Feature: Account
     Then Accounts page is displayed
     When Click the ADD TOKEN button
     Then Add Token dialogue is displayed
-    And Fill Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
+    And Fill in the Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
     When Click the Add New Token button
     Then Token "CUSTOM" is present in Tokens list
 
@@ -143,7 +143,7 @@ Feature: Account
     Then Accounts page is displayed
     Then Token "CUSTOM" is present in Tokens list
     When Click the ADD TOKEN button
-    And Fill Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
+    And Fill in the Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
     When Click the Add New Token button
     Then Add New Token error message is displayed
 
@@ -168,10 +168,10 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed
-    When Fill Create New Account Name field "from privateKey"
-    And Fill Create New Account Password field "asdaasda"
-    And Fill Create New Account Password Confirmation field "asdaasda"
-    And Fill Create New Account Private Key field "11111c8a390315310d8b616df1ec816f174526635ed440ca5c255b8a3ee1701d"
+    When Fill in the Create New Account Name field "from privateKey"
+    And Fill in the Create New Account Password field "asdaasda"
+    And Fill in the Create New Account Password Confirmation field "asdaasda"
+    And Fill in the Create New Account Private Key field "11111c8a390315310d8b616df1ec816f174526635ed440ca5c255b8a3ee1701d"
     When Click the Create button
     Then Private Key field validation error message "Account already exists" is displayed
 
@@ -180,9 +180,9 @@ Feature: Account
     Then Accounts page is displayed
     When Click the Create Account button
     Then Create New Account dialogue is displayed
-    When Fill Create New Account Name field "from privateKey"
-    And Fill Create New Account Password field "asdaasda"
-    And Fill Create New Account Password Confirmation field "asdaasda"
-    And Fill Create New Account Private Key field "lalala123"
+    When Fill in the Create New Account Name field "from privateKey"
+    And Fill in the Create New Account Password field "asdaasda"
+    And Fill in the Create New Account Password Confirmation field "asdaasda"
+    And Fill in the Create New Account Private Key field "lalala123"
     When Click the Create button
     Then Private Key field validation error message "Should be hex string with length 64" is displayed

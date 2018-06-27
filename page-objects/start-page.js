@@ -1,5 +1,5 @@
 module.exports = {
-    url: 'https://sonm-io.github.io/wallet-web-dev/',
+    url: 'https://sonm-io.github.io/gui/#/',
 
     elements: {
         accountsForm: by.xpath('//div[@class="sonm-login__center"]'),
@@ -58,18 +58,18 @@ module.exports = {
     //click on login button for further redirect to accounts page
 
     clickLoginButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.loginToWalletButton)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.loginToWalletButton)).click();
     },
 
     //create new wallet from start page
 
     createWalletFromStartPage: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.createWallet)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.createWallet)).click();
     },
 
     //import wallet
 
     clickImportWalletButton: async function () {
-        return (await shared.wdHelper.findVisibleElement(this.elements.importWallet)).click();
+        return await (await shared.wdHelper.findVisibleElement(this.elements.importWallet)).click();
     },
 };
