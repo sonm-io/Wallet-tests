@@ -1,3 +1,18 @@
+#!/usr/bin/env bash
+# Exit script as soon as a command fails.
+set -o errexit
+
+# Executes cleanup function at script exit.
+trap cleanup EXIT
+
+cleanup() {
+    echo Trying to stop testrpc docker container
+    docker stop ${testrpc_name}
+
+    echo Removing testrpc docker container
+    docker rm ${testrpc_name}
+}
+
 export CI_SONM_TOKEN_ADDRESS=0xb29d1e8259571de17429b771ca455210f25b9fce
 WALLET_PATH=''
 CI=''
@@ -62,9 +77,3 @@ echo Running tests...
 export WALLET_PATH=$WALLET_PATH
 npm install
 node ./node_modules/selenium-cucumber-js/index.js${tags}${CI}
-
-echo Trying to stop testrpc docker container
-docker stop ${testrpc_name}
-
-echo Removing testrpc docker container
-docker rm ${testrpc_name}
