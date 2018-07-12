@@ -7,13 +7,13 @@ let SimpleGatekeeperWithLimitLive = artifacts.require('./SimpleGatekeeperWithLim
 module.exports = function (deployer, network) {
     deployer.then(async () => {
         if (network === 'sidechain') {
-            deployer.deploy(SimpleGatekeeperWithLimit, SNM.address, 1, {gasPrice: 0});
+            await deployer.deploy(SimpleGatekeeperWithLimit, SNM.address, 1, {gasPrice: 0});
         } else if (network === 'livenet') {
             let tnf = await TestnetFaucet.deployed();
             let snmAddress = await tnf.getTokenAddress();
             deployer.deploy(SimpleGatekeeperWithLimitLive, snmAddress, 1);
         } else {
-            deployer.deploy(SimpleGatekeeperWithLimit, SNM.address, 1);
+            await deployer.deploy(SimpleGatekeeperWithLimit, SNM.address, 1);
         }
     });
 };
