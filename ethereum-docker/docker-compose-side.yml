@@ -1,0 +1,28 @@
+version: '2'
+services:
+  bootstrap_sidechain:
+    build: monitored-geth-client
+    restart: on-failure
+    container_name: bootstrap_sidechain
+    hostname: test_sidechain_mining_node
+    links:
+      - netstats_sidechain
+    entrypoint: /root/start.sh
+    command: '--datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --networkid=456719 --rpc --rpcaddr="0.0.0.0" js /root/mine.js'
+    volumes:
+      - ./files/password:/root/files/password:ro
+      - ./files/side/genesis.json:/root/files/genesis.json:ro
+      - ./files/ks:/root/.ethereum/devchain/keystore:rw
+      - /Users/snm-devops/ethereum-docker-side/dag/:/root/.ethash/:rw
+    ports:
+      - "30333:30303"
+      - "30333:30303/udp"
+      - "8555:8545"
+  netstats_sidechain:
+    build: eth-netstats
+    restart: on-failure
+    container_name: netstats_sidechain
+    environment:
+      - WS_SECRET=eth-net-stats-secret
+    ports:
+      - "3334:3000"

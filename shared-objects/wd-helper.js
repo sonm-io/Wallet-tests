@@ -1,3 +1,6 @@
+const fs = require("fs");
+const CryptoJS = require("crypto-js");
+
 function loadWalletContent(wallet) {
     //shared.config.DEBUG && console.log("window.localStorage.setItem('" + wallet.key + "','" + wallet.value + "')");
     return driver.executeScript(
@@ -16,6 +19,17 @@ function loadWalletName(wallet) {
         "')",
     );
 }
+
+
+function encrypt(data, secretKey) {
+    return CryptoJS.AES.encrypt(JSON.stringify(data), secretKey);
+}
+
+function decrypt(data, secretKey) {
+    let decrypted = CryptoJS.AES.decrypt(data, secretKey);
+    return JSON.parse(decrypted.toString(CryptoJS.enc.Utf8));
+}
+
 
 module.exports = {
 
@@ -106,5 +120,17 @@ module.exports = {
             }
         }
         return o;
+    },
+
+    openWalletFile: function (path, secretKey) {
+        let content = fs.readFileSync(path, 'utf8');
+        return decrypt(content.substr(4), secretKey);
+    },
+
+    saveWalletFile: function (path, data, secretKey) {
+        let content = 'sonm' + encrypt(data, secretKey);
+        fs.writeFile(path, content, err => {
+            if (err) throw err;
+        });
     },
 };
