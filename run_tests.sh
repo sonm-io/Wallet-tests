@@ -2,18 +2,6 @@
 # Exit script as soon as a command fails.
 set -o errexit
 
-# Executes cleanup function at script exit.
-trap cleanup EXIT
-
-cleanup() {
-    echo Trying to stop testrpc docker container
-
-}
-
-startup() {
-
-}
-
 WALLET_PATH=''
 CI=''
 testrpc_name=testrpc
