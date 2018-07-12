@@ -1,0 +1,28 @@
+version: '2'
+services:
+  bootstrap_livenet:
+    build: monitored-geth-client
+    restart: on-failure
+    container_name: bootstrap_livenet
+    hostname: test_live_mining_node
+    links:
+      - netstats_livenet
+    entrypoint: /root/start.sh
+    command: '--datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --networkid=456719 --rpc --rpcaddr="0.0.0.0" js /root/mine.js'
+    volumes:
+      - ./files/password:/root/files/password:ro
+      - ./files/live/genesis.json:/root/files/genesis.json:ro
+      - ./files/ks:/root/.ethereum/devchain/keystore:rw
+      - /Users/snm-devops/ethereum-docker-live/dag/:/root/.ethash/:rw
+    ports:
+      - "30343:30303"
+      - "30343:30303/udp"
+      - "8666:8545"
+  netstats_livenet:
+    build: eth-netstats
+    restart: on-failure
+    container_name: netstats_livenet
+    environment:
+      - WS_SECRET=eth-net-stats-secret
+    ports:
+      - "3333:3000"
