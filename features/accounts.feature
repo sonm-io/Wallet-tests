@@ -134,7 +134,7 @@ Feature: Account
     Then Accounts page is displayed
     When Click the ADD TOKEN button
     Then Add Token dialogue is displayed
-    And Fill in the Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
+    And Fill in the Token Address field "0xcf4aad4a20a4be77bee4527ba10d333b51f83621"
     When Click the Add New Token button
     Then Token "CUSTOM" is present in Tokens list
 
@@ -143,7 +143,7 @@ Feature: Account
     Then Accounts page is displayed
     Then Token "CUSTOM" is present in Tokens list
     When Click the ADD TOKEN button
-    And Fill in the Token Address field "0x822a3bfa5bae1e7031f9fdc035f0c7102796e6e3"
+    And Fill in the Token Address field "0xcf4aad4a20a4be77bee4527ba10d333b51f83621"
     When Click the Add New Token button
     Then Add New Token error message is displayed
 

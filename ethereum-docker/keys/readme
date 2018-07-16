@@ -1,0 +1,4 @@
+openssl genrsa -out privkey.pem 2048
+openssl req -new -x509 -days 3650 -nodes -key privkey.pem -sha256 -out ca.pem
+openssl req -new -sha256 -nodes -out proxy.test.sonm.csr -newkey rsa:2048 -keyout proxy.test.sonm.key -config proxy.test.sonm.csr.cnf
+openssl x509 -req -in proxy.test.sonm.csr -CA ca.pem -CAkey privkey.pem -CAcreateserial -out proxy.test.sonm.crt -days 3650 -sha256 -extfile proxy.test.sonm_v3.ext
