@@ -10,7 +10,6 @@ services:
     entrypoint: /root/start.sh
     command: '--datadir=~/.ethereum/devchain --nodekeyhex=091bd6067cb4612df85d9c1ff85cc47f259ced4d4cd99816b14f35650f59c322 --rpcapi "db,personal,eth,net,web3" --rpccorsdomain="*" --networkid=665 --rpc --rpcaddr="0.0.0.0" js /root/mine.js'
     volumes:
-      - /etc/localtime:/etc/localtime:ro
       - ./files/password:/root/files/password:ro
       - ./files/live/genesis.json:/root/files/genesis.json:ro
       - ./files/ks:/root/.ethereum/devchain/keystore:rw
@@ -27,8 +26,6 @@ services:
     container_name: netstats_livenet
     networks:
       - livenet
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
     environment:
       - WS_SECRET=eth-net-stats-secret
     ports:
@@ -39,8 +36,6 @@ services:
     environment:
       - GETH_HOST=172.16.1.177
       - GETH_PORT=8555
-    volumes:
-      - /etc/localtime:/etc/localtime:ro
     ports:
       - 8545:8545
     networks:
