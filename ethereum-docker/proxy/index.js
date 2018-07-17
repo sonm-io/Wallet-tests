@@ -22,4 +22,7 @@ httpProxy.createServer({
     }
 }).on('error', function(e) {
     console.log(JSON.stringify(e, null, ' '))
+}).on('proxyRes', function(proxyRes, req, res) {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, OPTIONS');
 }).listen(8545);
