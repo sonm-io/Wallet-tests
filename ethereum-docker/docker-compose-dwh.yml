@@ -1,8 +1,8 @@
 version: '3.5'
 services:
-  postgres:
+  postgres_dwh:
     image: postgres
-    container_name: postgres
+    container_name: postgres_dwh
     restart: on-failure
     ports:
       - 15432:5432
@@ -23,7 +23,7 @@ services:
       - 15123:8545
     networks:
       - dwh
-  dwh:
+  dwh_bin:
     build: dwh
     container_name: dwh
     restart: on-failure

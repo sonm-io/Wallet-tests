@@ -4,7 +4,7 @@ http_address: ":15022"
 
 storage:
   driver: "postgres"
-  endpoint: "postgresql://postgres:5432/dwh?user=dwh&password=dwh&sslmode=disable"
+  endpoint: "postgresql://postgres_dwh:5432/dwh?user=dwh&password=dwh&sslmode=disable"
 
 ethereum:
   key_store: "/sonm/keys"
