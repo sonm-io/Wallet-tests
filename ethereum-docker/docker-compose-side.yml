@@ -13,7 +13,7 @@ services:
       - ./files/password:/root/files/password:ro
       - ./files/side/genesis.json:/root/files/genesis.json:ro
       - ./files/ks:/root/.ethereum/devchain/keystore:rw
-      - /Users/snm-devops/ethereum-docker-side/dag/:/root/.ethash/:rw
+      - /home/developer/eth-wallet/dag-sidechain/dag/:/root/.ethash/:rw
     environment:
       - NETSTATS_SERVER=netstats_sidechain
     ports:
