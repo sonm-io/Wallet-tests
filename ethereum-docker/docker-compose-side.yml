@@ -4,7 +4,7 @@ services:
     build: monitored-geth-client
     restart: on-failure
     container_name: bootstrap_sidechain
-    hostname: test_sidechain_mining_node
+    hostname: test_sidechain_mining_node_for_wallet
     networks:
       - sidechain
     entrypoint: /root/start.sh

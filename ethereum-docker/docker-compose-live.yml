@@ -4,7 +4,7 @@ services:
     build: monitored-geth-client
     restart: on-failure
     container_name: bootstrap_livenet
-    hostname: test_live_mining_node
+    hostname: test_live_mining_node_for_wallet
     networks:
       - livenet
     entrypoint: /root/start.sh

@@ -17,6 +17,6 @@ blockchain:
   blocks_batch_size: 5000
 
 logging:
-  level: "info"
+  level: "debug"
 
 enable_rest: true
