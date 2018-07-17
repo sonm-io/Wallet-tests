@@ -1,12 +1,14 @@
 let ProfileRegistry = artifacts.require('./ProfileRegistry.sol');
 
 module.exports = function (deployer, network) {
+    let sonm = '0x5d540435d1aacb744af9ab49358ce237e562b614';
     let KYC2 = '0xf9c176c276dc8c04ee9f01166f70fd238e5a16cf';
     let KYC3 = '0xbeeeff0a0f4dd2dbacfbf4ff4d4838962f761cc4';
     let KYC4 = '0xac4b829daa17c686ac5264b70c9f4d9ce54a2ec9';
     deployer.then(async () => { // eslint-disable-line promise/catch-or-return
         if (network === 'sidechain') {
             let pr = await ProfileRegistry.deployed();
+            await pr.AddSonmValidator(sonm, {gasPrice: 0});
             pr.AddValidator(KYC2, 2, {gasPrice: 0});
             pr.AddValidator(KYC3, 3, {gasPrice: 0});
             await pr.AddValidator(KYC4, 4, {gasPrice: 0});

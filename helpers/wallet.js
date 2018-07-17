@@ -64,7 +64,7 @@ let main = async function () {
             wallet.tokens[2].address = customAddress;
         }
 
-        wallet.settings.chainId = 'livenet';
+        wallet.settings.chainId = 'testrpc';
         wallet.settings.nodeUrl = nodeUrl;
         return wallet;
     }
