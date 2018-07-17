@@ -14,20 +14,19 @@ module.exports = function (deployer, network) {
             pr.AddValidator(KYC2, 2, {gasPrice: 0});
             pr.AddValidator(KYC3, 3, {gasPrice: 0});
             await pr.AddValidator(KYC4, 4, {gasPrice: 0});
-            console.log("Creating certificates for validators...");
-            pr.CreateCertificate(KYC2, 1102, "SONM KYC2", {gasPrice: 0});//name
-            pr.CreateCertificate(KYC2, 1103, "This service allows to elevate profile level to REGISTERED with passing mobile phone registration.", {gasPrice: 0});//description
-            pr.CreateCertificate(KYC2, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
-            pr.CreateCertificate(KYC2, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
-            pr.CreateCertificate(KYC3, 1102, "SONM KYC3", {gasPrice: 0});//name
-            pr.CreateCertificate(KYC3, 1103, "This service allows to elevate profile level to IDENTIFIED.", {gasPrice: 0});//description
-            pr.CreateCertificate(KYC3, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
-            pr.CreateCertificate(KYC3, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
-            pr.CreateCertificate(KYC4, 1102, "SONM KYC4", {gasPrice: 0});//name
-            pr.CreateCertificate(KYC4, 1103, "This service allows to elevate profile level to PROFESSIONAL.", {gasPrice: 0});//description
-            pr.CreateCertificate(KYC4, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
-            await pr.CreateCertificate(KYC4, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
-
+            // console.log("Creating certificates for validators...");
+            // pr.CreateCertificate(KYC2, 1102, "SONM KYC2", {gasPrice: 0});//name
+            // pr.CreateCertificate(KYC2, 1103, "This service allows to elevate profile level to REGISTERED with passing mobile phone registration.", {gasPrice: 0});//description
+            // pr.CreateCertificate(KYC2, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
+            // pr.CreateCertificate(KYC2, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
+            // pr.CreateCertificate(KYC3, 1102, "SONM KYC3", {gasPrice: 0});//name
+            // pr.CreateCertificate(KYC3, 1103, "This service allows to elevate profile level to IDENTIFIED.", {gasPrice: 0});//description
+            // pr.CreateCertificate(KYC3, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
+            // pr.CreateCertificate(KYC3, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
+            // pr.CreateCertificate(KYC4, 1102, "SONM KYC4", {gasPrice: 0});//name
+            // pr.CreateCertificate(KYC4, 1103, "This service allows to elevate profile level to PROFESSIONAL.", {gasPrice: 0});//description
+            // pr.CreateCertificate(KYC4, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
+            // await pr.CreateCertificate(KYC4, 1106, "0x0de0b6b3a7640000", {gasPrice: 0});//price
         } else if (network === 'livenet') {
             //
         } else {
