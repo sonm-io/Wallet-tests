@@ -8,10 +8,13 @@ module.exports = function (deployer, network) {
     deployer.then(async () => { // eslint-disable-line promise/catch-or-return
         if (network === 'sidechain') {
             let pr = await ProfileRegistry.deployed();
+            console.log("Adding sonm validator...");
             await pr.AddSonmValidator(sonm, {gasPrice: 0});
+            console.log("Adding validators...");
             pr.AddValidator(KYC2, 2, {gasPrice: 0});
             pr.AddValidator(KYC3, 3, {gasPrice: 0});
             await pr.AddValidator(KYC4, 4, {gasPrice: 0});
+            console.log("Creating certificates for validators...");
             pr.CreateCertificate(KYC2, 1102, "SONM KYC2", {gasPrice: 0});//name
             pr.CreateCertificate(KYC2, 1103, "This service allows to elevate profile level to REGISTERED with passing mobile phone registration.", {gasPrice: 0});//description
             pr.CreateCertificate(KYC2, 1104, "https://proxy.test.sonm.com:18080", {gasPrice: 0});//url
