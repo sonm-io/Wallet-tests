@@ -2,13 +2,13 @@ let httpProxy = require('http-proxy');
 let fs = require('fs');
 let host = '127.0.0.1';
 let port = 8000;
-if (process.env.GETH_HOST !== undefined) {
-    host = process.env.GETH_HOST;
-    console.log("GETH_HOST = " + host);
+if (process.env.TARGET_HOST !== undefined) {
+    host = process.env.TARGET_HOST;
+    console.log("TARGET_HOST = " + host);
 }
-if (process.env.GETH_PORT !== undefined) {
-    port = process.env.GETH_PORT;
-    console.log("GETH_PORT = " + port);
+if (process.env.TARGET_PORT !== undefined) {
+    port = process.env.TARGET_PORT;
+    console.log("TARGET_PORT = " + port);
 }
 
 httpProxy.createServer({

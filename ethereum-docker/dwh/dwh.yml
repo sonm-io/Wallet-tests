@@ -1,0 +1,22 @@
+grpc_address: ":15021"
+
+http_address: ":15022"
+
+storage:
+  driver: "postgres"
+  endpoint: "postgresql://localhost:15432/dwh?user=dwh&password=dwh&sslmode=disable"
+
+ethereum:
+  key_store: "/sonm/keys"
+  pass_phrase: "11111111"
+
+blockchain:
+  endpoint: "http://172.16.1.135:8555"
+  sidechain_endpoint: "http://172.16.1.135:8666"
+  contract_registry: "0x4b90dff4de1eb5a8581f3200bd5956c9b8dd6346"
+  blocks_batch_size: 5000
+
+logging:
+  level: "info"
+
+enable_rest: true

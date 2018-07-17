@@ -1,0 +1,37 @@
+version: '3.5'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: on-failure
+    ports:
+      - 15432:5432
+    environment:
+      - POSTGRES_USER=dwh
+      - POSTGRES_PASSWORD=dwh
+      - POSTGRES_DB=dwh
+    networks:
+      - dwh
+  proxy_dwh:
+    build: proxy
+    container_name: proxy_dwh
+    restart: on-failure
+    environment:
+      - TARGET_HOST=172.16.1.135
+      - TARGET_PORT=15022
+    ports:
+      - 15123:8545
+    networks:
+      - dwh
+  dwh:
+    build: dwh
+    container_name: dwh
+    restart: on-failure
+    ports:
+      - 15121:15021
+      - 15122:15022
+    networks:
+      - dwh
+networks:
+  dwh:
+    name: dwh
