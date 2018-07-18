@@ -21,8 +21,8 @@ module.exports = function (deployer, network) {
     deployer.then(async () => { // eslint-disable-line promise/catch-or-return
         if (network === 'sidechain') {
             let addrHashmap = await AddressHashMap.deployed();
-            addrHashmap.write('masterchainSNMAddress', '0xcf4aad4a20a4be77bee4527ba10d333b51f83621', {gasPrice: 0});
-            addrHashmap.write('gatekeeperMasterchainAddress', '0x8e95a66e0a038e2325185b10eaae8854c9896835', {gasPrice: 0});
+            addrHashmap.write('masterchainSNMAddress', '0x1ac9e48eb78cde2af37191a850da6f710f241bbb', {gasPrice: 0});
+            addrHashmap.write('gatekeeperMasterchainAddress', '0xdd675d4e1987f7372c7c2048399a411b44ba7d69', {gasPrice: 0});
             addrHashmap.write('sidechainSNMAddress', SNM.address, {gasPrice: 0});
             addrHashmap.write('blacklistAddress', Blacklist.address, {gasPrice: 0});
             addrHashmap.write('marketAddress', Market.address, {gasPrice: 0});
@@ -36,8 +36,8 @@ module.exports = function (deployer, network) {
             //
         } else {
             let addrHashmap = await AddressHashMap.deployed();
-            addrHashmap.write('masterchainSNMAddress', '0xcf4aad4a20a4be77bee4527ba10d333b51f83621');
-            addrHashmap.write('gatekeeperMasterchainAddress', '0x8e95a66e0a038e2325185b10eaae8854c9896835');
+            addrHashmap.write('masterchainSNMAddress', '0x1ac9e48eb78cde2af37191a850da6f710f241bbb');
+            addrHashmap.write('gatekeeperMasterchainAddress', '0xdd675d4e1987f7372c7c2048399a411b44ba7d69');
             addrHashmap.write('sidechainSNMAddress', SNM.address);
             addrHashmap.write('blacklistAddress', Blacklist.address);
             addrHashmap.write('marketAddress', Market.address);
