@@ -9,7 +9,7 @@ ethereum:
   # path to keystore
   key_store: "/sonm/keys"
   # passphrase for keystore
-  pass_phrase: "111111111"
+  pass_phrase: "11111111"
 
 blockchain:
   endpoint: "http://172.16.1.135:8555"
