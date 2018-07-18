@@ -32,6 +32,18 @@ services:
       - 15122:15022
     networks:
       - dwh
+  gatekeeper_side:
+    build: gatekeeper
+    container_name: gatekeeper_side
+    restart: on-failure
+    environment:
+      - DIRECTION=sidechain
+  gatekeeper_live:
+    build: gatekeeper
+    container_name: gatekeeper_live
+    restart: on-failure
+    environment:
+      - DIRECTION=masterchain
 networks:
   dwh:
     name: dwh

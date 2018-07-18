@@ -1,0 +1,28 @@
+# Logging settings.
+log:
+  # The desired logging level.
+  # Allowed values are "debug", "info", "warn", "error", "panic" and "fatal"
+  level: debug
+
+# Settings for Ethereum keys
+ethereum:
+  # path to keystore
+  key_store: "/sonm/keys"
+  # passphrase for keystore
+  pass_phrase: "111111111"
+
+blockchain:
+  endpoint: "http://172.16.1.135:8555"
+  sidechain_endpoint: "http://172.16.1.135:8666"
+  contract_registry: "0x4b90dff4de1eb5a8581f3200bd5956c9b8dd6346"
+
+gatekeeper:
+  # Define direction that gatekeeper works
+  # Allowed values are "sidechain", "masterchain"
+  direction: DIRECTION
+  # Delay used for prevent racing between other gates instances
+  delay: "1s"
+  # Period for checking transaction
+  period: "1s"
+  # Period for checking freezing time changing
+  # reload_freezing_period: "60m"

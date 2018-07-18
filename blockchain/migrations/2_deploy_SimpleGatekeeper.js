@@ -12,7 +12,7 @@ module.exports = function (deployer, network) {
             let tnf = await TestnetFaucet.deployed();
             let snmAddress = await tnf.getTokenAddress();
             console.log('SONM TEST token address = ' + snmAddress);
-            deployer.deploy(SimpleGatekeeperWithLimitLive, snmAddress, 1);
+            await deployer.deploy(SimpleGatekeeperWithLimitLive, snmAddress, 1);
         } else {
             await deployer.deploy(SimpleGatekeeperWithLimit, SNM.address, 1);
         }
