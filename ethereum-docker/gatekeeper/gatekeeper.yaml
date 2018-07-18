@@ -14,7 +14,7 @@ ethereum:
 blockchain:
   endpoint: "http://172.16.1.135:8555"
   sidechain_endpoint: "http://172.16.1.135:8666"
-  contract_registry: "0x4b90dff4de1eb5a8581f3200bd5956c9b8dd6346"
+  contract_registry: "0xa78d434b49dd7267c88cbf5ed181598d8290006b"
 
 gatekeeper:
   # Define direction that gatekeeper works
