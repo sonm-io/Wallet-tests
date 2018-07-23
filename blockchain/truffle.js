@@ -5,7 +5,7 @@ let PrivateKeyProvider = require('truffle-privatekey-provider');
 
 let privateKey = 'af5b4e15128c508e872b4af061f4b095de1838beed390cb328042513b833bde6'; // for test purposes
 
-let livechainEndpoint = 'http://172.16.1.135:8555';
+let livechainEndpoint = 'http://172.16.1.135:8777';
 let sidechainEndpoint = 'http://172.16.1.135:8666';
 
 

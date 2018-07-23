@@ -19,7 +19,7 @@ services:
     ports:
       - 30343:30303
       - 30343:30303/udp
-      - 8555:8545
+      - 8777:8545
   netstats_livenet:
     build: eth-netstats
     restart: on-failure
@@ -35,7 +35,7 @@ services:
     container_name: proxy_livenet
     environment:
       - TARGET_HOST=172.16.1.135
-      - TARGET_PORT=8555
+      - TARGET_PORT=8777
     ports:
       - 8545:8545
     networks:

@@ -1,0 +1,45 @@
+host:
+  bind_address: "127.0.0.1:8181"
+
+database:
+  host: "localhost"
+  port: "5432"
+  user: "kyc2"
+  password: "super-strong-password"
+  dbname: "kyc2db"
+
+blockchain:
+  rpc_server: "https://sidechain-dev.sonm.com"
+  token_address: "0x5db024c6469634f4b307135cb76e8e6806f007b3"
+  profiles_address: "0xcc1cb65bdea124520dbdcc9e82b21b4352e45ad9"
+  gas_limit: 520000
+
+ethereum:
+  key_store: "./keys"
+  pass_phrase: "h4hwdoj8vz2x3fzx"
+
+# google recaptcha config
+captcha:
+  site_key: ""
+  secret_key: ""
+
+# with trailing slash
+web:
+  templates_path: "./templates"
+  static_path: "./static"
+
+sms:
+  send_url: "https://smsc.ru/sys/send.php"
+  username: ""
+  password: ""
+  # sms text use %s as placeholder for verification code
+  sms_text: "SONM KYC2 Verification Code is %s"
+  # timeout in seconds
+  timeout: 120
+  # code enter max attempts
+  max_enter_attempts: 5
+  # sms send max attempts
+  max_send_attempts: 3
+  # show verification code
+  show_code: true
+  emulate_send: true
