@@ -1,4 +1,4 @@
-let TestnetFaucet = artifacts.require('./TestnetFaucet.sol');
+let SNM = artifacts.require('./SNM.sol');
 
 module.exports = function (deployer, network) {
     let accs = [
@@ -16,13 +16,11 @@ module.exports = function (deployer, network) {
         '0xd1017e7e8fabfbfebd5b8eb47ded71180a861757'
     ];
     deployer.then(async () => { // eslint-disable-line promise/catch-or-return
-        if (network === 'livenet') {
-            let tnf = await TestnetFaucet.deployed();
+        if (network === 'sidechain') {
+            let token = await SNM.deployed();
             for (i = 0; i < accs.length; i++) {
-                await tnf.mintToken(accs[i], 1000000000000000000000);
+                token.transfer(accs[i], 10000 * 1e18, {gasPrice: 0});
             }
-            //get tokens for gatekeeper
-            await tnf.mintToken('0xe44cc9ece3c6ce5e23f07f7efb79c0e0c93aee2c', 100000000000000000000000000);
         }
     });
 };
