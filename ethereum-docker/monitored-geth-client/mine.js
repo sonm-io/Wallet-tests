@@ -1,17 +1,30 @@
 defaultContract = "0x007ccffb7916f37f7aeef05e8096ecfbe55afc2f";
+KYC1 = '0x074dbe6017d6cb0bfb594046f694da8b7dc31266';
+KYC2 = '0xf9c176c276dc8c04ee9f01166f70fd238e5a16cf';
+KYC3 = '0xbeeeff0a0f4dd2dbacfbf4ff4d4838962f761cc4';
+KYC4 = '0xac4b829daa17c686ac5264b70c9f4d9ce54a2ec9';
+mainKey = '0x5d540435d1aacb744af9ab49358ce237e562b614';
 
 web3.personal.unlockAccount(defaultContract, "", 0);
-console.log("account " + defaultContract + " unlocked")
+web3.personal.unlockAccount(KYC1, "111111111", 0);
+web3.personal.unlockAccount(KYC2, "111111111", 0);
+web3.personal.unlockAccount(KYC3, "111111111", 0);
+web3.personal.unlockAccount(KYC4, "111111111", 0);
+web3.personal.unlockAccount(mainKey, "11111111", 0);
+
+console.log("account " + defaultContract + " unlocked");
+console.log("account " + mainKey + " unlocked");
+console.log("account " + KYC1 + " unlocked");
+console.log("account " + KYC2 + " unlocked");
+console.log("account " + KYC3 + " unlocked");
+console.log("account " + KYC4 + " unlocked");
 var config = {};
 var transactions = {};
 
 var defaults = {
-    interval_ms: 300000,
+    interval_ms: 1000,
     initial_ether: 15000000000000000000,
     mine_pending_txns: true,
-    mine_periodically: false,
-    mine_normally: false,
-    threads: 1,
     confirmations: 5
 };
 
@@ -25,57 +38,38 @@ var defaults = {
         var miner_obj = miner;
 
         miner_obj.stop();
-        if (config.mine_pending_txns) start_transaction_mining(config, miner_obj);
+        start_periodic_mining(config, miner_obj);
 
     };
+    var start_periodic_mining = function (config, miner_obj) {
+        var last_mined_ms = Date.now();
+        var timeout_set = false;
 
-    var pendingTransactions = function (config) {
-        console.log("== Not confirmed transactions = " + Object.keys(transactions).length);
-        if (web3.eth.pendingTransactions === undefined || web3.eth.pendingTransactions === null) {
-            return txpool.status.pending || txpool.status.queued;
-        }
-        else if (typeof web3.eth.pendingTransactions === "function") {
-            return web3.eth.pendingTransactions().length > 0;
-        }
-        else if (Object.keys(transactions).length > 0) {
-            Object.keys(transactions).forEach(function (t) {
-                var confirmations = web3.eth.blockNumber - web3.eth.getTransaction(t).blockNumber;
-                console.log("== Confirmations for transaction [" + t + "] = " + confirmations);
-                if (confirmations > config.confirmations) {
-                    delete transactions[t];
-                    console.log("== Remove transaction [" + t + "] from list");
-                }
-            });
-            return true;
-        }
-        else {
-            return web3.eth.pendingTransactions.length > 0 || web3.eth.getBlock('pending').transactions.length > 0;
-        }
-    };
-
-    var start_transaction_mining = function (config, miner_obj) {
-        web3.eth.filter("pending").watch(function () {
-
-            var ptransactions = web3.eth.getBlock('pending').transactions;
-            ptransactions.forEach(function (pt) {
-                transactions[pt] = pt;
-                console.log("== Added transaction " + pt);
-                console.log("== Transactions size =" + Object.keys(transactions).length);
-            });
-
-            if (miner_obj.hashrate > 0) return;
-
-            console.log("== Pending transactions! Looking for next block...");
-            miner_obj.start(config.threads);
-        });
-
-        if (config.mine_periodically) return;
-
+        miner_obj.start();
         web3.eth.filter("latest").watch(function () {
-            if (!pendingTransactions(config)) {
-                console.log("== No transactions left. Stopping miner...");
-                miner_obj.stop();
+
+            timeout_set = true;
+
+            var now = Date.now();
+            var ms_since_block = now - last_mined_ms;
+            last_mined_ms = now;
+
+            var next_block_in_ms;
+
+            if (ms_since_block > config.interval_ms) {
+                next_block_in_ms = 0;
+            } else {
+                next_block_in_ms = (config.interval_ms - ms_since_block);
             }
+
+            miner_obj.stop();
+            console.log("== Looking for next block in " + next_block_in_ms + "ms");
+
+            setTimeout(function () {
+                console.log("== Looking for next block");
+                timeout_set = false;
+                miner_obj.start();
+            }, next_block_in_ms);
         });
     };
     main();

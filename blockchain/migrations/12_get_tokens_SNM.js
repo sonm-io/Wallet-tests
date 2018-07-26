@@ -1,4 +1,6 @@
 let TestnetFaucet = artifacts.require('./TestnetFaucet.sol');
+let SimpleGatekeeperWithLimitLive = artifacts.require('./SimpleGatekeeperWithLimitLive.sol');
+let mainKey = '0x5d540435d1aacb744af9ab49358ce237e562b614';
 
 module.exports = function (deployer, network) {
     let accs = [
@@ -19,10 +21,10 @@ module.exports = function (deployer, network) {
         if (network === 'livenet') {
             let tnf = await TestnetFaucet.deployed();
             for (i = 0; i < accs.length; i++) {
-                await tnf.mintToken(accs[i], 1000000000000000000000);
+                await tnf.mintToken(accs[i], 1000000000000000000000, {from: mainKey});
             }
             //get tokens for gatekeeper
-            await tnf.mintToken('0xe44cc9ece3c6ce5e23f07f7efb79c0e0c93aee2c', 100000000000000000000000000);
+            await tnf.mintToken(SimpleGatekeeperWithLimitLive.address, 100000000000000000000000000, {from: mainKey});
         }
     });
 };

@@ -1,4 +1,5 @@
 let SNM = artifacts.require('./SNM.sol');
+let mainKey = '0x5d540435d1aacb744af9ab49358ce237e562b614';
 
 module.exports = function (deployer, network) {
     let accs = [
@@ -19,7 +20,7 @@ module.exports = function (deployer, network) {
         if (network === 'sidechain') {
             let token = await SNM.deployed();
             for (i = 0; i < accs.length; i++) {
-                token.transfer(accs[i], 10000 * 1e18, {gasPrice: 0});
+                token.transfer(accs[i], 10000 * 1e18, {from: mainKey, gasPrice: 0});
             }
         }
     });

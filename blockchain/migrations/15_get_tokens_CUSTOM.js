@@ -1,4 +1,5 @@
 let CUSTOM = artifacts.require('./CUSTOM.sol');
+let mainKey = '0x5d540435d1aacb744af9ab49358ce237e562b614';
 
 module.exports = function (deployer, network) {
     let accs = [
@@ -18,7 +19,7 @@ module.exports = function (deployer, network) {
             let custom = await CUSTOM.deployed();
             for (i = 0; i < accs.length; i++) {
                 console.log('[+++++] get CUSTOM tokens for ' + accs[i]);
-                await custom.mintToken(accs[i], 1000000000000000000000);
+                await custom.mintToken(accs[i], 1000000000000000000000, {from: mainKey});
             }
         }
     });
