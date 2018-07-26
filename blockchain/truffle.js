@@ -1,12 +1,24 @@
 require('babel-register');
 require('babel-polyfill');
 require('dotenv').config();
-let PrivateKeyProvider = require('truffle-privatekey-provider');
 
-let privateKey = 'af5b4e15128c508e872b4af061f4b095de1838beed390cb328042513b833bde6'; // for test purposes
+let livechainHost = '172.16.1.135';
+let livechainPort = 8777;
+let sidechainHost = '172.16.1.135';
+let sidechainPort = 8666;
 
-let livechainEndpoint = 'http://172.16.1.135:8777';
-let sidechainEndpoint = 'http://172.16.1.135:8666';
+if (process.env.LIVECHAIN_HOST !== undefined) {
+    livechainHost = process.env.LIVECHAIN_HOST;
+}
+if (process.env.LIVECHAIN_PORT !== undefined) {
+    livechainPort = process.env.LIVECHAIN_PORT;
+}
+if (process.env.SIDECHAIN_HOST !== undefined) {
+    sidechainHost = process.env.SIDECHAIN_HOST;
+}
+if (process.env.SIDECHAIN_PORT !== undefined) {
+    sidechainPort = process.env.SIDECHAIN_PORT;
+}
 
 
 let mochaConfig = {};
@@ -27,12 +39,14 @@ module.exports = {
             network_id: '*', // eslint-disable-line camelcase
         },
         sidechain: {
-            provider: () => new PrivateKeyProvider(privateKey, sidechainEndpoint),
+            host: sidechainHost,
+            port: sidechainPort,
             network_id: '*', // eslint-disable-line camelcase
             gas: 10000000
         },
         livenet: {
-            provider: () => new PrivateKeyProvider(privateKey, livechainEndpoint),
+            host: livechainHost,
+            port: livechainPort,
             network_id: '*', // eslint-disable-line camelcase
         },
 
