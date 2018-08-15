@@ -13,12 +13,12 @@ if (process.env.TARGET_PORT !== undefined) {
 
 httpProxy.createServer({
     target: {
-        host: host,
-        port: port
+        host: '172.16.1.14',
+        port: '8545'
     },
     ssl: {
-        key: fs.readFileSync('/certs/proxy.test.sonm.key', 'utf8'),
-        cert: fs.readFileSync('/certs/proxy.test.sonm.crt', 'utf8')
+        key: fs.readFileSync('./proxy.test.sonm.key', 'utf8'),
+        cert: fs.readFileSync('./proxy.test.sonm.crt', 'utf8')
     }
 }).on('error', function(e) {
     console.log(JSON.stringify(e, null, ' '))

@@ -1,8 +1,7 @@
 pragma solidity ^0.4.13;
 
-import './StandardToken.sol';
-
-import './Ownable.sol';
+import "zeppelin-solidity/contracts/token/ERC20/StandardToken.sol";
+import "zeppelin-solidity/contracts/ownership/Ownable.sol";
 
 contract CUSTOM is StandardToken, Ownable{
 
