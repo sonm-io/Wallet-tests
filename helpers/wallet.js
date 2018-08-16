@@ -54,7 +54,7 @@ let main = async function () {
 
     let nodeUrl = 'https://proxy.test.sonm.com:8545';
     let sonmAddress = '0x36218c62f9cc85948ed2988e76c37a2708b40a60';
-    let customAddress = '0x1616b55650626a5063985c34ef987f49fb4c3838';
+    let customAddress = '0xfbf3df499d0c17be9dd836bfcfc93ec157632d2a';
 
     async function modifyWallet(wallet) {
         if (wallet.tokens.length > 1) {
